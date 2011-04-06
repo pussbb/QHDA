@@ -1,0 +1,449 @@
+
+/* General */
+
+* {
+margin: 0;
+padding: 0;
+}
+
+html {
+height: 100%;
+font-size: 62.5%;
+}
+
+body {
+height: 100%;
+text-align: center;
+font: 1.2em Verdana, Arial, Helvetica, sans-serif;
+background-color: #AAD6F0;
+min-width: 782px;
+}
+
+a:link, a:visited {
+color: #004D89;
+text-decoration: underline;
+font-weight: bold;
+}
+
+a:hover {
+text-decoration: none;
+}
+
+.cleaner {
+clear: both;
+height: 0;
+font-size: 0;
+visibility: hidden;
+content: ' ';
+}
+
+.noscreen {
+display: none;
+}
+
+.hidden { /* Skip menu */
+position: absolute;
+top: -10000px;
+left: 0;
+width: 1px;
+height: 1px;
+overflow: hidden;
+}
+
+
+/* Paragraphs, headings, ... */
+
+p {
+line-height: 170%;
+margin-bottom: 10px;
+color: #003B69;
+}
+
+h1 {
+font-size: 2.2em;
+font-weight: normal;
+color: #FFFFFF;
+text-align: left;
+padding: 15px 0 0 30px;
+letter-spacing: 1px;
+}
+
+h1 a:link, h1 a:visited {
+font-weight: normal;
+text-decoration: none;
+color: #FFFFFF;
+}
+
+h2 {
+font-size: 1.2em;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-weight: normal;
+color: #FFFFFF;
+text-align: left;
+margin: 3px 0 0 0;
+padding-left: 30px;
+letter-spacing: 1px;
+}
+
+h3 {
+font-size: 1.6em;
+font-family: Georgia, "Times New Roman", Times, serif;
+color: #004C87;
+font-weight: normal;
+letter-spacing: 1px;
+margin-bottom: 7px;
+}
+
+h3 a:link, h3 a:visited {
+font-weight: normal;
+color: #004C87;
+text-decoration: none;
+}
+
+h3 a:hover {
+text-decoration: underline;
+}
+
+h4 {
+font-size: 1.1em;
+color: #004C87;
+margin: 12px 0 3px 0;
+}
+
+address {
+font-style: normal;
+line-height: 1.7;
+}
+
+address span {
+color: #005699;
+}
+
+abbr {
+border-bottom: 1px dotted #005699;
+cursor: help;
+}
+
+
+/* Images */
+
+img.float {
+float: left;
+border: 1px solid #004C87;
+margin: 0.5em 0.8em 0.5em 0;
+}
+
+img.me {
+float: left;
+border: 0;
+margin: 0.4em 0.6em 0 0;
+}
+
+
+/* Wrapper */
+
+#wrapper {
+width: 782px;
+margin: 30px auto 0 auto;
+display: table; /* margin-bottom for FF   (?) */
+}
+
+
+/* Header */
+
+#header {
+width: 782px;
+height: 125px;
+position: relative;
+margin: 0 auto;
+background: #025382 url(qrc:/blueblog/css/img/hd-bg.gif') no-repeat 0 0;
+}
+
+
+/* Search form */
+
+/* Menu */
+
+#menu {
+position: absolute;
+top: 96px;
+right: 20px;
+z-index: 10px;
+}
+
+#menu li {
+list-style-type: none;
+float: left;
+display: inline;
+margin-left: 3px;
+}
+
+#menu li a {
+float: left;
+display: block;
+padding: 0 20px;
+background: url(qrc:/blueblog/css/img/tab-body.gif') repeat-x 0 0;
+color: #FFFFFF;
+text-decoration: none;
+height: 29px;
+line-height: 29px; 
+position: relative;
+list-style-type: none;
+}
+    
+#menu li a span.tab-l {
+position: absolute;
+top: 0;
+left: 0;
+width: 12px;
+height: 16px;
+background: url(qrc:/blueblog/css/img/tab-l.gif') no-repeat 0 0;
+}
+
+#menu li a span.tab-r {
+position: absolute; 
+top: 0;
+right: 0;
+width: 12px;
+height: 16px;
+background: url(qrc:/blueblog/css/img/tab-r.gif') no-repeat 100% 0;
+}
+
+#menu li a span.tab-r  {
+position: absolute; 
+top: 0;
+right: 0;
+width: 12px;
+height: 16px;
+background: url(qrc:/blueblog/css/img/tab-r.gif') no-repeat 100% 0;
+}
+    
+#menu li a:hover {
+text-decoration: underline;
+cursor: pointer;
+}
+
+#menu li#active a {
+background: #FFFFFF url(qrc:/blueblog/css/img/tab-body-hover.gif') repeat-x 0 0;
+color: #E96516;
+text-decoration: none;
+}
+
+#menu li#active a span.tab-l {
+position: absolute;
+top: 0;
+left: 0;
+width: 12px;
+height: 16px;
+background: url(qrc:/blueblog/css/img/tab-l-hover.gif') no-repeat 0 0;
+}
+
+#menu li#active a span.tab-r {
+position: absolute;
+top: 0;
+right: 0;
+width: 12px;
+height: 16px;
+background: url(qrc:/blueblog/css/img/tab-r-hover.gif') no-repeat 100% 0;
+}
+
+
+/* Content */
+
+#content {
+width: 100%;
+margin: 0 auto;
+background: url(qrc:/blueblog/css/img/content-bg.gif') repeat-y 0 0;
+}
+
+#content-box {
+width: 100%;
+margin: 0 auto;
+text-align: left;
+}
+
+
+/* Content left */
+
+#content-box-left {
+width: 100%;
+float: left;
+}
+
+#content-box-left-in {
+margin: 0px 0 2px 7px;
+}
+
+
+/* Content box with light blue background */
+
+.box {
+		width: 98%;
+		background: #EBF7FF ;
+		}
+      
+.box-top {
+		
+		width: 98%;
+		}
+		
+.box-bottom {
+		
+		width: 98%;
+		}
+
+
+#box-in {
+padding: 10px 0 15px 0;
+}
+
+.article {
+margin: 0 15px 25px 15px;
+padding-bottom: 7px;
+border-bottom: 1px dotted #004C87;
+}
+
+p.continue {
+text-align: right;
+margin-right: 25px;
+}
+
+p.continue a, p.continue a:visited {
+text-decoration: underline;
+color: #1D5800;
+font-style: italic;
+padding: 0 2px;
+}
+
+p.continue a:hover {
+text-decoration: none;
+background-color: #1D5800;
+color: #EBF7FF;
+}
+
+
+/* Info about article in green field under the name of article */
+
+.info {
+background-color: #EBFFC0;
+border: 1px solid #B1CF28;
+width: 410px;
+font-size: 0.9em;
+margin-bottom: 7px;
+}
+
+.info-in {
+margin: 4px 7px;
+}
+
+.info-in p {
+margin: 0;
+line-height: 1;
+}
+
+.info-in p a, .info-in p a:visited {
+font-weight: normal;
+padding: 0 2px;
+color: ##214F73;
+}
+
+.info-in p a:hover {
+color: #DEEBF6;
+background-color: #214F73;
+}
+
+
+/* The article date */
+
+.date {
+font-family: Georgia, "Times New Roman", Times, serif;
+text-align: center;
+float: right;
+width: 48px;
+min-height: 40px;
+border: 1px solid #78bee2;
+background-color: #FFFFFF;
+margin: 3px 0 7px 0;
+font-style: italic;
+}
+
+.date p {
+font-size: 0.9em;
+margin: 0;
+line-height: 1;
+}
+
+.date p.day {
+font-size: 1.2em;
+margin-bottom: 1px;
+line-height: 1.6;
+font-weight: bold;
+}
+
+
+/* Content right */
+
+
+
+/* Darker background in the right column - Categories */
+
+.darker-bg {
+
+border-top: 1px solid #B3CEE5;
+border-bottom: 1px solid #B3CEE5;
+margin: 15px 7px 10px 0;
+}
+
+.darker-bg h4 {
+margin: 8px 0 10px 13px;
+}
+
+
+
+
+/* Footer */
+
+#footer {
+width: 782px;
+height: 53px;
+background: #025382 url(qrc:/blueblog/css/img/footer-bg.gif') no-repeat 0 0;
+margin: 0 auto 30px auto;
+}
+
+#footer-in {
+padding: 7px 10px;
+}
+
+#footer-in p {
+font-size: 0.9em;
+color: #FFFFFF;
+margin: 0;
+}
+
+#footer-in p a, #footer-in p a:visited {
+color: #FFFFFF;
+text-decoration: underline;
+font-weight: normal;
+padding: 0 2px;
+}
+
+#footer-in p a:hover {
+text-decoration: none;
+background-color: #FFFFFF;
+color: #025382;
+}
+
+#footer-in p span {
+font-size: 1.1em;
+}
+
+#footer-in p a span {
+font-size: 1.1em;
+font-weight: bold;
+}
+
+
+/* Paging */
+
+.paging {
+}

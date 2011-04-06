@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/blueblog">
+        <file>index.html</file>
+        <file>css/style.css</file>
+        <file>css/img/bg.gif</file>
+        <file>css/img/content-bg.gif</file>
+        <file>css/img/footer-bg.gif</file>
+        <file>css/img/hd-bg.gif</file>
+        <file>css/img/tab-body.gif</file>
+        <file>css/img/tab-body-hover.gif</file>
+        <file>css/img/tab-l.gif</file>
+        <file>css/img/tab-l-hover.gif</file>
+        <file>css/img/tab-r.gif</file>
+        <file>css/img/tab-r-hover.gif</file>
+    </qresource>
+</RCC>

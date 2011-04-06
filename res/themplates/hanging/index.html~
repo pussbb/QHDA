@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>{title}</title>
+<link href="qrc:/hanging/default.css" rel="stylesheet" type="text/css" media="screen" />
+<link type='text/css' rel='stylesheet' href='qrc:/js/syntaxhighlighter/styles/shCore.css'/>
+<link type='text/css' rel='stylesheet' href='qrc:/js/syntaxhighlighter/styles/shThemeDefault.css'/>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushAS3.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushClojure.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushCss.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushFSharp.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushMathematica.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushObjectiveC.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushRpgle.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushSql.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushAda.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushAsm.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushColdFusion.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushDelphi.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushLatex.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushMatlab.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushPerl.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushProcessing.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushRuby.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushVb.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushAhk.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushBash.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushCpp.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushDiff.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushLsl.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushMatlabSimple.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushPython.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushSahi.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushXml.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushAppleScript.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushBat.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushErlang.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushJava.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushLua.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushNasm8086.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushRouterOS.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushScala.js"></script>
+<script type="text/javascript" src="qrc:/js/syntaxhighlighter/scripts/shBrushYaml.js"></script>
+
+<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = 'qrc:/js/syntaxhighlighter/scripts/clipboard.swf'; 
+SyntaxHighlighter.all();
+	</script>
+</head>
+<body>
+<div id="wrapper">
+  <!-- start header -->
+  <div id="header-wrapper">
+    <div id="header">
+      <div id="logo">
+        <h1><a href="#"><span>{section}</span></a></h1>
+        <p>{title}</p>
+      </div>
+    </div>
+  </div>
+  <div id="menu-wrapper">
+    <div id="menu">
+      <ul id="main">
+       
+      </ul>
+    </div>
+  </div>
+  <!-- end header -->
+  <!-- start page -->
+  <div id="page">
+  <div id="page-bgtop">
+   <div id="page-bgbtm">
+   
+    <!-- start content -->
+    <div id="content">
+{body}
+    </div>
+    <!-- end content -->
+    <!-- start sidebars -->
+    
+    <!-- end sidebars -->
+    <div style="clear: both;">&nbsp;</div>
+  </div>
+  <!-- end page -->
+</div>
+</div>
+</div>
+<div id="footer-wrapper">
+  <div id="footer">
+    
+  </div>
+</div>
+</body>
+</html>

@@ -1,13 +1,13 @@
 #ifndef QHDA_H
 #define QHDA_H
 
-#include <QMainWindow>
+#include "headers/qcorewindow.h"
 
 namespace Ui {
     class QHDA;
 }
 
-class QHDA : public QMainWindow
+class QHDA : public QCoreWindow
 {
     Q_OBJECT
 

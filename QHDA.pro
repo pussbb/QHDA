@@ -18,8 +18,10 @@ TRANSLATIONS = ./lang/qhda_ru.ts \
                 ./lang/qhda_en.ts \
 
 SOURCES += main.cpp\
-        src/qhda.cpp
+        src/qhda.cpp \
+    src/qcorewindow.cpp
 
-HEADERS  += headers/qhda.h
+HEADERS  += headers/qhda.h \
+    headers/qcorewindow.h
 
 FORMS    += ui/qhda.ui

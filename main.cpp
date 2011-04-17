@@ -1,5 +1,5 @@
 #include <QtGui/QApplication>
-#include "qhda.h"
+#include "headers/qhda.h"
 
 int main(int argc, char *argv[])
 {

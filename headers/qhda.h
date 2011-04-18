@@ -14,7 +14,8 @@ class QHDA : public QCoreWindow
 public:
     explicit QHDA(QWidget *parent = 0);
     ~QHDA();
-
+public slots:
+    void changeEvent(QEvent *e);
 private:
     Ui::QHDA *ui;
 };

@@ -4,9 +4,9 @@
 QCoreWindow::QCoreWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-
+    set_locale();
 }
-void QCoreWindow::buildLangMenu(QDir *dir,QString appname,QString icon)
+void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
 {
     lang_files_path = dir->absolutePath()+QDir::toNativeSeparators("/");
     app_lang_prefix = appname;
@@ -20,43 +20,25 @@ void QCoreWindow::buildLangMenu(QDir *dir,QString appname,QString icon)
 
     QStringList fileNames =
             dir->entryList(QStringList(appname+"*.qm"));
-    QString syslocale = QLocale::system().name();
-    QString lang;
-    if(syslocale.length()>2)
+
+    for (int i = 0; i < fileNames.size(); ++i)
     {
-        syslocale.resize(2);
-    }
-    for (int i = 0; i < fileNames.size(); ++i) {
-        QString locale = fileNames[i];
-        locale.remove(0, locale.indexOf('_') + 1);
-        locale.truncate(locale.lastIndexOf('.'));
+        QString file_locale = fileNames[i];
+        file_locale.remove(0, file_locale.indexOf('_') + 1);
+        file_locale.truncate(file_locale.lastIndexOf('.'));
+
         QTranslator translator1;
         translator1.load(lang_files_path+fileNames[i]);
         QString language = translator1.translate("Language","English");
         QAction *action = new QAction(tr("&%2").arg(language), this);
         action->setCheckable(true);
-        action->setData(locale);
+        action->setData(file_locale);
         languageMenu->addAction(action);
         languageActionGroup->addAction(action);
-      /*  if(settings.value("locale","none")=="none")
-        {
-            if (locale== syslocale)
-            {
-                action->setChecked(true);
-                lang=locale;
-            }
-        }
-        else
-        {
-            if (locale==settings.value("locale","none"))
-            {
-                action->setChecked(true);
-                lang=settings.value("locale","none").toString();
-            }
-        }*/
-
+        if(file_locale == locale)
+            action->setChecked(true);
     }
-    translator.load(lang_files_path+appname+lang);
+    translator.load(lang_files_path+appname+locale);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
 }
@@ -64,7 +46,40 @@ void QCoreWindow::buildLangMenu(QDir *dir,QString appname,QString icon)
 void QCoreWindow::switchLanguage(QAction *action)
 {
     locale = action->data().toString();
-    translator.load(app_lang_prefix + locale, lang_files_path);
+    translator.load(app_lang_prefix + "_" +locale, lang_files_path);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
 }
+
+void QCoreWindow::LangMenuToMenuBar(QString objectName)
+{
+    QMenuBar* bar=this->menuBar();
+    QList<QAction *> actions = bar->actions();
+    QList<QAction *>::const_iterator it = actions.begin();
+    for(; it != actions.end(); it++)
+    {
+        QAction *action = *it;
+        if(action->menu()->objectName() == objectName)
+        {
+
+            action->menu()->addMenu(languageMenu);
+        }
+    }
+}
+
+void QCoreWindow::set_locale()
+{
+    syslocale = QLocale::system().name();
+    if(syslocale.length()>2)
+    {
+        syslocale.resize(2);
+    }
+    settings.beginGroup("Core");
+    if(settings.value("locale","none")=="none")
+        locale = syslocale;
+    else
+        locale = settings.value("locale","none").toString();
+    settings.endGroup();
+}
+
+

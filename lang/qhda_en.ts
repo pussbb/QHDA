@@ -16,7 +16,7 @@
         <location filename="../src/qcorewindow.cpp" line="61"/>
         <location filename="../src/qcorewindow.cpp" line="70"/>
         <source>langmenu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Language</translation>
     </message>
     <message>
         <location filename="../src/qcorewindow.cpp" line="36"/>

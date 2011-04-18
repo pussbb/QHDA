@@ -8,7 +8,7 @@ QHDA::QHDA(QWidget *parent) :
     ui->setupUi(this);
     buildLangMenu("qhda");
     LangMenuToMenuBar("menuOptions");
-    settings.allKeys();
+
 }
 
 QHDA::~QHDA()
@@ -25,4 +25,9 @@ void QHDA::changeEvent(QEvent *e)
     default:
         break;
     }
+}
+
+void QHDA::on_actionExit_triggered()
+{
+    exit(0);
 }

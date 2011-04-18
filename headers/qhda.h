@@ -16,6 +16,9 @@ public:
     ~QHDA();
 public slots:
     void changeEvent(QEvent *e);
+private slots:
+    void on_actionExit_triggered();
+
 private:
     Ui::QHDA *ui;
 };

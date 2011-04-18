@@ -38,7 +38,7 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
         if(file_locale == locale)
             action->setChecked(true);
     }
-    translator.load(lang_files_path+appname+locale);
+    translator.load(lang_files_path+appname+"_"+locale);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
 }
@@ -46,6 +46,12 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
 void QCoreWindow::switchLanguage(QAction *action)
 {
     locale = action->data().toString();
+
+    settings.beginGroup("Core");
+    if(settings.value("save_locale","false").toBool())
+        settings.setValue("locale",locale);
+    settings.endGroup();
+
     translator.load(app_lang_prefix + "_" +locale, lang_files_path);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
@@ -61,8 +67,8 @@ void QCoreWindow::LangMenuToMenuBar(QString objectName)
         QAction *action = *it;
         if(action->menu()->objectName() == objectName)
         {
-
-            action->menu()->addMenu(languageMenu);
+            if(languageMenu->actions().count() >0)
+                action->menu()->addMenu(languageMenu);
         }
     }
 }
@@ -74,11 +80,14 @@ void QCoreWindow::set_locale()
     {
         syslocale.resize(2);
     }
+
     settings.beginGroup("Core");
+
     if(settings.value("locale","none")=="none")
         locale = syslocale;
     else
         locale = settings.value("locale","none").toString();
+
     settings.endGroup();
 }
 

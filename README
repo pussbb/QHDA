@@ -1,0 +1,10 @@
+QT Help Doc Assistant(QHDA) 
+the easiest way to create and synchronize your help docs with site and application
+
+lang files
+for Linux users if application couldn't get available languages
+create a symbol link to the run
+cd ./bin
+ln -s ../lang ./lang
+
+For Windows user copy folder lang to folder bin

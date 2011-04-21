@@ -34,8 +34,24 @@
      <string>Options</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+    <widget class="QMenu" name="menuOpen">
+     <property name="title">
+      <string>Open</string>
+     </property>
+     <addaction name="actionBook_List"/>
+     <addaction name="actionBook_Table_of_Content"/>
+     <addaction name="actionSearch_In_Book"/>
+    </widget>
+    <addaction name="actionFull_Screen"/>
+    <addaction name="menuOpen"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
+   <addaction name="menuWindow"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -46,9 +62,59 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QDockWidget" name="BookList">
+   <property name="windowTitle">
+    <string>Book List</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="BookListContent"/>
+  </widget>
+  <widget class="QDockWidget" name="BookTableContents">
+   <property name="windowTitle">
+    <string>Book Table of Contents</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="BookTCContent"/>
+  </widget>
+  <widget class="QDockWidget" name="SearchInBook">
+   <property name="windowTitle">
+    <string>Search In Book</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="SearchContent"/>
+  </widget>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionFull_Screen">
+   <property name="text">
+    <string>Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>F12</string>
+   </property>
+  </action>
+  <action name="actionBook_List">
+   <property name="text">
+    <string>Book List</string>
+   </property>
+  </action>
+  <action name="actionBook_Table_of_Content">
+   <property name="text">
+    <string>Book Table of Content</string>
+   </property>
+  </action>
+  <action name="actionSearch_In_Book">
+   <property name="text">
+    <string>Search In Book</string>
    </property>
   </action>
  </widget>

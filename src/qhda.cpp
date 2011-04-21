@@ -39,11 +39,17 @@ void QHDA::on_actionExit_triggered()
 
 void QHDA::init_dockwidgets()
 {
-  //  tabifyDockWidget(ui->dBookList,ui->dBookTableContents);
-    //tabifyDockWidget(ui->dBookList,ui->dSearchInBook);
-    ///QTabBar *tabBar = findChild<QTabBar *>();
-    //tabBar->setCurrentIndex(0);
-    ///setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
+    tabifyDockWidget(ui->dBookList,ui->dBookTableContents);
+    tabifyDockWidget(ui->dBookList,ui->dSearchInBook);
+    QTabBar *tabBar = findChild<QTabBar *>();
+    tabBar->setCurrentIndex(0);
+    setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
+    ui->tabContent->setTabText(0,"WElcome");
+    ui->tabContent->setWindowTitle("7687686");
+    QWebView *m = new QWebView();
+    ui->tabContent->insertTab(0,m,"Welcome");
+    m->load(QUrl("http://google.com"));
+    ///ui->tabContent-> (0,new QWebView(ui->tabContent),"Welcome");
 qDebug()<<restoreDockWidget(ui->dBookList);
 }
 

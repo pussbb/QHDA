@@ -2,6 +2,7 @@
 #define QHDA_H
 
 #include "headers/qcorewindow.h"
+#include <QtWebKit>
 namespace Ui {
     class QHDA;
 }

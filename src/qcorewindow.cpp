@@ -88,8 +88,6 @@ void QCoreWindow::set_locale()
         locale = syslocale;
     else
         locale = settings.value("Core/locale","none").toString();
-
-    settings.endGroup();
 }
 
 void QCoreWindow::closeEvent(QCloseEvent *event)

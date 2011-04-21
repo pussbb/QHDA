@@ -5,6 +5,11 @@ QCoreWindow::QCoreWindow(QWidget *parent) :
     QMainWindow(parent)
 {
     set_locale();
+    if(settings.value("Core/saveWindowLayout",false).toBool())
+    {
+       restoreGeometry(settings.value("Core/window_geometry").toByteArray());
+       restoreState(settings.value("Core/windowState").toByteArray());
+    }
 }
 void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
 {
@@ -47,10 +52,8 @@ void QCoreWindow::switchLanguage(QAction *action)
 {
     locale = action->data().toString();
 
-    settings.beginGroup("Core");
-    if(settings.value("save_locale","false").toBool())
+    if(settings.value("Core/save_locale","false").toBool())
         settings.setValue("locale",locale);
-    settings.endGroup();
 
     translator.load(app_lang_prefix + "_" +locale, lang_files_path);
     QApplication::installTranslator(&translator);
@@ -81,14 +84,20 @@ void QCoreWindow::set_locale()
         syslocale.resize(2);
     }
 
-    settings.beginGroup("Core");
-
-    if(settings.value("locale","none")=="none")
+    if(settings.value("Core/locale","none")=="none")
         locale = syslocale;
     else
-        locale = settings.value("locale","none").toString();
+        locale = settings.value("Core/locale","none").toString();
 
     settings.endGroup();
 }
 
-
+void QCoreWindow::closeEvent(QCloseEvent *event)
+ {
+    if(settings.value("Core/saveWindowLayout",false).toBool())
+    {
+        settings.setValue("Core/window_geometry", saveGeometry());
+        settings.setValue("Core/windowState", saveState());
+    }
+    QMainWindow::closeEvent(event);
+ }

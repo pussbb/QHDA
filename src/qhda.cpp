@@ -34,17 +34,17 @@ void QHDA::changeEvent(QEvent *e)
 
 void QHDA::on_actionExit_triggered()
 {
-    exit(0);
+   close();
 }
 
 void QHDA::init_dockwidgets()
 {
-    tabifyDockWidget(ui->BookList,ui->BookTableContents);
-    tabifyDockWidget(ui->BookList,ui->SearchInBook);
-    QTabBar *tabBar = findChild<QTabBar *>();
-    tabBar->setCurrentIndex(0);
-    setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
-
+  //  tabifyDockWidget(ui->dBookList,ui->dBookTableContents);
+    //tabifyDockWidget(ui->dBookList,ui->dSearchInBook);
+    ///QTabBar *tabBar = findChild<QTabBar *>();
+    //tabBar->setCurrentIndex(0);
+    ///setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
+qDebug()<<restoreDockWidget(ui->dBookList);
 }
 
 void QHDA::on_actionFull_Screen_triggered()
@@ -57,27 +57,27 @@ void QHDA::on_actionFull_Screen_triggered()
 
 void QHDA::on_actionBook_List_triggered()
 {
-    if(ui->BookList->isHidden())
+    if(ui->dBookList->isHidden())
     {
-        QDockWidget *tabBar = findChild<QDockWidget *>("BookList");
+        QDockWidget *tabBar = findChild<QDockWidget *>("dBookList");
         tabBar->show();
     }
 }
 
 void QHDA::on_actionBook_Table_of_Content_triggered()
 {
-    if(ui->BookTableContents->isHidden())
+    if(ui->dBookTableContents->isHidden())
     {
-        QDockWidget *tabBar = findChild<QDockWidget *>("BookTableContents");
+        QDockWidget *tabBar = findChild<QDockWidget *>("dBookTableContents");
         tabBar->show();
     }
 }
 
 void QHDA::on_actionSearch_In_Book_triggered()
 {
-    if(ui->SearchInBook->isHidden())
+    if(ui->dSearchInBook->isHidden())
     {
-        QDockWidget *tabBar = findChild<QDockWidget *>("SearchInBook");
+        QDockWidget *tabBar = findChild<QDockWidget *>("dSearchInBook");
         tabBar->show();
     }
 }

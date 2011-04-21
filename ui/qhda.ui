@@ -62,32 +62,38 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QDockWidget" name="BookList">
+  <widget class="QDockWidget" name="dBookList">
    <property name="windowTitle">
     <string>Book List</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="BookListContent"/>
+   <widget class="QWidget" name="dBookListContent">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QListWidget" name="BookList"/>
+     </item>
+    </layout>
+   </widget>
   </widget>
-  <widget class="QDockWidget" name="BookTableContents">
+  <widget class="QDockWidget" name="dBookTableContents">
    <property name="windowTitle">
     <string>Book Table of Contents</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="BookTCContent"/>
+   <widget class="QWidget" name="dBookTCContent"/>
   </widget>
-  <widget class="QDockWidget" name="SearchInBook">
+  <widget class="QDockWidget" name="dSearchInBook">
    <property name="windowTitle">
     <string>Search In Book</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="SearchContent"/>
+   <widget class="QWidget" name="dSearchContent"/>
   </widget>
   <action name="actionExit">
    <property name="text">

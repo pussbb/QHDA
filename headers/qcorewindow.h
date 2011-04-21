@@ -39,6 +39,8 @@ private:
     QCoreWindow *d;
 private slots:
     void set_locale();
+protected:
+    void closeEvent(QCloseEvent *event);
 public slots:
     void switchLanguage(QAction *action);
 

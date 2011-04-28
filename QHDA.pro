@@ -19,9 +19,11 @@ TRANSLATIONS = ./lang/qhda_ru.ts \
 
 SOURCES += main.cpp\
         src/qhda.cpp \
-    src/qcorewindow.cpp
+    src/qcorewindow.cpp \
+    src/databasemanager.cpp
 
 HEADERS  += headers/qhda.h \
-    headers/qcorewindow.h
+    headers/qcorewindow.h \
+    headers/databasemanager.h
 
 FORMS    += ui/qhda.ui

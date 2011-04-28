@@ -21,9 +21,6 @@ void QHDA::changeEvent(QEvent *e)
     switch (e->type()) {
     case QEvent::LanguageChange:
     {
-        // BookList->setWindowTitle(QApplication::translate("QHDA", "Books list", 0, QApplication::UnicodeUTF8));
-        // BookTableContents->setWindowTitle(QApplication::translate("QHDA", "Table Of Content", 0, QApplication::UnicodeUTF8));
-        // SearchInBook->setWindowTitle(QApplication::translate("QHDA", "Search", 0, QApplication::UnicodeUTF8));
         ui->retranslateUi(this);
         break;
     }
@@ -44,13 +41,15 @@ void QHDA::init_dockwidgets()
     QTabBar *tabBar = findChild<QTabBar *>();
     tabBar->setCurrentIndex(0);
     setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
-    ui->tabContent->setTabText(0,"WElcome");
-    ui->tabContent->setWindowTitle("7687686");
-    QWebView *m = new QWebView();
-    ui->tabContent->insertTab(0,m,"Welcome");
-    m->load(QUrl("http://google.com"));
-    ///ui->tabContent-> (0,new QWebView(ui->tabContent),"Welcome");
-qDebug()<<restoreDockWidget(ui->dBookList);
+
+
+    int ind =  ui->tabContent->addTab(new QWebView(),"Welcome");
+    QWidget *widget = ui->tabContent->widget(ind);
+
+    if(QWebView *tab_page = qobject_cast<QWebView*>(widget))
+        tab_page->load(QUrl("http://google.com"));
+
+
 }
 
 void QHDA::on_actionFull_Screen_triggered()
@@ -86,4 +85,9 @@ void QHDA::on_actionSearch_In_Book_triggered()
         QDockWidget *tabBar = findChild<QDockWidget *>("dSearchInBook");
         tabBar->show();
     }
+}
+
+void QHDA::on_tabContent_tabCloseRequested(int index)
+{
+   ui->tabContent->removeTab(index);
 }

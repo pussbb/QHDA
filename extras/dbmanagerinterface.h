@@ -7,7 +7,8 @@ class DbManagerInterface
 {
 public:
     virtual ~DbManagerInterface() {}
-    virtual QString echo(const QString &message) = 0;
+    virtual QString version() = 0;
+    virtual QString db_driver_name() = 0;
 };
 
 

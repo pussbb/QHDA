@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 
+
 QT       += core gui webkit
 
 TARGET = QHDA
@@ -24,6 +25,7 @@ SOURCES += main.cpp\
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
-    headers/databasemanager.h
+    headers/databasemanager.h \
+    extras/dbmanagerinterface.h
 
 FORMS    += ui/qhda.ui

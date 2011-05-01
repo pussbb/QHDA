@@ -1,14 +1,17 @@
 #include "headers/qhda.h"
 #include "ui_qhda.h"
 #include "QDebug"
+
 QHDA::QHDA(QWidget *parent) :
     QCoreWindow(parent),
     ui(new Ui::QHDA)
 {
+    dbman = new DataBaseManager();
     ui->setupUi(this);
     buildLangMenu("qhda");
     LangMenuToMenuBar("menuOptions");
     init_dockwidgets();
+
 }
 
 QHDA::~QHDA()

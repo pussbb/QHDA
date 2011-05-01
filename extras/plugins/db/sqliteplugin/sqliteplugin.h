@@ -13,7 +13,9 @@ class SqlitePlugin : public QObject, DbManagerInterface
     Q_INTERFACES(DbManagerInterface)
 
 public:
-    QString echo(const QString &message);
+    ///QString echo(const QString &message);
+    QString version();
+    QString db_driver_name();
 };
 
 

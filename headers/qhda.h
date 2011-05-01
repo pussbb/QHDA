@@ -3,6 +3,8 @@
 
 #include "headers/qcorewindow.h"
 #include <QtWebKit>
+#include "headers/databasemanager.h"
+
 namespace Ui {
     class QHDA;
 }
@@ -14,6 +16,7 @@ class QHDA : public QCoreWindow
 public:
     explicit QHDA(QWidget *parent = 0);
     ~QHDA();
+    DataBaseManager *dbman;
 public slots:
     void changeEvent(QEvent *e);
 private slots:

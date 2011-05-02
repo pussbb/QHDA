@@ -3,32 +3,35 @@
 DataBaseManager::DataBaseManager(QObject *parent) :
     QObject(parent)
 {
-    QDir pluginsDir("/opt/qt_projects/QHDA/bin/");
-    #if defined(Q_OS_WIN)
-        if (pluginsDir.dirName().toLower() == "debug" || pluginsDir.dirName().toLower() == "release")
-            pluginsDir.cdUp();
-    #elif defined(Q_OS_MAC)
-        if (pluginsDir.dirName() == "MacOS") {
-            pluginsDir.cdUp();
-            pluginsDir.cdUp();
-            pluginsDir.cdUp();
-        }
-    #endif
-    pluginsDir.cd("plugins");
-    pluginsDir.cd("db");
+    get_plugins_list();
+}
+
+bool DataBaseManager::load_plugin(QString file)
+{
+    if(file.isEmpty())
+        return false;
+     QPluginLoader pluginLoader(file);
+     QObject *plugin = pluginLoader.instance();
+     if (plugin) {
+         interface = qobject_cast<DbManagerInterface *>(plugin);
+         return true;
+     }
+     else
+         return false;
+}
+
+void DataBaseManager::get_plugins_list(QString path)
+{
+    if(path.isEmpty())
+        path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/db/");
+    QDir pluginsDir(path);
     foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
         QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
             interface = qobject_cast<DbManagerInterface *>(plugin);
-
+            plugins.insert(interface->db_driver_name(),interface);
+            qDebug()<< interface->auth_conection();
         }
-    }
-    qDebug()<< interface;
-
-    try {
-        qDebug()<<interface->version();
-    } catch (QtConcurrent::Exception &e) {
-
     }
 }

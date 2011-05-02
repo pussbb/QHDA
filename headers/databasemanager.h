@@ -11,12 +11,13 @@ class DataBaseManager : public QObject
 public:
     explicit DataBaseManager(QObject *parent = 0);
     DbManagerInterface *interface;
+    QMap<QString , DbManagerInterface*> plugins;
 signals:
 
 public slots:
-
+    bool load_plugin(QString file = "");
 private slots:
-
+    void get_plugins_list(QString path = "");
 };
 
 #endif // DATABASEMANAGER_H

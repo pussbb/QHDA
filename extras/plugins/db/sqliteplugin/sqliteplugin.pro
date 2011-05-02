@@ -1,4 +1,4 @@
-
+QT       += core sql
 TEMPLATE        = lib
 CONFIG         += plugin
 INCLUDEPATH    += ./
@@ -11,4 +11,5 @@ unix:MOC_DIR = ./obj/
 unix:DESTDIR = ../../../../bin/plugins/db
 unix:UI_DIR = ./obj/
 
-
+RESOURCES += \
+    sqlite_res.qrc

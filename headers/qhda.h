@@ -26,8 +26,10 @@ private slots:
     void on_actionBook_List_triggered();
     void on_actionBook_Table_of_Content_triggered();
     void on_actionSearch_In_Book_triggered();
-
+    void init_books();
     void on_tabContent_tabCloseRequested(int index);
+
+    void on_actionNew_triggered();
 
 private:
     Ui::QHDA *ui;

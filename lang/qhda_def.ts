@@ -4,7 +4,7 @@
 <context>
     <name>Language</name>
     <message>
-        <location filename="../src/qcorewindow.cpp" line="32"/>
+        <location filename="../src/qcorewindow.cpp" line="37"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
@@ -12,14 +12,14 @@
 <context>
     <name>QCoreWindow</name>
     <message>
-        <location filename="../src/qcorewindow.cpp" line="13"/>
-        <location filename="../src/qcorewindow.cpp" line="43"/>
-        <location filename="../src/qcorewindow.cpp" line="51"/>
+        <location filename="../src/qcorewindow.cpp" line="18"/>
+        <location filename="../src/qcorewindow.cpp" line="48"/>
+        <location filename="../src/qcorewindow.cpp" line="60"/>
         <source>langmenu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qcorewindow.cpp" line="33"/>
+        <location filename="../src/qcorewindow.cpp" line="38"/>
         <source>&amp;%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -32,18 +32,70 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="28"/>
+        <location filename="../ui/qhda.ui" line="34"/>
+        <source>Tab 1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="44"/>
+        <source>about:blank</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="66"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="34"/>
+        <location filename="../ui/qhda.ui" line="72"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="51"/>
+        <location filename="../ui/qhda.ui" line="77"/>
+        <source>Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="81"/>
+        <source>Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="105"/>
+        <location filename="../ui/qhda.ui" line="151"/>
+        <source>Book List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="120"/>
+        <source>Book Table of Contents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="129"/>
+        <location filename="../ui/qhda.ui" line="161"/>
+        <source>Search In Book</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="138"/>
         <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="143"/>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="146"/>
+        <source>F12</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="156"/>
+        <source>Book Table of Content</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -31,7 +31,7 @@
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>Tab 1</string>
+        <string>Welcome</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <property name="margin">
@@ -65,6 +65,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
@@ -159,6 +160,11 @@
   <action name="actionSearch_In_Book">
    <property name="text">
     <string>Search In Book</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
    </property>
   </action>
  </widget>

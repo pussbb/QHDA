@@ -21,11 +21,14 @@ TRANSLATIONS = ./lang/qhda_ru.ts \
 SOURCES += main.cpp\
         src/qhda.cpp \
     src/qcorewindow.cpp \
-    src/databasemanager.cpp
+    src/databasemanager.cpp \
+    src/bookwizard.cpp
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
     headers/databasemanager.h \
-    extras/dbmanagerinterface.h
+    extras/dbmanagerinterface.h \
+    headers/bookwizard.h
 
-FORMS    += ui/qhda.ui
+FORMS    += ui/qhda.ui \
+    ui/bookwizard.ui

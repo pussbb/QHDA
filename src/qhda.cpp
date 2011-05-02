@@ -11,7 +11,10 @@ QHDA::QHDA(QWidget *parent) :
     buildLangMenu("qhda");
     LangMenuToMenuBar("menuOptions");
     init_dockwidgets();
-
+    init_books();
+   // qDebug()<<dbman->interface->create("/opt/qt_projects/QHDA/bin/sql.db");
+   // qDebug()<<dbman->interface->open("/opt/qt_projects/QHDA/bin/sql.db");
+   // qDebug()<<dbman->interface->auth_conection();
 }
 
 QHDA::~QHDA()
@@ -45,14 +48,10 @@ void QHDA::init_dockwidgets()
     tabBar->setCurrentIndex(0);
     setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
 
-
     int ind =  ui->tabContent->addTab(new QWebView(),"Welcome");
     QWidget *widget = ui->tabContent->widget(ind);
-
     if(QWebView *tab_page = qobject_cast<QWebView*>(widget))
         tab_page->load(QUrl("http://google.com"));
-
-
 }
 
 void QHDA::on_actionFull_Screen_triggered()
@@ -93,4 +92,24 @@ void QHDA::on_actionSearch_In_Book_triggered()
 void QHDA::on_tabContent_tabCloseRequested(int index)
 {
    ui->tabContent->removeTab(index);
+}
+
+void QHDA::init_books()
+{
+    settings.beginGroup("Books");
+    foreach (QString item, settings.childKeys()) {
+        qDebug()<<item;
+        qDebug()<<settings.value(item,"");
+    }
+    settings.endGroup();
+}
+#include "headers/bookwizard.h"
+void QHDA::on_actionNew_triggered()
+{
+    BookWizard *bw = new BookWizard(this);
+    if(bw->init_db_plugins_list(dbman->plugins))
+    {
+        bw->show();
+    }
+
 }

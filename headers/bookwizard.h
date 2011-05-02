@@ -3,6 +3,9 @@
 
 #include <QWizard>
 #include "extras/dbmanagerinterface.h"
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QSettings>
 
 namespace Ui {
     class BookWizard;
@@ -17,8 +20,17 @@ public:
     ///DbManagerInterface *interface;
     ~BookWizard();
     bool init_db_plugins_list(QMap<QString , DbManagerInterface*> plugins);
+    QString iconfile;
+private slots:
+    void on_chooseicon_clicked();
+
+    void on_folderchoose_clicked();
+
+    void accept();
+
 private:
     Ui::BookWizard *ui;
+
     QMap<QString , DbManagerInterface*> dbplugins;
 };
 

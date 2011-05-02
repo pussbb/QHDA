@@ -1,24 +1,22 @@
 
 #include "sqliteplugin.h"
 
-
-/*QString SqlitePlugin::echo(const QString &message)
-{
-    return message;
-}
-)*/
 QString SqlitePlugin::version()
 {
     return "0.0.1";
 }
 QString SqlitePlugin::db_driver_name()
 {
-    return "SQLITE";
+    return "SQLITE3";
 }
 
 bool SqlitePlugin::auth_conection()
 {
-    return true;
+    return false;
+}
+bool SqlitePlugin::is_server_type()
+{
+    return false;
 }
 
 QMap<QString, QString> SqlitePlugin::default_auth_options()
@@ -32,12 +30,12 @@ QMap<QString, QString> SqlitePlugin::default_auth_options()
 }
  QString SqlitePlugin::default_connection_options()
  {
-     return "QSQLITE_ENABLE_SHARED_CACHE";
+     return "";
  }
 
-bool SqlitePlugin::create(QString file)
+bool SqlitePlugin::create(QString databaseName)
 {
-    if(file.isEmpty())
+    if(databaseName.isEmpty())
     {
         error_str  = tr("Could not cretate database.");
         return false;
@@ -52,7 +50,7 @@ bool SqlitePlugin::create(QString file)
            db.close();
        db = QSqlDatabase::addDatabase("QSQLITE");
 
-       db.setDatabaseName(file);
+       db.setDatabaseName(databaseName+".book");
        if (!db.open()) {
            error_str  =  db.lastError().text();
            return false;
@@ -62,10 +60,12 @@ bool SqlitePlugin::create(QString file)
        QStringList querylist=query.split(";");
        for (int i = 0; i < querylist.size(); ++i)
            sql.exec(querylist.at(i));
+       db.close();
+       db.removeDatabase(db.defaultConnection);
        return true;
 }
 
-bool SqlitePlugin::open(QString connection)
+bool SqlitePlugin::open(QString databaseName)
 {
     if(db.isOpen())
     {
@@ -74,16 +74,39 @@ bool SqlitePlugin::open(QString connection)
         db.~QSqlDatabase();
     }
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(connection);
+    db.setDatabaseName(databaseName+".book");
     if (!db.open()) {
         error_str  =  db.lastError().text();
         return false;
     }
     return true;
 }
-bool SqlitePlugin::open(QString connection,QMap<QString, QString> options )
+bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
 {
-Q_UNUSED(options);
+    if(db.isOpen())
+    {
+        db.close();
+        db.removeDatabase(db.connectionName());
+        db.~QSqlDatabase();
+    }
+    db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(databaseName+".book");
+
+    if(options.value("host","") != "")
+        db.setHostName(options.value("host").toString());
+    if(options.value("port","") != "")
+        db.setPort(options.value("port").toInt());
+    if(options.value("username","") != "")
+        db.setUserName(options.value("username").toString());
+    if(options.value("password","") != "")
+        db.setPassword(options.value("password").toString());
+    if(options.value("connoptions","") != "")
+        db.setConnectOptions(options.value("connoptions").toString());
+
+    if (!db.open()) {
+        error_str  =  db.lastError().text();
+        return false;
+    }
     return true;
 }
 

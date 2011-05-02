@@ -16,9 +16,10 @@ class SqlitePlugin : public QObject, DbManagerInterface
 public:
     QString version();
     QString db_driver_name();
-    bool create(QString file = "");
-    bool open(QString connection,QMap<QString, QString> options );
-    bool open(QString connection );
+    bool create(QString databaseName = "");
+    bool open(QString databaseName,QMap<QString, QVariant> options );
+    bool open(QString databaseName );
+    bool is_server_type();
     bool auth_conection() ;
     QMap<QString, QString> default_auth_options();
     QString default_connection_options();

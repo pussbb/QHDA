@@ -103,13 +103,20 @@ void QHDA::init_books()
     }
     settings.endGroup();
 }
+
 #include "headers/bookwizard.h"
+
 void QHDA::on_actionNew_triggered()
 {
     BookWizard *bw = new BookWizard(this);
     if(bw->init_db_plugins_list(dbman->plugins))
     {
         bw->show();
+    }
+    else
+    {
+        QMessageBox::warning(0,  QObject::tr("Database engine error"),
+                                     QObject::tr("Unfortunately we couldn't find any database engine plugin.\nPlease try to reinstall application"));
     }
 
 }

@@ -44,6 +44,11 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
             action->setChecked(true);
     }
     translator.load(lang_files_path+appname+"_"+locale);
+
+    qtTranslator.load("qt_" + locale,
+                 QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qDebug()<<QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+         QApplication::installTranslator(&qtTranslator);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
 }
@@ -55,6 +60,9 @@ void QCoreWindow::switchLanguage(QAction *action)
     if(settings.value("Core/save_locale","false").toBool())
         settings.setValue("locale",locale);
 
+    qtTranslator.load("qt_" + locale,
+                 QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    QApplication::installTranslator(&qtTranslator);
     translator.load(app_lang_prefix + "_" +locale, lang_files_path);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));

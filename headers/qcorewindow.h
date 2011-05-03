@@ -13,6 +13,7 @@
 #include <QLocale>
 #include <QTranslator>
 #include <QSettings>
+#include <QLibraryInfo>
 #define AppDir QDir::toNativeSeparators ( QApplication::applicationDirPath()+QDir::toNativeSeparators("/"))
 #define LangDir QDir::toNativeSeparators ( QApplication::applicationDirPath()+QDir::toNativeSeparators("/lang/"))
 
@@ -35,6 +36,7 @@ private:
     QString app_lang_prefix;
     QString lang_files_path;
     QTranslator translator;
+    QTranslator qtTranslator;
     QString syslocale;
     QCoreWindow *d;
 private slots:

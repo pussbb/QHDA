@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/app">
+        <file>qhda.png</file>
+    </qresource>
+</RCC>

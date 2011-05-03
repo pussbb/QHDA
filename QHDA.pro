@@ -32,3 +32,6 @@ HEADERS  += headers/qhda.h \
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui
+
+RESOURCES += \
+    resource/qhda.qrc

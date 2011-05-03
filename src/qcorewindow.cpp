@@ -47,8 +47,7 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
 
     qtTranslator.load("qt_" + locale,
                  QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    qDebug()<<QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-         QApplication::installTranslator(&qtTranslator);
+    QApplication::installTranslator(&qtTranslator);
     QApplication::installTranslator(&translator);
     languageMenu->setTitle(tr("langmenu"));
 }

@@ -19,7 +19,7 @@ public:
     explicit BookWizard(QWidget *parent = 0);
     ///DbManagerInterface *interface;
     ~BookWizard();
-    bool init_db_plugins_list(QMap<QString , DbManagerInterface*> plugins);
+    bool initDbPluginsList(QMap<QString , DbManagerInterface*> plugins);
     QString iconfile;
 private slots:
     void on_chooseicon_clicked();

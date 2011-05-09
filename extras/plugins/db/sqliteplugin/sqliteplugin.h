@@ -3,7 +3,6 @@
 #define SQLITEPLUGIN_H
 
 #include <QObject>
-#include "sqliteplugin.h"
 #include "../../../dbmanagerinterface.h"
 #include <QtSql/QtSql>
 
@@ -15,14 +14,14 @@ class SqlitePlugin : public QObject, DbManagerInterface
 
 public:
     QString version();
-    QString db_driver_name();
+    QString dbDriverName();
     bool create(QString databaseName = "");
     bool open(QString databaseName,QMap<QString, QVariant> options );
     bool open(QString databaseName );
-    bool is_server_type();
-    bool auth_conection() ;
-    QMap<QString, QString> default_auth_options();
-    QString default_connection_options();
+    bool isServerType();
+    bool authConection() ;
+    QMap<QString, QString> defaultAuthOptions();
+    QString defaultConnectionOptions();
 private:
     QSqlDatabase db;
 

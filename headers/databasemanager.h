@@ -15,9 +15,9 @@ public:
 signals:
 
 public slots:
-    bool load_plugin(QString file = "");
+    bool loadPlugin(QString file = "");
 private slots:
-    void get_plugins_list(QString path = "");
+    void getPluginsList(QString path = "");
 };
 
 #endif // DATABASEMANAGER_H

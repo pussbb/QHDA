@@ -4,9 +4,8 @@
 QCoreWindow::QCoreWindow(QWidget *parent) :
     QMainWindow(parent)
 {
-    set_locale();
-    if(settings.value("Core/saveWindowLayout",false).toBool())
-    {
+    setLocale();
+    if(settings.value("Core/saveWindowLayout",false).toBool()) {
        restoreGeometry(settings.value("Core/window_geometry").toByteArray());
        restoreState(settings.value("Core/windowState").toByteArray());
     }
@@ -26,8 +25,7 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
     QStringList fileNames =
             dir->entryList(QStringList(appname+"*.qm"));
 
-    for (int i = 0; i < fileNames.size(); ++i)
-    {
+    for (int i = 0; i < fileNames.size(); ++i) {
         QString file_locale = fileNames[i];
         file_locale.remove(0, file_locale.indexOf('_') + 1);
         file_locale.truncate(file_locale.lastIndexOf('.'));
@@ -67,31 +65,27 @@ void QCoreWindow::switchLanguage(QAction *action)
     languageMenu->setTitle(tr("langmenu"));
 }
 
-void QCoreWindow::LangMenuToMenuBar(QString objectName)
+void QCoreWindow::langMenuToMenuBar(QString objectName)
 {
     QMenuBar* bar=this->menuBar();
     QList<QAction *> actions = bar->actions();
     QList<QAction *>::const_iterator it = actions.begin();
-    for(; it != actions.end(); it++)
-    {
+    for(; it != actions.end(); it++) {
         QAction *action = *it;
-        if(action->menu()->objectName() == objectName)
-        {
+        if(action->menu()->objectName() == objectName) {
             if(languageMenu->actions().count() >0)
                 action->menu()->addMenu(languageMenu);
         }
     }
 }
 
-void QCoreWindow::set_locale()
+void QCoreWindow::setLocale()
 {
     syslocale = QLocale::system().name();
     if(syslocale.length()>2)
-    {
         syslocale.resize(2);
-    }
 
-    if(settings.value("Core/locale","none")=="none")
+    if(settings.value("Core/locale","none") == "none")
         locale = syslocale;
     else
         locale = settings.value("Core/locale","none").toString();
@@ -99,8 +93,7 @@ void QCoreWindow::set_locale()
 
 void QCoreWindow::closeEvent(QCloseEvent *event)
  {
-    if(settings.value("Core/saveWindowLayout",false).toBool())
-    {
+    if(settings.value("Core/saveWindowLayout",false).toBool()) {
         settings.setValue("Core/window_geometry", saveGeometry());
         settings.setValue("Core/windowState", saveState());
     }

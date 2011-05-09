@@ -24,7 +24,7 @@ public:
     explicit QCoreWindow(QWidget *parent = 0);
     QString inline app_dir() { return AppDir;};
     void buildLangMenu(QString appname = "*",QDir *dir = new QDir(LangDir),QString icon = "");
-    void LangMenuToMenuBar(QString objectName);
+    void langMenuToMenuBar(QString objectName);
     QMenu *languageMenu;
     QString locale;
     QSettings settings;
@@ -40,7 +40,7 @@ private:
     QString syslocale;
     QCoreWindow *d;
 private slots:
-    void set_locale();
+    void setLocale();
 protected:
     void closeEvent(QCloseEvent *event);
 public slots:

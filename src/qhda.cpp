@@ -9,9 +9,9 @@ QHDA::QHDA(QWidget *parent) :
     dbman = new DataBaseManager();
     ui->setupUi(this);
     buildLangMenu("qhda");
-    LangMenuToMenuBar("menuOptions");
-    init_dockwidgets();
-    init_books();
+    langMenuToMenuBar("menuOptions");
+    initDockWidgets();
+    initBooks();
    // qDebug()<<dbman->interface->create("/opt/qt_projects/QHDA/bin/sql.db");
    // qDebug()<<dbman->interface->open("/opt/qt_projects/QHDA/bin/sql.db");
    // qDebug()<<dbman->interface->auth_conection();
@@ -40,7 +40,7 @@ void QHDA::on_actionExit_triggered()
    close();
 }
 
-void QHDA::init_dockwidgets()
+void QHDA::initDockWidgets()
 {
     tabifyDockWidget(ui->dBookList,ui->dBookTableContents);
     tabifyDockWidget(ui->dBookList,ui->dSearchInBook);
@@ -50,8 +50,8 @@ void QHDA::init_dockwidgets()
 
     int ind =  ui->tabContent->addTab(new QWebView(),"Welcome");
     QWidget *widget = ui->tabContent->widget(ind);
-    if(QWebView *tab_page = qobject_cast<QWebView*>(widget))
-        tab_page->load(QUrl("http://google.com"));
+    if(QWebView *tabPage = qobject_cast<QWebView*>(widget))
+        tabPage->load(QUrl("http://google.com"));
 }
 
 void QHDA::on_actionFull_Screen_triggered()
@@ -64,8 +64,7 @@ void QHDA::on_actionFull_Screen_triggered()
 
 void QHDA::on_actionBook_List_triggered()
 {
-    if(ui->dBookList->isHidden())
-    {
+    if(ui->dBookList->isHidden()) {
         QDockWidget *tabBar = findChild<QDockWidget *>("dBookList");
         tabBar->show();
     }
@@ -73,8 +72,7 @@ void QHDA::on_actionBook_List_triggered()
 
 void QHDA::on_actionBook_Table_of_Content_triggered()
 {
-    if(ui->dBookTableContents->isHidden())
-    {
+    if(ui->dBookTableContents->isHidden()) {
         QDockWidget *tabBar = findChild<QDockWidget *>("dBookTableContents");
         tabBar->show();
     }
@@ -82,8 +80,7 @@ void QHDA::on_actionBook_Table_of_Content_triggered()
 
 void QHDA::on_actionSearch_In_Book_triggered()
 {
-    if(ui->dSearchInBook->isHidden())
-    {
+    if(ui->dSearchInBook->isHidden()) {
         QDockWidget *tabBar = findChild<QDockWidget *>("dSearchInBook");
         tabBar->show();
     }
@@ -94,7 +91,7 @@ void QHDA::on_tabContent_tabCloseRequested(int index)
    ui->tabContent->removeTab(index);
 }
 
-void QHDA::init_books()
+void QHDA::initBooks()
 {
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
@@ -109,7 +106,7 @@ void QHDA::init_books()
 void QHDA::on_actionNew_triggered()
 {
     BookWizard *bw = new BookWizard(this);
-    if(bw->init_db_plugins_list(dbman->plugins))
+    if(bw->initDbPluginsList(dbman->plugins))
     {
         bw->show();
     }

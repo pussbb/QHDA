@@ -21,12 +21,12 @@ public slots:
     void changeEvent(QEvent *e);
 private slots:
     void on_actionExit_triggered();
-    void init_dockwidgets();
+    void initDockWidgets();
     void on_actionFull_Screen_triggered();
     void on_actionBook_List_triggered();
     void on_actionBook_Table_of_Content_triggered();
     void on_actionSearch_In_Book_triggered();
-    void init_books();
+    void initBooks();
     void on_tabContent_tabCloseRequested(int index);
 
     void on_actionNew_triggered();

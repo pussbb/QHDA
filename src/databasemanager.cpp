@@ -3,10 +3,10 @@
 DataBaseManager::DataBaseManager(QObject *parent) :
     QObject(parent)
 {
-    get_plugins_list();
+    getPluginsList();
 }
 
-bool DataBaseManager::load_plugin(QString file)
+bool DataBaseManager::loadPlugin(QString file)
 {
     if(file.isEmpty())
         return false;
@@ -20,7 +20,7 @@ bool DataBaseManager::load_plugin(QString file)
          return false;
 }
 
-void DataBaseManager::get_plugins_list(QString path)
+void DataBaseManager::getPluginsList(QString path)
 {
     if(path.isEmpty())
         path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/db/");
@@ -30,8 +30,8 @@ void DataBaseManager::get_plugins_list(QString path)
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
             interface = qobject_cast<DbManagerInterface *>(plugin);
-            plugins.insert(interface->db_driver_name(),interface);
-            qDebug()<< interface->auth_conection();
+            plugins.insert(interface->dbDriverName(),interface);
+            qDebug()<< interface->authConection();
         }
     }
 }

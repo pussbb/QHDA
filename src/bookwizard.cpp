@@ -21,7 +21,7 @@ BookWizard::~BookWizard()
     delete ui;
 }
 
-bool BookWizard::init_db_plugins_list(QMap<QString, DbManagerInterface *> plugins)
+bool BookWizard::initDbPluginsList(QMap<QString, DbManagerInterface *> plugins)
 {
     dbplugins = plugins;
     if(plugins.count() == 0)
@@ -32,10 +32,10 @@ bool BookWizard::init_db_plugins_list(QMap<QString, DbManagerInterface *> plugin
         ui->dbengineslist->addItem(plugin_name);
     }
     DbManagerInterface *interface = dbplugins.value(ui->dbengineslist->currentText());
-    if(interface->auth_conection())
+    if(interface->authConection())
     {
         ui->auth_options->setEnabled(true);
-        QMap<QString,QString> auth = interface->default_auth_options();
+        QMap<QString,QString> auth = interface->defaultAuthOptions();
         ui->host->setText(auth.value("host",""));
         ui->port->setText(auth.value("port",""));
         ui->username->setText(auth.value("username",""));
@@ -43,7 +43,7 @@ bool BookWizard::init_db_plugins_list(QMap<QString, DbManagerInterface *> plugin
     }
     else
         ui->auth_options->setEnabled(false);
-    ui->connoptions->setText(interface->default_connection_options());
+    ui->connoptions->setText(interface->defaultConnectionOptions());
     return true;
 }
 
@@ -81,17 +81,17 @@ void BookWizard::on_folderchoose_clicked()
 
 void BookWizard::accept()
 {
-    QString error_msg = "";
+    QString errorMsg = "";
     if(ui->bookname->text().isEmpty())
-        error_msg = tr("Field Book name is requied\n");
+        errorMsg = tr("Field Book name is requied\n");
     if(ui->dbname->text().isEmpty())
-        error_msg +=  tr("Field Database name is requied\n");
+        errorMsg +=  tr("Field Database name is requied\n");
     if(ui->folder_edit->text().isEmpty())
-        error_msg += tr("Field Folder is requied");
-    if(!error_msg.isEmpty())
+        errorMsg += tr("Field Folder is requied");
+    if(!errorMsg.isEmpty())
     {
         QMessageBox::warning(0,  QObject::tr("Please fill all fields"),
-                             error_msg);
+                             errorMsg);
     }
     else
     {
@@ -100,10 +100,10 @@ void BookWizard::accept()
         dir.cd(ui->dbname->text());
         QString path = dir.canonicalPath()+QDir::toNativeSeparators("/");
         /// create settings
-        QSettings book_settings(path+ui->dbname->text()+".ini",
+        QSettings bookSettings(path+ui->dbname->text()+".ini",
                                 QSettings::IniFormat);
-        book_settings.setValue("General/Bookname",ui->bookname->text());
-        book_settings.setValue("General/Bookpath",path);
+        bookSettings.setValue("General/Bookname",ui->bookname->text());
+        bookSettings.setValue("General/Bookpath",path);
         if(!iconfile.isEmpty())
         {
             //resize and copy image icon to book folder
@@ -112,16 +112,16 @@ void BookWizard::accept()
             QPixmap icon(iconfile);
             icon = icon.scaled(64,64,Qt::KeepAspectRatio,Qt::SmoothTransformation );
             icon.save(path+icon_info.fileName());
-            book_settings.setValue("General/BookIcon",icon_info.fileName());
+            bookSettings.setValue("General/BookIcon",icon_info.fileName());
         }
         else
-            book_settings.setValue("General/BookIcon","");
-        book_settings.setValue("General/BookDescr",ui->description->document()->toPlainText());
-        book_settings.setValue("Database/Engine",ui->dbengineslist->currentText());
+            bookSettings.setValue("General/BookIcon","");
+        bookSettings.setValue("General/BookDescr",ui->description->document()->toPlainText());
+        bookSettings.setValue("Database/Engine",ui->dbengineslist->currentText());
         QMap<QString, QVariant> options;
         DbManagerInterface *interface = dbplugins.value(ui->dbengineslist->currentText());
-        book_settings.setValue("Database/auth_connection",interface->auth_conection());
-        if(interface->auth_conection())
+        bookSettings.setValue("Database/auth_connection",interface->authConection());
+        if(interface->authConection())
         {
             options.insert("host",ui->host->text());
             options.insert("port",ui->port->text());
@@ -129,11 +129,11 @@ void BookWizard::accept()
             options.insert("password",ui->password->text());
         }
         options.insert("connoptions",ui->connoptions->document()->toPlainText());
-        book_settings.setValue("Database/settings",options);
-        book_settings.setValue("Database/connoptions",ui->connoptions->document()->isEmpty());
-        book_settings.setValue("Database/version",interface->version());
-        book_settings.sync();
-        if(!interface->is_server_type())
+        bookSettings.setValue("Database/settings",options);
+        bookSettings.setValue("Database/connoptions",ui->connoptions->document()->isEmpty());
+        bookSettings.setValue("Database/version",interface->version());
+        bookSettings.sync();
+        if(!interface->isServerType())
         {
             if(!interface->create(path+ui->dbname->text()))
             {

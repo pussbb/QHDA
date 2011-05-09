@@ -5,21 +5,21 @@ QString SqlitePlugin::version()
 {
     return "0.0.1";
 }
-QString SqlitePlugin::db_driver_name()
+QString SqlitePlugin::dbDriverName()
 {
     return "SQLITE3";
 }
 
-bool SqlitePlugin::auth_conection()
+bool SqlitePlugin::authConection()
 {
     return false;
 }
-bool SqlitePlugin::is_server_type()
+bool SqlitePlugin::isServerType()
 {
     return false;
 }
 
-QMap<QString, QString> SqlitePlugin::default_auth_options()
+QMap<QString, QString> SqlitePlugin::defaultAuthOptions()
 {
     QMap<QString, QString> map;
     map.insert("host","localhost");
@@ -28,7 +28,7 @@ QMap<QString, QString> SqlitePlugin::default_auth_options()
     map.insert("password","root");
     return map;
 }
- QString SqlitePlugin::default_connection_options()
+ QString SqlitePlugin::defaultConnectionOptions()
  {
      return "";
  }

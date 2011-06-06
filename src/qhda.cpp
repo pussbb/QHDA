@@ -15,6 +15,7 @@ QHDA::QHDA(QWidget *parent) :
    // qDebug()<<dbman->interface->create("/opt/qt_projects/QHDA/bin/sql.db");
    // qDebug()<<dbman->interface->open("/opt/qt_projects/QHDA/bin/sql.db");
    // qDebug()<<dbman->interface->auth_conection();
+    dbman->interface->createCategory();
 }
 
 QHDA::~QHDA()
@@ -93,10 +94,25 @@ void QHDA::on_tabContent_tabCloseRequested(int index)
 
 void QHDA::initBooks()
 {
+    QString bookPath ;
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
-        qDebug()<<item;
-        qDebug()<<settings.value(item,"");
+
+        bookPath = settings.value(item,"").toString()
+                + QDir::toNativeSeparators("/");
+
+        books.insert(item,new QSettings(bookPath+item+".ini",QSettings::IniFormat));
+
+        QListWidgetItem* itemList = new QListWidgetItem(ui->bookList);
+        itemList->setText(books.value(item)->value("General/Bookname","").toString());
+        itemList->setData(Qt::UserRole,settings.value(item,""));
+        itemList->setData(Qt::UserRole + 1,item);
+        if( books.value(item)->value("General/BookIcon","").toString() != "")
+            itemList->setIcon(QIcon(bookPath
+                                    + books.value(item)->value("General/BookIcon","")
+                                    .toString()));
+        else
+            itemList->setIcon(QIcon(":/app/qhda.png"));
     }
     settings.endGroup();
 }

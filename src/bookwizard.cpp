@@ -139,7 +139,7 @@ void BookWizard::accept()
             {
                 QMessageBox::warning(0,  QObject::tr("Couldn't create database"),
                                      QObject::tr("Unfortunately we couldn't create database\n%1\n RollBacking changes\nError :%2")
-                                     .arg(path+ui->dbname->text()).arg(interface->error_str));
+                                     .arg(path+ui->dbname->text()).arg(interface->errorStr));
                 dir.remove(dir.canonicalPath());
             }
         }
@@ -149,11 +149,12 @@ void BookWizard::accept()
             {
                 QMessageBox::warning(0,  QObject::tr("Couldn't create database"),
                                      QObject::tr("Unfortunately we couldn't create database\n%1\n RollBacking changes\nError :%2")
-                                     .arg(ui->dbname->text()).arg(interface->error_str));
+                                     .arg(ui->dbname->text()).arg(interface->errorStr));
                 dir.remove(dir.canonicalPath());
             }
         }
-
+        QSettings settings;
+        settings.setValue("Books/"+ui->bookname->text(),path);
         QDialog::accept();
 
     }

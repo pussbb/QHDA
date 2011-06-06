@@ -17,7 +17,8 @@ public:
     virtual bool authConection() = 0;
     virtual QMap<QString, QString> defaultAuthOptions() = 0;
     virtual QString defaultConnectionOptions() = 0;
-    QString error_str;
+    virtual bool createCategory(int parent = 0) = 0;
+    QString errorStr;
 };
 
 

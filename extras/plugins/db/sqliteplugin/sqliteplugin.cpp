@@ -37,13 +37,13 @@ bool SqlitePlugin::create(QString databaseName)
 {
     if(databaseName.isEmpty())
     {
-        error_str  = tr("Could not cretate database.");
+        errorStr  = tr("Could not cretate database.");
         return false;
     }
     QFile sqlres(":/sqlite/sql/db.sql");
        if (!sqlres.open(QIODevice::ReadOnly))
        {
-           error_str  = tr("Could read sql file.");
+           errorStr  = tr("Could read sql file.");
            return false;
        }
        if(db.isOpen())
@@ -52,7 +52,7 @@ bool SqlitePlugin::create(QString databaseName)
 
        db.setDatabaseName(databaseName+".book");
        if (!db.open()) {
-           error_str  =  db.lastError().text();
+           errorStr  =  db.lastError().text();
            return false;
        }
        QString query=sqlres.readAll();
@@ -76,15 +76,14 @@ bool SqlitePlugin::open(QString databaseName)
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(databaseName+".book");
     if (!db.open()) {
-        error_str  =  db.lastError().text();
+        errorStr  =  db.lastError().text();
         return false;
     }
     return true;
 }
 bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
 {
-    if(db.isOpen())
-    {
+    if(db.isOpen()) {
         db.close();
         db.removeDatabase(db.connectionName());
         db.~QSqlDatabase();
@@ -104,11 +103,16 @@ bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
         db.setConnectOptions(options.value("connoptions").toString());
 
     if (!db.open()) {
-        error_str  =  db.lastError().text();
+        errorStr  =  db.lastError().text();
         return false;
     }
     return true;
 }
 
-Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);
+bool SqlitePlugin::createCategory(int parent)
+{
+return true;
+}
 
+
+Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);

@@ -17,6 +17,7 @@ public:
     explicit QHDA(QWidget *parent = 0);
     ~QHDA();
     DataBaseManager *dbman;
+    QMap<QString , QSettings*> books;
 public slots:
     void changeEvent(QEvent *e);
 private slots:

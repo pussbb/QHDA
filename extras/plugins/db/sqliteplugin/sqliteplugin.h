@@ -1,4 +1,3 @@
-
 #ifndef SQLITEPLUGIN_H
 #define SQLITEPLUGIN_H
 
@@ -22,6 +21,8 @@ public:
     bool authConection() ;
     QMap<QString, QString> defaultAuthOptions();
     QString defaultConnectionOptions();
+    bool createCategory(int parent = 0 );
+
 private:
     QSqlDatabase db;
 

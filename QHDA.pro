@@ -22,13 +22,17 @@ SOURCES += main.cpp\
         src/qhda.cpp \
     src/qcorewindow.cpp \
     src/databasemanager.cpp \
-    src/bookwizard.cpp
+    src/bookwizard.cpp \
+    src/tabelofcontent.cpp \
+    src/tabedwebbrowser.cpp
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
     headers/databasemanager.h \
     extras/dbmanagerinterface.h \
-    headers/bookwizard.h
+    headers/bookwizard.h \
+    headers/tabelofcontent.h \
+    headers/tabedwebbrowser.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui

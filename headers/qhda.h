@@ -4,6 +4,7 @@
 #include "headers/qcorewindow.h"
 #include <QtWebKit>
 #include "headers/databasemanager.h"
+#include <QListWidgetItem>
 
 namespace Ui {
     class QHDA;
@@ -31,6 +32,8 @@ private slots:
     void on_tabContent_tabCloseRequested(int index);
 
     void on_actionNew_triggered();
+
+    void on_bookList_itemDoubleClicked(QListWidgetItem* item);
 
 private:
     Ui::QHDA *ui;

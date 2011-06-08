@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="QTabWidget" name="tabContent">
+     <widget class="TabedWebBrowser" name="tabContent">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -134,7 +134,31 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dBookTCContent"/>
+   <widget class="QWidget" name="dBookTCContent">
+    <layout class="QGridLayout" name="gridLayout_4">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>2</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>2</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="TabelOfContent" name="treeWidget">
+       <column>
+        <property name="text">
+         <string/>
+        </property>
+       </column>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QDockWidget" name="dSearchInBook">
    <property name="windowTitle">
@@ -185,6 +209,17 @@
    <class>QWebView</class>
    <extends>QWidget</extends>
    <header>QtWebKit/QWebView</header>
+  </customwidget>
+  <customwidget>
+   <class>TabelOfContent</class>
+   <extends>QTreeWidget</extends>
+   <header location="global">headers/tabelofcontent.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TabedWebBrowser</class>
+   <extends>QTabWidget</extends>
+   <header location="global">headers/tabedwebbrowser.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

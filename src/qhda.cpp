@@ -12,10 +12,8 @@ QHDA::QHDA(QWidget *parent) :
     langMenuToMenuBar("menuOptions");
     initDockWidgets();
     initBooks();
-   // qDebug()<<dbman->interface->create("/opt/qt_projects/QHDA/bin/sql.db");
-   // qDebug()<<dbman->interface->open("/opt/qt_projects/QHDA/bin/sql.db");
-   // qDebug()<<dbman->interface->auth_conection();
-    dbman->interface->createCategory();
+
+   // dbman->interface->createCategory();
 }
 
 QHDA::~QHDA()
@@ -48,11 +46,8 @@ void QHDA::initDockWidgets()
     QTabBar *tabBar = findChild<QTabBar *>();
     tabBar->setCurrentIndex(0);
     setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
+    ui->tabContent->addTab(QUrl("http://google.com"));
 
-    int ind =  ui->tabContent->addTab(new QWebView(),"Welcome");
-    QWidget *widget = ui->tabContent->widget(ind);
-    if(QWebView *tabPage = qobject_cast<QWebView*>(widget))
-        tabPage->load(QUrl("http://google.com"));
 }
 
 void QHDA::on_actionFull_Screen_triggered()
@@ -131,5 +126,12 @@ void QHDA::on_actionNew_triggered()
         QMessageBox::warning(0,  QObject::tr("Database engine error"),
                                      QObject::tr("Unfortunately we couldn't find any database engine plugin.\nPlease try to reinstall application"));
     }
+
+}
+
+void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
+{
+    QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
+    tabBarWidget->raise();
 
 }

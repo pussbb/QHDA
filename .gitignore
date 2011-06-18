@@ -1,2 +1,5 @@
 /obj
 /extras/plugins/db/sqliteplugin/obj
+qrc*.cpp
+*~
+/bin/QHDA

@@ -12,8 +12,6 @@ QHDA::QHDA(QWidget *parent) :
     langMenuToMenuBar("menuOptions");
     initDockWidgets();
     initBooks();
-
-   // dbman->interface->createCategory();
 }
 
 QHDA::~QHDA()
@@ -82,7 +80,7 @@ void QHDA::on_actionSearch_In_Book_triggered()
     }
 }
 
-void QHDA::on_tabContent_tabCloseRequested(int index)
+void QHDA::on_tabedContent_tabCloseRequested(int index)
 {
    ui->tabedContent->removeTab(index);
 }
@@ -101,8 +99,8 @@ void QHDA::initBooks()
 
         QListWidgetItem* itemList = new QListWidgetItem(ui->bookList);
         itemList->setText(books.value(item)->value("General/Bookname","").toString());
-        itemList->setData(Qt::UserRole,settings.value(item,""));
-        itemList->setData(Qt::UserRole + 1,item);
+        itemList->setData(Qt::UserRole + 1,bookPath);
+        itemList->setData(Qt::UserRole,item);
         if( books.value(item)->value("General/BookIcon","").toString() != "")
             itemList->setIcon(QIcon(bookPath
                                     + books.value(item)->value("General/BookIcon","")
@@ -120,8 +118,54 @@ void QHDA::initBooks()
 void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
 {
     Q_UNUSED(item);
+    QSettings *currentBook = books.value(item->data(Qt::UserRole).toString());
+    dbman->setCurrentInterface(currentBook->value("Database/Engine").toString());
+    if(currentBook->value("Database/version").toString() != dbman->interface->version()) {
+        QMessageBox::warning(0,  QObject::tr("Database engine error"),
+                                     QObject::tr("The version of database engine plugin do not match with declared for this book.\nPlease try to reinstall application"));
+    }
+    QString dbname = item->data(Qt::UserRole).toString();
+    if(!dbman->interface->isServerType())
+        dbname = item->data(Qt::UserRole+1).toString() + item->data(Qt::UserRole).toString();
+    bool ok;
+    if(currentBook->value("Database/version").toBool())
+       ok = dbman->interface->open(dbname,currentBook->value("Database/settings").toMap());
+    else
+       ok = dbman->interface->open(dbname);
+
+    if(!ok)
+        dbman->showError();
+    else
+        buildTableOfContent();
     QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
     tabBarWidget->raise();
+}
+void QHDA::buildTableOfContent()
+{
+    QVariantList categories = dbman->interface->categoriesList();
+    QVariantList articles = dbman->interface->articlesList();
+    ui->tableOfContent->clear();
+    QMap<QString, QTreeWidgetItem*> elements;
+    QListIterator<QVariant> i(categories);
+    while (i.hasNext()) {
+        QVariantMap attr =i.next().toMap();
+        QTreeWidgetItem* item = new QTreeWidgetItem();
+        item->setText(0,attr.value("name").toString());
+        item->setIcon(0,QIcon(":/actions/folder.png"));
+        item->setData(0,Qt::UserRole,attr.value("id"));
+        item->setData(0,Qt::UserRole+1,"folder");
+        elements.insertMulti(attr.value("id").toString(),item);
+        if(attr.value("parent").toInt() == 0 ) {
+            ui->tableOfContent->insertTopLevelItem(0,item);
+        }
+        else {
+            QTreeWidgetItem *parent =elements.value(attr.value("parent").toString());
+            if(parent != NULL)
+                parent->addChild(item);
+            else
+                qDebug()<<"not inserted "+attr.value("name").toString();
+        }
+    }
 }
 
 void QHDA::on_actionHelp_Doc_triggered()
@@ -153,29 +197,47 @@ void QHDA::on_actionPrint_triggered()
             fileName.append(".pdf");
         QWebView *tabPage = qobject_cast<QWebView*>(ui->tabedContent->currentWidget());
         tabPage->print(&printer);
-
     }
 }
 
 void QHDA::on_actionFolder_triggered()
 {
-
+    bool ok;
+         QString text = QInputDialog::getText(this, tr("New category name"),
+                                              tr("Name:"), QLineEdit::Normal,
+                                              "", &ok);
+         if (ok && !text.isEmpty()) {
+             int parentId = 0;
+             if(ui->tableOfContent->onItem) {
+                 QTreeWidgetItem *item = ui->tableOfContent->currentItem();
+                 if(item->data(0,Qt::UserRole+1).toString() == "folder"){
+                     parentId = item->data(0,Qt::UserRole).toInt();
+                 }
+                 else {
+                     if( item->parent() != NULL) {
+                        if(item->parent()->data(0,Qt::UserRole+1).toString() == "folder")
+                            parentId = item->parent()->data(0,Qt::UserRole).toInt();
+                     }
+                 }
+             }
+             if(!dbman->interface->createCategory(text,parentId))
+                 dbman->showError();
+             else
+                 buildTableOfContent();
+         }
 }
 
 void QHDA::on_bookList_customContextMenuRequested(QPoint pos)
 {
     QMenu *m=new QMenu();
+    m->addAction(ui->actionHelp_Doc);
     if( ui->bookList->currentIndex ().isValid ()
                 && ui->bookList->currentItem ()->isSelected ()) {
-
         pos.setX(pos.x()+5);
         pos.setY(pos.y()+10);
         m->addAction(ui->actionRemove_book);
         m->addAction(ui->actionEdit_Book_Properties);
 
-    }
-    else {
-        m->addAction(ui->actionHelp_Doc);
     }
     m->exec(ui->bookList->mapToGlobal(pos));
 }
@@ -192,4 +254,18 @@ void QHDA::on_actionRemove_book_triggered()
         settings.sync();
         delete item;
     }
+}
+
+void QHDA::on_tableOfContent_customContextMenuRequested(QPoint pos)
+{
+    QMenu *m=new QMenu();
+    m->addAction(ui->actionFolder);
+    if( ui->tableOfContent->onItem) {
+        pos.setX(pos.x()+5);
+        pos.setY(pos.y()+10);
+        m->addAction(ui->actionRemove_book);
+        m->addAction(ui->actionEdit_Book_Properties);
+
+    }
+    m->exec(ui->tableOfContent->mapToGlobal(pos));
 }

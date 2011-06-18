@@ -5,6 +5,7 @@
 #include "extras/dbmanagerinterface.h"
 #include "QDir"
 #include "QtCore"
+#include <QMessageBox>
 class DataBaseManager : public QObject
 {
     Q_OBJECT
@@ -16,6 +17,8 @@ signals:
 
 public slots:
     bool loadPlugin(QString file = "");
+    void showError();
+    void setCurrentInterface(QString interfaceName);
 private slots:
     void getPluginsList(QString path = "");
 };

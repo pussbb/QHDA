@@ -8,7 +8,7 @@ class TabelOfContent : public QTreeWidget
     Q_OBJECT
 public:
     explicit TabelOfContent(QWidget *parent = 0);
-
+    bool onItem;
 signals:
 
 public slots:

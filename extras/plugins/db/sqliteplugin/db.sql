@@ -16,7 +16,5 @@ CREATE TABLE aticles (
 CREATE TABLE bookcat (
   id INTEGER PRIMARY KEY AUTOINCREMENT, 
   name VARCHAR(120), 
-  description TEXT,
-  parent int default 0,
-  subcat int default 0
+  parent int default 0
 );

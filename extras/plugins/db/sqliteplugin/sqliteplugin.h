@@ -21,7 +21,9 @@ public:
     bool authConection() ;
     QMap<QString, QString> defaultAuthOptions();
     QString defaultConnectionOptions();
-    bool createCategory(int parent = 0 );
+    bool createCategory(QString categoryName, int parent = 0 );
+    QVariantList categoriesList(int parent = -1);
+    QVariantList articlesList(int parent = -1);
 
 private:
     QSqlDatabase db;

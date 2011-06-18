@@ -95,7 +95,7 @@ bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
     }
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(databaseName+".book");
-
+qDebug()<<databaseName;
     if(options.value("host","") != "")
         db.setHostName(options.value("host").toString());
     if(options.value("port","") != "")
@@ -114,10 +114,56 @@ bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
     return true;
 }
 
-bool SqlitePlugin::createCategory(int parent)
+bool SqlitePlugin::createCategory(QString categoryName,int parent)
 {
-return true;
+    QSqlQuery sql;
+    sql.exec("INSERT INTO bookcat (name,parent) VALUES('"+
+            categoryName +"',"+QString::number(parent)+");");
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return false;
+    }
+    else{
+        return true;
+    }
+
 }
 
+QVariantList SqlitePlugin::categoriesList(int parent)
+{
+    QSqlQuery sql;
+    QVariantList results;
+    if(parent < 0)
+        sql.exec("SELECT * FROM bookcat ORDER BY id ASC;");
+    else
+        sql.exec("SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+" ORDER BY id ASC;");
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return results;
+    }
+    while(sql.next()) {
+        QVariantMap attr;
+        attr.insert("id",sql.value(0));
+        attr.insert("parent",sql.value(2));
+        attr.insert("name",sql.value(1));
+        results.append(attr);
+    }
+    return results;
+}
+
+QVariantList SqlitePlugin::articlesList(int parent)
+{
+    QSqlQuery sql;
+    QVariantList results;
+    if(parent < 0)
+        sql.exec("SELECT * FROM bookcat;");
+    else
+        sql.exec("SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+";");
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return results;
+    }
+    return results;
+}
 
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);

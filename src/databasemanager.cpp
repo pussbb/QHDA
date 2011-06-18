@@ -35,3 +35,14 @@ void DataBaseManager::getPluginsList(QString path)
         }
     }
 }
+
+void DataBaseManager::showError() {
+    QMessageBox::warning(0,  QObject::tr("Database engine error"),
+                               interface->errorStr);
+
+}
+
+void DataBaseManager::setCurrentInterface(QString interfaceName)
+{
+    interface = plugins.value(interfaceName);
+}

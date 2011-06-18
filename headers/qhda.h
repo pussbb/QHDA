@@ -5,6 +5,7 @@
 
 #include "headers/databasemanager.h"
 #include <QListWidgetItem>
+#include <QInputDialog>
 #include <QMessageBox>
 
 namespace Ui {
@@ -31,7 +32,8 @@ private slots:
     void on_actionBook_Table_of_Content_triggered();
     void on_actionSearch_In_Book_triggered();
     void initBooks();
-    void on_tabContent_tabCloseRequested(int index);
+    void buildTableOfContent();
+    void on_tabedContent_tabCloseRequested(int index);
 
     void on_bookList_itemDoubleClicked(QListWidgetItem* item);
 
@@ -44,6 +46,8 @@ private slots:
     void on_bookList_customContextMenuRequested(QPoint pos);
 
     void on_actionRemove_book_triggered();
+
+    void on_tableOfContent_customContextMenuRequested(QPoint pos);
 
 private:
     Ui::QHDA *ui;

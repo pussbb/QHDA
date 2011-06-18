@@ -58,8 +58,13 @@ bool SqlitePlugin::create(QString databaseName)
        QString query=sqlres.readAll();
        QSqlQuery sql;
        QStringList querylist=query.split(";");
-       for (int i = 0; i < querylist.size(); ++i)
+       for (int i = 0; i < querylist.size(); ++i) {
            sql.exec(querylist.at(i));
+           if(sql.lastError().isValid()) {
+               errorStr  =  sql.lastError().text();
+               return false;
+            }
+       }
        db.close();
        db.removeDatabase(db.defaultConnection);
        return true;

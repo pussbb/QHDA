@@ -89,6 +89,7 @@ void QHDA::on_tabContent_tabCloseRequested(int index)
 
 void QHDA::initBooks()
 {
+    ui->bookList->clear();
     QString bookPath ;
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
@@ -128,7 +129,8 @@ void QHDA::on_actionHelp_Doc_triggered()
     BookWizard *bw = new BookWizard(this);
     if(bw->initDbPluginsList(dbman->plugins))
     {
-        bw->show();
+        if(bw->exec() == QDialog::Accepted)
+            initBooks();
     }
     else
     {
@@ -152,5 +154,42 @@ void QHDA::on_actionPrint_triggered()
         QWebView *tabPage = qobject_cast<QWebView*>(ui->tabedContent->currentWidget());
         tabPage->print(&printer);
 
+    }
+}
+
+void QHDA::on_actionFolder_triggered()
+{
+
+}
+
+void QHDA::on_bookList_customContextMenuRequested(QPoint pos)
+{
+    QMenu *m=new QMenu();
+    if( ui->bookList->currentIndex ().isValid ()
+                && ui->bookList->currentItem ()->isSelected ()) {
+
+        pos.setX(pos.x()+5);
+        pos.setY(pos.y()+10);
+        m->addAction(ui->actionRemove_book);
+        m->addAction(ui->actionEdit_Book_Properties);
+
+    }
+    else {
+        m->addAction(ui->actionHelp_Doc);
+    }
+    m->exec(ui->bookList->mapToGlobal(pos));
+}
+
+void QHDA::on_actionRemove_book_triggered()
+{
+    msgBox.setText(tr("Are you sure want delete item."));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    if(msgBox.exec()==QMessageBox::Yes) {
+        QListWidgetItem* item = ui->bookList->currentItem();
+        settings.remove("Books/"+item->text());
+        settings.sync();
+        delete item;
     }
 }

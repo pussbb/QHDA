@@ -12,14 +12,7 @@ CREATE TABLE aticles (
   md5 TEXT,
   catid NUMERIC
 );
-/*
-CREATE TABLE general (
-    bookname TEXT,
-    descr text,
-    hash text,
-    articles int
-);
-*/
+
 CREATE TABLE bookcat (
   id INTEGER PRIMARY KEY AUTOINCREMENT, 
   name VARCHAR(120), 

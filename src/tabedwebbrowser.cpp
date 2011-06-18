@@ -7,12 +7,12 @@ TabedWebBrowser::TabedWebBrowser(QWidget *parent) :
 
 int TabedWebBrowser::addTab(QWidget *widget, const QIcon &icon, const QString &label)
 {
-    QTabWidget::addTab(widget,icon,label);
+    return QTabWidget::addTab(widget,icon,label);
 }
 
 int TabedWebBrowser::addTab(QWidget *widget, const QString &label)
 {
-   QTabWidget::addTab(widget, label);
+   return QTabWidget::addTab(widget, label);
 }
 
 

@@ -87,8 +87,8 @@
     <addaction name="menuNew_Book"/>
     <addaction name="actionPrint"/>
     <addaction name="actionQuick_Print"/>
-    <addaction name="actionExit"/>
     <addaction name="menuExport"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -121,6 +121,12 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionFolder"/>
+   <addaction name="actionArticle"/>
+   <addaction name="actionPrint"/>
+   <addaction name="actionQuick_Print"/>
+   <addaction name="actionPDF"/>
+   <addaction name="actionHtml"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QDockWidget" name="dBookList">
@@ -134,6 +140,12 @@
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="0">
       <widget class="QListWidget" name="bookList">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::DoubleClicked</set>
+       </property>
        <property name="iconSize">
         <size>
          <width>32</width>
@@ -279,6 +291,24 @@
    </property>
    <property name="text">
     <string>Html</string>
+   </property>
+  </action>
+  <action name="actionRemove_book">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db_remove.png</normaloff>:/actions/db_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove book</string>
+   </property>
+  </action>
+  <action name="actionEdit_Book_Properties">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db_status.png</normaloff>:/actions/db_status.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Book Properties</string>
    </property>
   </action>
  </widget>

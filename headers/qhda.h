@@ -2,9 +2,10 @@
 #define QHDA_H
 
 #include "headers/qcorewindow.h"
-#include <QtWebKit>
+
 #include "headers/databasemanager.h"
 #include <QListWidgetItem>
+#include <QMessageBox>
 
 namespace Ui {
     class QHDA;
@@ -19,6 +20,7 @@ public:
     ~QHDA();
     DataBaseManager *dbman;
     QMap<QString , QSettings*> books;
+    QMessageBox msgBox;
 public slots:
     void changeEvent(QEvent *e);
 private slots:
@@ -36,6 +38,12 @@ private slots:
     void on_actionHelp_Doc_triggered();
 
     void on_actionPrint_triggered();
+
+    void on_actionFolder_triggered();
+
+    void on_bookList_customContextMenuRequested(QPoint pos);
+
+    void on_actionRemove_book_triggered();
 
 private:
     Ui::QHDA *ui;

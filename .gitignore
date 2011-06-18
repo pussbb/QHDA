@@ -3,3 +3,4 @@
 qrc*.cpp
 *~
 /bin/QHDA
+/bin/plugins

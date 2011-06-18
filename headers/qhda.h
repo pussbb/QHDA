@@ -31,9 +31,11 @@ private slots:
     void initBooks();
     void on_tabContent_tabCloseRequested(int index);
 
-    void on_actionNew_triggered();
-
     void on_bookList_itemDoubleClicked(QListWidgetItem* item);
+
+    void on_actionHelp_Doc_triggered();
+
+    void on_actionPrint_triggered();
 
 private:
     Ui::QHDA *ui;

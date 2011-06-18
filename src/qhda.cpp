@@ -46,7 +46,7 @@ void QHDA::initDockWidgets()
     QTabBar *tabBar = findChild<QTabBar *>();
     tabBar->setCurrentIndex(0);
     setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
-    ui->tabContent->addTab(QUrl("http://google.com"));
+    ui->tabedContent->addTab(QUrl("http://google.com"));
 
 }
 
@@ -84,7 +84,7 @@ void QHDA::on_actionSearch_In_Book_triggered()
 
 void QHDA::on_tabContent_tabCloseRequested(int index)
 {
-   ui->tabContent->removeTab(index);
+   ui->tabedContent->removeTab(index);
 }
 
 void QHDA::initBooks()
@@ -114,7 +114,16 @@ void QHDA::initBooks()
 
 #include "headers/bookwizard.h"
 
-void QHDA::on_actionNew_triggered()
+
+
+void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
+{
+    Q_UNUSED(item);
+    QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
+    tabBarWidget->raise();
+}
+
+void QHDA::on_actionHelp_Doc_triggered()
 {
     BookWizard *bw = new BookWizard(this);
     if(bw->initDbPluginsList(dbman->plugins))
@@ -126,12 +135,22 @@ void QHDA::on_actionNew_triggered()
         QMessageBox::warning(0,  QObject::tr("Database engine error"),
                                      QObject::tr("Unfortunately we couldn't find any database engine plugin.\nPlease try to reinstall application"));
     }
-
 }
-
-void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
+#include <QPrinter>
+void QHDA::on_actionPrint_triggered()
 {
-    QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
-    tabBarWidget->raise();
+    QString fileName = QFileDialog::getSaveFileName(this, "Export PDF",
+                                                    QString(), "*.pdf");
+    QPrinter printer(QPrinter::HighResolution);
 
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(fileName);
+    printer.setPaperSize(QPrinter::A4);
+    if (!fileName.isEmpty()) {
+        if (QFileInfo(fileName).suffix().isEmpty())
+            fileName.append(".pdf");
+        QWebView *tabPage = qobject_cast<QWebView*>(ui->tabedContent->currentWidget());
+        tabPage->print(&printer);
+
+    }
 }

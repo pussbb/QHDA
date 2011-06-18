@@ -12,7 +12,7 @@ public:
 signals:
 
 public slots:
-
+    void customContextMenuRequested(const QPoint &pos);
 };
 
 #endif // TABELOFCONENT_H

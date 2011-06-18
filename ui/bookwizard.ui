@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resource/qhda.qrc">
-    <normaloff>:/app/qhda.png</normaloff>:/app/qhda.png</iconset>
+    <normaloff>:/actions/wizard.png</normaloff>:/actions/wizard.png</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>

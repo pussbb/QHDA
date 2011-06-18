@@ -20,7 +20,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
-     <widget class="TabedWebBrowser" name="tabContent">
+     <widget class="TabedWebBrowser" name="tabedContent">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -69,8 +69,26 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
+    <widget class="QMenu" name="menuNew_Book">
+     <property name="title">
+      <string>New</string>
+     </property>
+     <addaction name="actionHelp_Doc"/>
+     <addaction name="actionArticle"/>
+     <addaction name="actionFolder"/>
+    </widget>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>Export</string>
+     </property>
+     <addaction name="actionPDF"/>
+     <addaction name="actionHtml"/>
+    </widget>
+    <addaction name="menuNew_Book"/>
+    <addaction name="actionPrint"/>
+    <addaction name="actionQuick_Print"/>
     <addaction name="actionExit"/>
+    <addaction name="menuExport"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -150,6 +168,9 @@
      </property>
      <item row="0" column="0">
       <widget class="TabelOfContent" name="treeWidget">
+       <property name="contextMenuPolicy">
+        <enum>Qt::CustomContextMenu</enum>
+       </property>
        <column>
         <property name="text">
          <string/>
@@ -197,9 +218,67 @@
     <string>Search In Book</string>
    </property>
   </action>
-  <action name="actionNew">
+  <action name="actionHelp_Doc">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db_add.png</normaloff>:/actions/db_add.png</iconset>
+   </property>
    <property name="text">
-    <string>New</string>
+    <string>Help Doc</string>
+   </property>
+  </action>
+  <action name="actionArticle">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/edit.png</normaloff>:/actions/edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Article</string>
+   </property>
+  </action>
+  <action name="actionFolder">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/folder_new.png</normaloff>:/actions/folder_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>Folder </string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/fileprint.png</normaloff>:/actions/fileprint.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+  </action>
+  <action name="actionQuick_Print">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/filequickprint.png</normaloff>:/actions/filequickprint.png</iconset>
+   </property>
+   <property name="text">
+    <string>Quick Print</string>
+   </property>
+  </action>
+  <action name="actionPDF">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/mime_postscript.png</normaloff>:/actions/mime_postscript.png</iconset>
+   </property>
+   <property name="text">
+    <string>PDF</string>
+   </property>
+  </action>
+  <action name="actionHtml">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/webexport.png</normaloff>:/actions/webexport.png</iconset>
+   </property>
+   <property name="text">
+    <string>Html</string>
    </property>
   </action>
  </widget>

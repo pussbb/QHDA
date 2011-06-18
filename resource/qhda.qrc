@@ -2,4 +2,39 @@
     <qresource prefix="/app">
         <file>qhda.png</file>
     </qresource>
+    <qresource prefix="/">
+        <file>actions/contexthelp.png</file>
+        <file>actions/db.png</file>
+        <file>actions/db_add.png</file>
+        <file>actions/db_comit.png</file>
+        <file>actions/db_remove.png</file>
+        <file>actions/db_status.png</file>
+        <file>actions/db_update.png</file>
+        <file>actions/edit.png</file>
+        <file>actions/edit_add.png</file>
+        <file>actions/edit_remove ----.png</file>
+        <file>actions/edit_remove.png</file>
+        <file>actions/fileprint.png</file>
+        <file>actions/filequickprint.png</file>
+        <file>actions/filesave.png</file>
+        <file>actions/find.png</file>
+        <file>actions/findf.png</file>
+        <file>actions/folder.png</file>
+        <file>actions/folder_documents.png</file>
+        <file>actions/folder_green.png</file>
+        <file>actions/folder_grey.png</file>
+        <file>actions/folder_new.png</file>
+        <file>actions/folder_sent_mail.png</file>
+        <file>actions/signature.png</file>
+        <file>actions/tab.png</file>
+        <file>actions/tab_duplicate.png</file>
+        <file>actions/tab_new.png</file>
+        <file>actions/tab_new_raised.png</file>
+        <file>actions/viewmag-.png</file>
+        <file>actions/viewmag1.png</file>
+        <file>actions/viewmag+.png</file>
+        <file>actions/webexport.png</file>
+        <file>actions/wizard.png</file>
+        <file>actions/mime_postscript.png</file>
+    </qresource>
 </RCC>

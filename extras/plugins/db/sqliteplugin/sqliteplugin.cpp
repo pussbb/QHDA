@@ -57,8 +57,8 @@ bool SqlitePlugin::create(QString databaseName)
        }
        QString query=sqlres.readAll();
        QSqlQuery sql;
-       QStringList querylist=query.split(";");
-       for (int i = 0; i < querylist.size(); ++i) {
+       QStringList querylist=query.split(";;");
+       for (int i = 0; i < querylist.size(); ++i) {qDebug()<<querylist.at(i);
            sql.exec(querylist.at(i));
            if(sql.lastError().isValid()) {
                errorStr  =  sql.lastError().text();
@@ -164,6 +164,28 @@ QVariantList SqlitePlugin::articlesList(int parent)
         return results;
     }
     return results;
+}
+bool SqlitePlugin::deleteCategory(int id)
+{
+    QSqlQuery sql;
+    sql.exec("DELETE FROM bookcat WHERE bookcat.id="+QString::number(id)+
+             " OR bookcat.parent="+QString::number(id)+" ;");
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+bool SqlitePlugin::deleteArticle(int id)
+{
+    QSqlQuery sql;
+    sql.exec();
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return false;
+    }
+    return true;
 }
 
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);

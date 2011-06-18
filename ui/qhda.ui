@@ -275,7 +275,7 @@
      <normaloff>:/actions/folder_new.png</normaloff>:/actions/folder_new.png</iconset>
    </property>
    <property name="text">
-    <string>Folder </string>
+    <string>New Catecory</string>
    </property>
   </action>
   <action name="actionPrint">
@@ -330,6 +330,24 @@
    </property>
    <property name="text">
     <string>Edit Book Properties</string>
+   </property>
+  </action>
+  <action name="actionRemove_Category">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/edit_remove.png</normaloff>:/actions/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove Category</string>
+   </property>
+  </action>
+  <action name="actionRemove_Article">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/edit_remove.png</normaloff>:/actions/edit_remove.png</iconset>
+   </property>
+   <property name="text">
+    <string>Remove Article</string>
    </property>
   </action>
  </widget>

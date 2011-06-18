@@ -154,7 +154,7 @@ void BookWizard::accept()
             }
         }
         QSettings settings;
-        settings.setValue("Books/"+ui->bookname->text(),path);
+        settings.setValue("Books/"+ui->dbname->text(),path);
         QDialog::accept();
 
     }

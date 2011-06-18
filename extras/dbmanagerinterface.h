@@ -20,6 +20,8 @@ public:
     virtual bool createCategory(QString categoryName, int parent = 0) = 0;
     virtual QVariantList categoriesList(int parent = -1) = 0;
     virtual QVariantList articlesList(int parent = -1) = 0;
+    virtual bool deleteCategory(int id) = 0;
+    virtual bool deleteArticle(int id) = 0;
     QString errorStr;
 };
 

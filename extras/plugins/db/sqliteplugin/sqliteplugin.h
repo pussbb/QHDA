@@ -24,6 +24,8 @@ public:
     bool createCategory(QString categoryName, int parent = 0 );
     QVariantList categoriesList(int parent = -1);
     QVariantList articlesList(int parent = -1);
+    bool deleteCategory(int id);
+    bool deleteArticle(int id);
 
 private:
     QSqlDatabase db;

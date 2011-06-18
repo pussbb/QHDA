@@ -49,6 +49,8 @@ private slots:
 
     void on_tableOfContent_customContextMenuRequested(QPoint pos);
 
+    void on_actionRemove_Category_triggered();
+
 private:
     Ui::QHDA *ui;
 };

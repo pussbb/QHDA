@@ -91,7 +91,6 @@ void QHDA::initBooks()
     QString bookPath ;
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
-
         bookPath = settings.value(item,"").toString()
                 + QDir::toNativeSeparators("/");
 
@@ -263,9 +262,30 @@ void QHDA::on_tableOfContent_customContextMenuRequested(QPoint pos)
     if( ui->tableOfContent->onItem) {
         pos.setX(pos.x()+5);
         pos.setY(pos.y()+10);
-        m->addAction(ui->actionRemove_book);
-        m->addAction(ui->actionEdit_Book_Properties);
-
+        QTreeWidgetItem *item = ui->tableOfContent->currentItem();
+        if(item->data(0,Qt::UserRole+1).toString() == "folder") {
+            m->addAction(ui->actionRemove_Category);
+        }
+        else {
+            m->addAction(ui->actionRemove_Article);
+        }
     }
     m->exec(ui->tableOfContent->mapToGlobal(pos));
+}
+
+void QHDA::on_actionRemove_Category_triggered()
+{
+    msgBox.setText(tr("Are you sure want delete item."));
+    msgBox.setInformativeText(tr("All child categories and articles for this category will be deleted to.\n Are you sure"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    if(msgBox.exec()==QMessageBox::Yes) {
+        QTreeWidgetItem *item = ui->tableOfContent->currentItem();
+        bool ok = dbman->interface->deleteCategory(item->data(0,Qt::UserRole).toInt());
+        if(!ok)
+            dbman->showError();
+        else
+            delete item;
+    }
 }

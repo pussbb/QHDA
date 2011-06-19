@@ -7,6 +7,7 @@
 #include <QListWidgetItem>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <extras/editorinterface.h>
 
 namespace Ui {
     class QHDA;
@@ -21,7 +22,7 @@ public:
     ~QHDA();
     DataBaseManager *dbman;
     QMap<QString , QSettings*> books;
-    QMessageBox msgBox;
+    QMessageBox msgBox;EditorInterface* editor;
 public slots:
     void changeEvent(QEvent *e);
 private slots:

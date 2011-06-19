@@ -32,7 +32,8 @@ HEADERS  += headers/qhda.h \
     extras/dbmanagerinterface.h \
     headers/bookwizard.h \
     headers/tabelofcontent.h \
-    headers/tabedwebbrowser.h
+    headers/tabedwebbrowser.h \
+    extras/editorinterface.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui

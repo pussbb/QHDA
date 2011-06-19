@@ -180,7 +180,7 @@ bool SqlitePlugin::deleteCategory(int id)
 bool SqlitePlugin::deleteArticle(int id)
 {
     QSqlQuery sql;
-    sql.exec();
+    sql.exec("DELETE FROM articles WHERE articles.id = "+QString::number(id)+" ;");
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
         return false;

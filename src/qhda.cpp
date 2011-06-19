@@ -12,6 +12,18 @@ QHDA::QHDA(QWidget *parent) :
     langMenuToMenuBar("menuOptions");
     initDockWidgets();
     initBooks();
+    //temprory
+    QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/editor/");
+QDir pluginsDir(path);
+foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+    QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
+    QObject *plugin = pluginLoader.instance();
+    if (plugin) {
+        editor = qobject_cast<EditorInterface *>(plugin);
+        ui->tabedContent->addTab(editor->getEditor(),"Editor");
+        qDebug()<< editor->editorType();
+    }
+}
 }
 
 QHDA::~QHDA()

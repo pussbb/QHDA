@@ -17,7 +17,7 @@ Editor::Editor(QWidget *parent) :
   ui->webView->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
 
         inspector->setPage(ui->webView->page());
-
+///inspector->show();
 }
 
 Editor::~Editor()

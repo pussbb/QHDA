@@ -18,8 +18,17 @@ body
 
 ol,ul,dl
 {
-	/* IE7: reset rtl list margin. (#7334) */
-	*margin-right:0px;
-	/* preserved spaces for rtl list item bullets. (#6249)*/
     padding-right:40px;
+}
+form {
+    width: 100%;
+    height: 100%;
+}
+textarea {
+    width: 100%;
+    height: 100%;
+}
+pre {
+  width: 100%;
+  border: 1px solid grey;
 }

@@ -36,5 +36,55 @@
         <file>actions/webexport.png</file>
         <file>actions/wizard.png</file>
         <file>actions/mime_postscript.png</file>
+        <file>syntaxhighlighter/functions.js</file>
+        <file>syntaxhighlighter/test</file>
+        <file>syntaxhighlighter/styles/shCore.css</file>
+        <file>syntaxhighlighter/styles/shCoreDefault.css</file>
+        <file>syntaxhighlighter/styles/shCoreDjango.css</file>
+        <file>syntaxhighlighter/styles/shCoreEclipse.css</file>
+        <file>syntaxhighlighter/styles/shCoreEmacs.css</file>
+        <file>syntaxhighlighter/styles/shCoreFadeToGrey.css</file>
+        <file>syntaxhighlighter/styles/shCoreMDUltra.css</file>
+        <file>syntaxhighlighter/styles/shThemeFadeToGrey.css</file>
+        <file>syntaxhighlighter/styles/shThemeMDUltra.css</file>
+        <file>syntaxhighlighter/styles/shThemeMidnight.css</file>
+        <file>syntaxhighlighter/styles/shThemeRDark.css</file>
+        <file>syntaxhighlighter/styles/shCoreMidnight.css</file>
+        <file>syntaxhighlighter/styles/shCoreRDark.css</file>
+        <file>syntaxhighlighter/styles/shThemeDefault.css</file>
+        <file>syntaxhighlighter/styles/shThemeDjango.css</file>
+        <file>syntaxhighlighter/styles/shThemeEclipse.css</file>
+        <file>syntaxhighlighter/styles/shThemeEmacs.css</file>
+        <file>syntaxhighlighter/scripts/shAutoloader.js</file>
+        <file>syntaxhighlighter/scripts/shBrushAppleScript.js</file>
+        <file>syntaxhighlighter/scripts/shBrushAS3.js</file>
+        <file>syntaxhighlighter/scripts/shBrushBash.js</file>
+        <file>syntaxhighlighter/scripts/shBrushColdFusion.js</file>
+        <file>syntaxhighlighter/scripts/shBrushCpp.js</file>
+        <file>syntaxhighlighter/scripts/shBrushCSharp.js</file>
+        <file>syntaxhighlighter/scripts/shBrushJavaFX.js</file>
+        <file>syntaxhighlighter/scripts/shBrushJScript.js</file>
+        <file>syntaxhighlighter/scripts/shBrushLua.js</file>
+        <file>syntaxhighlighter/scripts/shBrushPerl.js</file>
+        <file>syntaxhighlighter/scripts/shBrushPhp.js</file>
+        <file>syntaxhighlighter/scripts/shBrushPlain.js</file>
+        <file>syntaxhighlighter/scripts/shBrushPowerShell.js</file>
+        <file>syntaxhighlighter/scripts/shBrushCss.js</file>
+        <file>syntaxhighlighter/scripts/shBrushDelphi.js</file>
+        <file>syntaxhighlighter/scripts/shBrushDiff.js</file>
+        <file>syntaxhighlighter/scripts/shBrushErlang.js</file>
+        <file>syntaxhighlighter/scripts/shBrushGroovy.js</file>
+        <file>syntaxhighlighter/scripts/shBrushJava.js</file>
+        <file>syntaxhighlighter/scripts/shBrushPython.js</file>
+        <file>syntaxhighlighter/scripts/shBrushRuby.js</file>
+        <file>syntaxhighlighter/scripts/shBrushSass.js</file>
+        <file>syntaxhighlighter/scripts/shBrushScala.js</file>
+        <file>syntaxhighlighter/scripts/shBrushSql.js</file>
+        <file>syntaxhighlighter/scripts/shBrushTcl.js</file>
+        <file>syntaxhighlighter/scripts/shBrushVb.js</file>
+        <file>syntaxhighlighter/scripts/shBrushXml.js</file>
+        <file>syntaxhighlighter/scripts/shCore.js</file>
+        <file>syntaxhighlighter/scripts/shLegacy.js</file>
+        <file>jquery.js</file>
     </qresource>
 </RCC>

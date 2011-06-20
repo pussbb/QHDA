@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'editor.ui'
 **
-** Created: Sun Jun 19 22:02:39 2011
+** Created: Mon Jun 20 20:17:56 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

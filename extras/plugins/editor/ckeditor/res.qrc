@@ -192,5 +192,6 @@
         <file>ckeditor/plugins/syntaxhighlight/lang/en.js</file>
         <file>ckeditor/plugins/syntaxhighlight/images/syntaxhighlight.gif</file>
         <file>ckeditor/plugins/syntaxhighlight/dialogs/syntaxhighlight.js</file>
+        <file>ckeditor/functions.js</file>
     </qresource>
 </RCC>

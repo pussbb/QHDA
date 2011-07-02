@@ -52,6 +52,8 @@ private slots:
 
     void on_actionRemove_Category_triggered();
 
+    void on_actionArticle_triggered();
+
 private:
     Ui::QHDA *ui;
 };

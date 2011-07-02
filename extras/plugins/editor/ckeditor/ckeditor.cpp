@@ -9,9 +9,18 @@ QString Ckeditor::editorType()
 {
   return "webkit";
 }
+
 QWidget* Ckeditor::getEditor()
 {
     editor = new Editor();
+    return editor;
+}
+QWidget* Ckeditor::getEditor(QVariantList categories,QString title,QString content)
+{
+    editor = new Editor();
+    editor->buildCategoriesList(categories);
+    editor->title = title;
+    editor->content = content;
     return editor;
 }
 

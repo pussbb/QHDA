@@ -16,6 +16,7 @@ public:
     QString editorType();
     QString errorStr;
     QWidget* getEditor();
-    Editor* editor;
+    Editor *editor;
+    QWidget* getEditor(QVariantList categories,QString title,QString content);
 };
 #endif

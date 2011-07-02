@@ -9,6 +9,7 @@ public:
     virtual QString version() = 0;
     virtual QString editorType() = 0;
     virtual QWidget* getEditor() = 0;
+    virtual QWidget* getEditor(QVariantList categories,QString title,QString content) = 0;
     QString errorStr;
 };
 

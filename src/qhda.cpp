@@ -94,7 +94,9 @@ void QHDA::on_actionSearch_In_Book_triggered()
 
 void QHDA::on_tabedContent_tabCloseRequested(int index)
 {
-   ui->tabedContent->removeTab(index);
+    QWidget *widget = ui->tabedContent->widget(index);
+    ui->tabedContent->removeTab(index);
+    widget->deleteLater();
 }
 
 void QHDA::initBooks()
@@ -300,4 +302,11 @@ void QHDA::on_actionRemove_Category_triggered()
         else
             delete item;
     }
+}
+
+void QHDA::on_actionArticle_triggered()
+{
+    ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
+                                               "Title",
+                                               "<p><b>hello</b> kity</p>"),"Editor");
 }

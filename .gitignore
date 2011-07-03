@@ -1,5 +1,6 @@
 /obj
 /extras/plugins/db/sqliteplugin/obj
+/extras/plugins/editor/ckeditor/obj/
 qrc*.cpp
 *~
 /bin/QHDA

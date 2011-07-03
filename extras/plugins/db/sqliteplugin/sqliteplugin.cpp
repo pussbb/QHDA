@@ -84,8 +84,18 @@ bool SqlitePlugin::open(QString databaseName)
         errorStr  =  db.lastError().text();
         return false;
     }
+    createTableColumnsNames();
     return true;
 }
+void SqlitePlugin::createTableColumnsNames()
+{
+    QSqlQuery sql;
+    sql.exec("pragma table_info(articles)");
+    while(sql.next()) {
+        articlesColumns.insert(sql.value(1).toString(),(QVariant)"");
+    }
+}
+
 bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
 {
     if(db.isOpen()) {
@@ -95,7 +105,7 @@ bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
     }
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(databaseName+".book");
-qDebug()<<databaseName;
+
     if(options.value("host","") != "")
         db.setHostName(options.value("host").toString());
     if(options.value("port","") != "")
@@ -111,6 +121,7 @@ qDebug()<<databaseName;
         errorStr  =  db.lastError().text();
         return false;
     }
+    createTableColumnsNames();
     return true;
 }
 
@@ -155,16 +166,33 @@ QVariantList SqlitePlugin::articlesList(int parent)
 {
     QSqlQuery sql;
     QVariantList results;
+    QVariantMap columns = articlesColumns;
     if(parent < 0)
-        sql.exec("SELECT * FROM bookcat;");
+        sql.exec("SELECT * FROM articles;");
     else
-        sql.exec("SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+";");
+        sql.exec("SELECT * FROM articles WHERE catid ="+QString::number(parent)+";");
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
         return results;
     }
+
+    int fieldId = 0;
+    while(sql.next()) {
+        foreach(QString column, columns.keys() ) {
+           fieldId = sql.record().indexOf(column);
+            columns.insert(column,sql.value(fieldId));
+        }
+        results.append(columns);
+    }
+
     return results;
 }
+QVariantMap SqlitePlugin::getTableColumnNames(QString tableName)
+{
+    if(tableName == "articles")
+        return articlesColumns;
+}
+
 bool SqlitePlugin::deleteCategory(int id)
 {
     QSqlQuery sql;
@@ -185,6 +213,12 @@ bool SqlitePlugin::deleteArticle(int id)
         errorStr = sql.lastError().text();
         return false;
     }
+    return true;
+}
+
+bool SqlitePlugin::createArticle(QMap<QString, QString> article)
+{
+
     return true;
 }
 

@@ -26,9 +26,13 @@ public:
     QVariantList articlesList(int parent = -1);
     bool deleteCategory(int id);
     bool deleteArticle(int id);
+    bool createArticle(QMap<QString , QString> article);
+    QVariantMap articlesColumns;
+    QVariantMap getTableColumnNames(QString tableName);
 
 private:
     QSqlDatabase db;
+    void createTableColumnsNames();
 
 };
 

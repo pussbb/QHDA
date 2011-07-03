@@ -13,6 +13,7 @@ CREATE TABLE articles (
     "author" VARCHAR(150),
     "published" DATETIME,
     "md5" TEXT,
+    "guid" TEXT,
     "catid" NUMERIC NOT NULL CONSTRAINT fk_bookcat_id REFERENCES bookcat(id) ON DELETE CASCADE
 );;
 

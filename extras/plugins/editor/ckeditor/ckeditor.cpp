@@ -15,13 +15,35 @@ QWidget* Ckeditor::getEditor()
     editor = new Editor();
     return editor;
 }
-QWidget* Ckeditor::getEditor(QVariantList categories,QString title,QString content)
+QWidget* Ckeditor::getEditor(QVariantList categories,QVariantMap article)
 {
     editor = new Editor();
     editor->buildCategoriesList(categories);
-    editor->title = title;
-    editor->content = content;
+    editor->title = article.value("title","").toString();
+    editor->content = article.value("content","").toString();
+    editor->setProperty("article",article);
     return editor;
+}
+QVariantMap Ckeditor::getData(QWidget *edit)
+{
+   QVariantMap article = edit->property("article").toMap();
+   QLineEdit *title = edit->findChild<QLineEdit *>("title");
+   if(title != NULL)
+       article.insert("title",title->text());
+   TreeBox *category = edit->findChild<TreeBox *>("categories");
+
+   if(category != NULL)
+       article.insert("catid",category->itemData(0,Qt::UserRole));
+
+   QWebView *page = edit->findChild<QWebView *>("webView");
+   if(page != NULL) {
+       QString content = page->page()->mainFrame()->evaluateJavaScript("getContents();").toString();
+       QRegExp rx("<body>(.*)</body>");
+       rx.indexIn(content, 0);
+       article.insert("content",rx.cap (1));
+   }
+
+   return article;
 }
 
 Q_EXPORT_PLUGIN2(ckeditor,Ckeditor);

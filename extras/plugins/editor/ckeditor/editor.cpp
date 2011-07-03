@@ -50,7 +50,6 @@ void Editor::buildCategoriesList(QVariantList categories)
         QVariantMap attr =i.next().toMap();
         QTreeWidgetItem *parent =elements.value(attr.value("parent").toString());
         QTreeWidgetItem* item = new QTreeWidgetItem(parent);
-        qDebug()<<attr;
         item->setText(0,attr.value("name").toString());
         item->setIcon(0,QIcon(":/actions/folder.png"));
         item->setData(0,Qt::UserRole,attr.value("id"));
@@ -62,5 +61,7 @@ void Editor::buildCategoriesList(QVariantList categories)
     }
     TreeBox *combo = new TreeBox(this);
     combo->setModel(tree->model());
+    combo->setObjectName("categories");
+    qDebug()<<combo->objectName();
     ui->gridLayout_2->addWidget(combo, 0, 1, 1, 1);
 }

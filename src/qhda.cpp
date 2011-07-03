@@ -95,6 +95,21 @@ void QHDA::on_actionSearch_In_Book_triggered()
 void QHDA::on_tabedContent_tabCloseRequested(int index)
 {
     QWidget *widget = ui->tabedContent->widget(index);
+    if(widget->objectName() == "Editor") {
+
+        msgBox.setText(tr("Are you sure want close editor."));
+        msgBox.setInformativeText(tr("All unsaved results will be lost."));
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Save | QMessageBox::Cancel);
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        int result = msgBox.exec();
+        if(result == QMessageBox::Cancel) {
+            return;
+        }
+        else if (result == QMessageBox::Save) {
+            qDebug()<<editor->getData(widget);
+        }
+    }
     ui->tabedContent->removeTab(index);
     widget->deleteLater();
 }
@@ -157,6 +172,7 @@ void QHDA::buildTableOfContent()
 {
     QVariantList categories = dbman->interface->categoriesList();
     QVariantList articles = dbman->interface->articlesList();
+
     ui->tableOfContent->clear();
     QMap<QString, QTreeWidgetItem*> elements;
     QListIterator<QVariant> i(categories);
@@ -307,6 +323,6 @@ void QHDA::on_actionRemove_Category_triggered()
 void QHDA::on_actionArticle_triggered()
 {
     ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
-                                               "Title",
-                                               "<p><b>hello</b> kity</p>"),"Editor");
+                                           dbman->interface->getTableColumnNames("articles")    ),
+                             "Editor");
 }

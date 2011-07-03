@@ -5,7 +5,7 @@
 #include "../../../editorinterface.h"
 #include <QtGui>
 #include <editor.h>
-
+#include "../../../widgets/treebox.h"
 class Ckeditor : public QObject, EditorInterface
 {
     Q_OBJECT
@@ -17,6 +17,7 @@ public:
     QString errorStr;
     QWidget* getEditor();
     Editor *editor;
-    QWidget* getEditor(QVariantList categories,QString title,QString content);
+    QWidget* getEditor(QVariantList categories,QVariantMap article);
+    QVariantMap getData(QWidget* edit);
 };
 #endif

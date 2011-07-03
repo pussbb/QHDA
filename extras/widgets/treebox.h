@@ -16,7 +16,7 @@ public:
        /// QComboBox::resize(250,60);
         view()->viewport()->installEventFilter(this);
         view()->setProperty("headerHidden",true);
-        ///view()->setMinimumSize(400,150);
+        view()->setMinimumSize(200,150);
         view()->setAlternatingRowColors(true);
         static_cast<QTreeView*>(view())->setAllColumnsShowFocus(true);
     }
@@ -28,9 +28,7 @@ public:
             {
                 QMouseEvent*mouseEvent=static_cast<QMouseEvent*>(event);
                 QModelIndex index=view()->indexAt(mouseEvent->pos());
-                setRootModelIndex(index.parent());
                 setCurrentIndex(index.row());
-                setRootModelIndex(QModelIndex());
                 if(!view()->visualRect(index).contains(mouseEvent->pos()))
                     skipNextHide=true;
                 hidePopup();

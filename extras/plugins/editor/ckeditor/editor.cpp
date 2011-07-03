@@ -42,29 +42,25 @@ void Editor::clean()
 
 void Editor::buildCategoriesList(QVariantList categories)
 {
-    ui->categories->clear();
-    QTreeWidget *tree = new QTreeWidget();
+   // ui->categories->clear();
+    QTreeWidget *tree = new QTreeWidget;
     QMap<QString, QTreeWidgetItem*> elements;
     QListIterator<QVariant> i(categories);
     while (i.hasNext()) {
         QVariantMap attr =i.next().toMap();
-        QTreeWidgetItem* item = new QTreeWidgetItem();
+        QTreeWidgetItem *parent =elements.value(attr.value("parent").toString());
+        QTreeWidgetItem* item = new QTreeWidgetItem(parent);
         qDebug()<<attr;
         item->setText(0,attr.value("name").toString());
         item->setIcon(0,QIcon(":/actions/folder.png"));
         item->setData(0,Qt::UserRole,attr.value("id"));
         item->setData(0,Qt::UserRole+1,"folder");
         elements.insertMulti(attr.value("id").toString(),item);
-        if(attr.value("parent").toInt() == 0 ) {
+        if(parent == NULL ) {
             tree->insertTopLevelItem(0,item);
         }
-        else {
-            QTreeWidgetItem *parent =elements.value(attr.value("parent").toString());
-            if(parent != NULL)
-                parent->addChild(item);
-            //else
-            ///    qDebug()<<"not inserted "+attr.value("name").toString();
-        }
     }
-    ui->categories->setModel(tree->model());
+    TreeBox *combo = new TreeBox(this);
+    combo->setModel(tree->model());
+    ui->gridLayout_2->addWidget(combo, 0, 1, 1, 1);
 }

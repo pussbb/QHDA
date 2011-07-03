@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'editor.ui'
 **
-** Created: Sun Jul 3 01:44:00 2011
+** Created: Sun Jul 3 10:32:21 2011
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,8 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QComboBox>
-#include <QtGui/QFormLayout>
+#include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
@@ -27,48 +26,45 @@ QT_BEGIN_NAMESPACE
 class Ui_Editor
 {
 public:
-    QWebView *webView;
-    QWidget *formLayoutWidget;
-    QFormLayout *formLayout;
+    QGridLayout *gridLayout;
+    QGridLayout *gridLayout_2;
     QLabel *label;
     QLabel *label_2;
     QLineEdit *title;
-    QComboBox *categories;
+    QWebView *webView;
 
     void setupUi(QWidget *Editor)
     {
         if (Editor->objectName().isEmpty())
             Editor->setObjectName(QString::fromUtf8("Editor"));
         Editor->resize(552, 418);
-        webView = new QWebView(Editor);
-        webView->setObjectName(QString::fromUtf8("webView"));
-        webView->setGeometry(QRect(18, 168, 382, 225));
-        webView->setUrl(QUrl("qrc:/ckeditor/editor.html"));
-        formLayoutWidget = new QWidget(Editor);
-        formLayoutWidget->setObjectName(QString::fromUtf8("formLayoutWidget"));
-        formLayoutWidget->setGeometry(QRect(22, 100, 169, 51));
-        formLayout = new QFormLayout(formLayoutWidget);
-        formLayout->setObjectName(QString::fromUtf8("formLayout"));
-        formLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(formLayoutWidget);
+        gridLayout = new QGridLayout(Editor);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        label = new QLabel(Editor);
         label->setObjectName(QString::fromUtf8("label"));
 
-        formLayout->setWidget(0, QFormLayout::LabelRole, label);
+        gridLayout_2->addWidget(label, 0, 0, 1, 1);
 
-        label_2 = new QLabel(formLayoutWidget);
+        label_2 = new QLabel(Editor);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        formLayout->setWidget(1, QFormLayout::LabelRole, label_2);
+        gridLayout_2->addWidget(label_2, 1, 0, 1, 1);
 
-        title = new QLineEdit(formLayoutWidget);
+        title = new QLineEdit(Editor);
         title->setObjectName(QString::fromUtf8("title"));
 
-        formLayout->setWidget(1, QFormLayout::FieldRole, title);
+        gridLayout_2->addWidget(title, 1, 1, 1, 1);
 
-        categories = new QComboBox(formLayoutWidget);
-        categories->setObjectName(QString::fromUtf8("categories"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, categories);
+        gridLayout->addLayout(gridLayout_2, 1, 0, 1, 1);
+
+        webView = new QWebView(Editor);
+        webView->setObjectName(QString::fromUtf8("webView"));
+        webView->setUrl(QUrl("qrc:/ckeditor/editor.html"));
+
+        gridLayout->addWidget(webView, 3, 0, 1, 1);
 
 
         retranslateUi(Editor);

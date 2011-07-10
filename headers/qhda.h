@@ -22,7 +22,8 @@ public:
     ~QHDA();
     DataBaseManager *dbman;
     QMap<QString , QSettings*> books;
-    QMessageBox msgBox;EditorInterface* editor;
+    QMessageBox msgBox;
+    EditorInterface* editor;
 public slots:
     void changeEvent(QEvent *e);
 private slots:
@@ -34,6 +35,7 @@ private slots:
     void on_actionSearch_In_Book_triggered();
     void initBooks();
     void buildTableOfContent();
+    bool checkArticleData(QVariantMap article);
     void on_tabedContent_tabCloseRequested(int index);
 
     void on_bookList_itemDoubleClicked(QListWidgetItem* item);
@@ -54,8 +56,13 @@ private slots:
 
     void on_actionArticle_triggered();
 
+    void on_actionSave_triggered();
+
+    void on_tabedContent_currentChanged(int index);
+
 private:
     Ui::QHDA *ui;
+    bool raiseEditor;
 };
 
 #endif // QHDA_H

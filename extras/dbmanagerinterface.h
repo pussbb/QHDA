@@ -22,7 +22,7 @@ public:
     virtual QVariantList articlesList(int parent = -1) = 0;
     virtual bool deleteCategory(int id) = 0;
     virtual bool deleteArticle(int id) = 0;
-    virtual bool createArticle(QMap<QString , QString> article) = 0;
+    virtual bool createArticle(QVariantMap article) = 0;
     virtual QVariantMap getTableColumnNames(QString tableName) = 0;
     QString errorStr;
 };

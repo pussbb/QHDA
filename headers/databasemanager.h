@@ -13,14 +13,18 @@ public:
     explicit DataBaseManager(QObject *parent = 0);
     DbManagerInterface *interface;
     QMap<QString , DbManagerInterface*> plugins;
+    QMessageBox msgBox;
 signals:
 
 public slots:
     bool loadPlugin(QString file = "");
     void showError();
     void setCurrentInterface(QString interfaceName);
+    bool saveArticle(QVariantMap article);
 private slots:
     void getPluginsList(QString path = "");
+    bool newArticle(QVariantMap article);
+    bool updateArticle(QVariantMap article);
 };
 
 #endif // DATABASEMANAGER_H

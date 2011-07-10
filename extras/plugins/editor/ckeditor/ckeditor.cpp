@@ -21,6 +21,11 @@ QWidget* Ckeditor::getEditor(QVariantList categories,QVariantMap article)
     editor->buildCategoriesList(categories);
     editor->title = article.value("title","").toString();
     editor->content = article.value("content","").toString();
+    if(article.value("catid",-1).toInt() > 0) {
+           TreeBox *category = editor->findChild<TreeBox *>("categories");
+           int index = category->findData(article.value("catid",-1));
+           category->setCurrentIndex(index);
+    }
     editor->setProperty("article",article);
     return editor;
 }

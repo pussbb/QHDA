@@ -21,7 +21,6 @@ foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
     if (plugin) {
         editor = qobject_cast<EditorInterface *>(plugin);
         ui->tabedContent->addTab(editor->getEditor(),"Editor");
-        qDebug()<< editor->editorType();
     }
 }
 }
@@ -91,9 +90,25 @@ void QHDA::on_actionSearch_In_Book_triggered()
         tabBar->show();
     }
 }
+bool QHDA::checkArticleData(QVariantMap article)
+{
+    if(article.value("title","").toString().isEmpty()) {
+        msgBox.setText(tr("Article title is required."));
+        msgBox.setInformativeText(tr("Return to editor or cancel saving the article\n(All unsaved results will be lost)."));
+        msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setDefaultButton(QMessageBox::Cancel);
+        int result = msgBox.exec();
+        if(result == QMessageBox::Yes)
+            raiseEditor = true;
+        return false;
+    }
+    return true;
+}
 
 void QHDA::on_tabedContent_tabCloseRequested(int index)
 {
+    raiseEditor = false;
     QWidget *widget = ui->tabedContent->widget(index);
     if(widget->objectName() == "Editor") {
 
@@ -107,11 +122,18 @@ void QHDA::on_tabedContent_tabCloseRequested(int index)
             return;
         }
         else if (result == QMessageBox::Save) {
-            qDebug()<<editor->getData(widget);
+            QVariantMap article = editor->getData(widget);
+            if(checkArticleData(article))
+                dbman->saveArticle(article);
         }
     }
-    ui->tabedContent->removeTab(index);
-    widget->deleteLater();
+    if(!raiseEditor) {
+        ui->tabedContent->removeTab(index);
+        widget->deleteLater();
+    }
+    else {
+        ui->tabedContent->setCurrentIndex(index);
+    }
 }
 
 void QHDA::initBooks()
@@ -325,4 +347,28 @@ void QHDA::on_actionArticle_triggered()
     ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
                                            dbman->interface->getTableColumnNames("articles")    ),
                              "Editor");
+}
+
+void QHDA::on_actionSave_triggered()
+{
+   QWidget *widget = ui->tabedContent->currentWidget();
+   QVariantMap article = editor->getData(widget);
+   qDebug()<<article;
+   bool ok = false;
+   if(checkArticleData(article))
+        ok = dbman->saveArticle(article);
+   if(ok) {
+       ui->tabedContent->removeTab(ui->tabedContent->currentIndex());
+       widget->deleteLater();
+   }
+}
+
+void QHDA::on_tabedContent_currentChanged(int index)
+{
+    QWidget *widget = ui->tabedContent->widget(index);
+       if(widget != NULL &&
+               widget->objectName() == "Editor")
+           ui->actionSave->setEnabled(true);
+       else
+           ui->actionSave->setEnabled(false);
 }

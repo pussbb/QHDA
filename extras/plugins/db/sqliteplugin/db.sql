@@ -7,7 +7,7 @@ PRAGMA quick_check;;
 PRAGMA journal_mode =  MEMORY;;
 
 CREATE TABLE articles (
-    "id" INTEGER NOT NULL PRIMARY KEY,
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT,
     "content" TEXT,
     "author" VARCHAR(150),

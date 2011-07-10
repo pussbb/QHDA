@@ -36,14 +36,14 @@ void Editor::render(bool ok)
 }
 
 void Editor::clean()
-{///ui->webView->page()->mainFrame()->page()->loadFinished();
-     ui->webView->page()->mainFrame()->evaluateJavaScript("InsertHTML('b;klklkh');");
+{
+
 }
 
 void Editor::buildCategoriesList(QVariantList categories)
 {
-   // ui->categories->clear();
     QTreeWidget *tree = new QTreeWidget;
+
     QMap<QString, QTreeWidgetItem*> elements;
     QListIterator<QVariant> i(categories);
     while (i.hasNext()) {
@@ -62,6 +62,5 @@ void Editor::buildCategoriesList(QVariantList categories)
     TreeBox *combo = new TreeBox(this);
     combo->setModel(tree->model());
     combo->setObjectName("categories");
-    qDebug()<<combo->objectName();
     ui->gridLayout_2->addWidget(combo, 0, 1, 1, 1);
 }

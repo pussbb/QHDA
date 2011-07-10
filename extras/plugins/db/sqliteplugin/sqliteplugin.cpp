@@ -216,9 +216,24 @@ bool SqlitePlugin::deleteArticle(int id)
     return true;
 }
 
-bool SqlitePlugin::createArticle(QMap<QString, QString> article)
+bool SqlitePlugin::createArticle(QVariantMap article)
 {
-
+    QSqlQuery sql;
+    sql.prepare("INSERT INTO articles (title,content, author, published,md5,catid,guid)"
+                  " VALUES (?, ?, ?, ?, ?, ?, ?)");
+    sql.bindValue(0,article.value("title"));
+    sql.bindValue(1,article.value("content"));
+    sql.bindValue(2,article.value("author"));
+    sql.bindValue(3,QDateTime::currentDateTime().toString("yyyy.MM.dd hh:mm:ss"));
+    sql.bindValue(4,article.value("md5"));
+    sql.bindValue(5,article.value("catid"));
+    sql.bindValue(6,article.value("guid"));
+    sql.exec();
+    qDebug()<<sql.lastQuery();
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return false;
+    }
     return true;
 }
 

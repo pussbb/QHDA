@@ -46,3 +46,33 @@ void DataBaseManager::setCurrentInterface(QString interfaceName)
 {
     interface = plugins.value(interfaceName);
 }
+
+bool DataBaseManager::saveArticle(QVariantMap article)
+{
+    if(article.value("id",-1).toInt() <= 0)
+       return newArticle(article);
+    else
+       return updateArticle(article);
+}
+
+bool DataBaseManager::newArticle(QVariantMap article)
+{
+    QByteArray hash = QCryptographicHash::hash(article.value("content")
+                                               .toString()
+                                               .toLocal8Bit(), QCryptographicHash::Md5);
+    QSettings settings;
+    article.insert("md5",hash.toHex());
+    article.insert("guid",QUuid::createUuid().toString());
+    article.insert("author",settings.value("user","anonymous"));
+
+    if(interface->createArticle(article))
+        return true;
+    else
+        showError();
+    return false;
+}
+
+bool DataBaseManager::updateArticle(QVariantMap article)
+{
+    return true;
+}

@@ -24,6 +24,7 @@ public slots:
     void render(bool ok);
 private:
     Ui::Editor *ui;
+        bool alreadyInserted;
 };
 
 #endif // EDITOR_H

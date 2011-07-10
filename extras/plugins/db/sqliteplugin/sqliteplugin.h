@@ -27,8 +27,10 @@ public:
     bool deleteCategory(int id);
     bool deleteArticle(int id);
     bool createArticle(QVariantMap article);
+    QVariantMap article(int id);
     QVariantMap articlesColumns;
     QVariantMap getTableColumnNames(QString tableName);
+    bool updateArticle(QVariantMap article);
 
 private:
     QSqlDatabase db;

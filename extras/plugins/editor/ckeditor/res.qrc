@@ -1,10 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>ckeditor/ckeditor.js</file>
-        <file>ckeditor/ckeditor_basic.js</file>
-        <file>ckeditor/ckeditor_basic_source.js</file>
-        <file>ckeditor/ckeditor_source.js</file>
-        <file>ckeditor/config.js</file>
         <file>ckeditor/contents.css</file>
         <file>ckeditor/editor.html</file>
         <file>ckeditor/lang/_languages.js</file>

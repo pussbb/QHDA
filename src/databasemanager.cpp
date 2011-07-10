@@ -74,5 +74,16 @@ bool DataBaseManager::newArticle(QVariantMap article)
 
 bool DataBaseManager::updateArticle(QVariantMap article)
 {
+    QByteArray hash = QCryptographicHash::hash(article.value("content")
+                                               .toString()
+                                               .toLocal8Bit(), QCryptographicHash::Md5);
+    QSettings settings;
+    article.insert("md5",hash.toHex());
+    article.insert("author",settings.value("user","anonymous"));
+
+    if(interface->updateArticle(article))
+        return true;
+    else
+        showError();
     return true;
 }

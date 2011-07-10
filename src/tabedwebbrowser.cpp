@@ -22,6 +22,7 @@ void TabedWebBrowser::addTab(QUrl url)
         QWidget *widget = this->widget(ind);
     if(QWebView *tabPage = qobject_cast<QWebView*>(widget))
         tabPage->load(url);
+    setCurrentIndex(ind);
 }
 
 void TabedWebBrowser::addTab(QUrl url, const QString &)

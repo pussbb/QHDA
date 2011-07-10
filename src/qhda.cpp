@@ -122,9 +122,8 @@ void QHDA::on_tabedContent_tabCloseRequested(int index)
             return;
         }
         else if (result == QMessageBox::Save) {
-            QVariantMap article = editor->getData(widget);
-            if(checkArticleData(article))
-                dbman->saveArticle(article);
+                ui->tabedContent->setCurrentIndex(index);
+                ui->actionSave->trigger();
         }
     }
     if(!raiseEditor) {
@@ -194,9 +193,9 @@ void QHDA::buildTableOfContent()
 {
     QVariantList categories = dbman->interface->categoriesList();
     QVariantList articles = dbman->interface->articlesList();
-
+    QMap<QString, QTreeWidgetItem*> catList;
     ui->tableOfContent->clear();
-    QMap<QString, QTreeWidgetItem*> elements;
+
     QListIterator<QVariant> i(categories);
     while (i.hasNext()) {
         QVariantMap attr =i.next().toMap();
@@ -205,17 +204,29 @@ void QHDA::buildTableOfContent()
         item->setIcon(0,QIcon(":/actions/folder.png"));
         item->setData(0,Qt::UserRole,attr.value("id"));
         item->setData(0,Qt::UserRole+1,"folder");
-        elements.insertMulti(attr.value("id").toString(),item);
+        catList.insertMulti(attr.value("id").toString(),item);
         if(attr.value("parent").toInt() == 0 ) {
             ui->tableOfContent->insertTopLevelItem(0,item);
         }
         else {
-            QTreeWidgetItem *parent =elements.value(attr.value("parent").toString());
+            QTreeWidgetItem *parent =catList.value(attr.value("parent").toString());
             if(parent != NULL)
                 parent->addChild(item);
             else
                 qDebug()<<"not inserted "+attr.value("name").toString();
         }
+    }
+    foreach(QVariant article ,articles){
+        QVariantMap attr = article.toMap();
+        QTreeWidgetItem* item = new QTreeWidgetItem();
+        item->setText(0,attr.value("title").toString());
+        item->setIcon(0,QIcon(":/actions/signature.png"));
+        item->setData(0,Qt::UserRole,attr.value("id"));
+        item->setData(0,Qt::UserRole+1,"article");
+        QTreeWidgetItem *parent = catList.value(attr.value("catid").toString());
+        if(parent != NULL)
+            parent->addChild(item);
+
     }
 }
 
@@ -320,6 +331,7 @@ void QHDA::on_tableOfContent_customContextMenuRequested(QPoint pos)
         }
         else {
             m->addAction(ui->actionRemove_Article);
+            m->addAction(ui->actionEdit_Article);
         }
     }
     m->exec(ui->tableOfContent->mapToGlobal(pos));
@@ -346,18 +358,18 @@ void QHDA::on_actionArticle_triggered()
 {
     ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
                                            dbman->interface->getTableColumnNames("articles")    ),
-                             "Editor");
+                             tr("New Article"));
 }
 
 void QHDA::on_actionSave_triggered()
 {
    QWidget *widget = ui->tabedContent->currentWidget();
    QVariantMap article = editor->getData(widget);
-   qDebug()<<article;
    bool ok = false;
    if(checkArticleData(article))
         ok = dbman->saveArticle(article);
    if(ok) {
+       buildTableOfContent();
        ui->tabedContent->removeTab(ui->tabedContent->currentIndex());
        widget->deleteLater();
    }
@@ -371,4 +383,29 @@ void QHDA::on_tabedContent_currentChanged(int index)
            ui->actionSave->setEnabled(true);
        else
            ui->actionSave->setEnabled(false);
+}
+
+void QHDA::on_actionRemove_Article_triggered()
+{
+    msgBox.setText(tr("Are you sure want delete this article."));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    if(msgBox.exec()==QMessageBox::Yes) {
+        QTreeWidgetItem *item = ui->tableOfContent->currentItem();
+        bool ok = dbman->interface->deleteArticle(item->data(0,Qt::UserRole).toInt());
+        if(!ok)
+            dbman->showError();
+        else
+            delete item;
+    }
+}
+
+void QHDA::on_actionEdit_Article_triggered()
+{
+    int index = ui->tableOfContent->currentItem()->data(0,Qt::UserRole).toInt();
+    QVariantMap article = dbman->interface->article(index);
+    ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
+                                           article    ),
+                             tr("Edit")+"   "+article.value("title").toString());
 }

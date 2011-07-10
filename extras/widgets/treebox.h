@@ -44,6 +44,10 @@ public:
         QComboBox::showPopup();
         static_cast<QTreeView*>(view())->expandAll();
     }
+    virtual QVariant getData(int userRole)
+    {
+        return view()->currentIndex().data(userRole);
+    }
 
     virtual void hidePopup()
     {

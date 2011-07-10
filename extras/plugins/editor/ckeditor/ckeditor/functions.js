@@ -1,4 +1,4 @@
-var content  = '<p></p>';
+
 $(document).ready(function() {
     deleteCkeditors();
     CKEDITOR.replace('editor1',
@@ -26,7 +26,6 @@ $(document).ready(function() {
       {
          var editor = evt.editor;
          editor.execCommand('maximize');
-	 editor.insertHtml(content);
       });
 });
 
@@ -38,17 +37,17 @@ function deleteCkeditors() {
         }
     }
 }
-function setContent(html) {
-    content = html;
-}
-function insertHTML(html)
+
+function insertHTML()
 {
+
 	var oEditor = CKEDITOR.instances.editor1;
-	if ( oEditor.mode == 'wysiwyg' )
-	{
-		oEditor.insertHtml( html );
-	}
-	content = html;
+	    CKEDITOR.on('instanceReady',
+      function( evt )
+      {
+         var editor = evt.editor;
+         oEditor.insertHtml( $('textarea#editor1').html());
+      });
 }
 function getContents()
 {

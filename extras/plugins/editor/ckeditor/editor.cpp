@@ -17,22 +17,32 @@ Editor::Editor(QWidget *parent) :
 /// ui->webView->page()->settings()->setAttribute(QWebSettings::JavascriptCanAccessClipboard, true);
 //  ui->webView->page()->settings()->setAttribute(QWebSettings::JavascriptCanOpenWindows, true);
 
- ///      inspector->setPage(ui->webView->page());
+//       inspector->setPage(ui->webView->page());
 //inspector->show();
-
+alreadyInserted = false;
 }
 
 Editor::~Editor()
 {
     delete ui;
 }
-
+#include <QWebElement>
 void Editor::render(bool ok)
 {
     if(!ok)
         return;
-   ui->webView->page()->mainFrame()->evaluateJavaScript("setContent('"+content+"')");
+
+   if(content.isEmpty()
+           || alreadyInserted)
+       return;
+
+   QWebElement document = ui->webView->page()->mainFrame()->documentElement();
+   QWebElement elem = document.findFirst("textarea#editor1");
+   elem.appendInside(content);
+   ui->webView->page()->mainFrame()->evaluateJavaScript("insertHTML();");
+
    ui->title->setText(title);
+   alreadyInserted = true;
 }
 
 void Editor::clean()

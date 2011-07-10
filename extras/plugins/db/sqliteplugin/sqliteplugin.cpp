@@ -229,7 +229,43 @@ bool SqlitePlugin::createArticle(QVariantMap article)
     sql.bindValue(5,article.value("catid"));
     sql.bindValue(6,article.value("guid"));
     sql.exec();
-    qDebug()<<sql.lastQuery();
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+QVariantMap SqlitePlugin::article(int id)
+{
+    QSqlQuery sql;
+    QVariantMap article = articlesColumns;
+    sql.exec("SELECT * FROM articles WHERE id = "+QString::number(id)+";");
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return articlesColumns;
+    }
+    sql.next();
+    int fieldId = 0;
+    foreach(QString column, article.keys()) {
+      fieldId = sql.record().indexOf(column);
+      article.insert(column,sql.value(fieldId));
+    }
+    return article;
+}
+
+bool SqlitePlugin::updateArticle(QVariantMap article)
+{
+    QSqlQuery sql;
+    sql.prepare("UPDATE articles SET title=? ,content=? , author=?, md5=?, catid=?"
+                  " WHERE id=?");
+    sql.bindValue(0,article.value("title"));
+    sql.bindValue(1,article.value("content"));
+    sql.bindValue(2,article.value("author"));
+    sql.bindValue(3,article.value("md5"));
+    sql.bindValue(4,article.value("catid"));
+    sql.bindValue(5,article.value("id"));
+    sql.exec();
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
         return false;

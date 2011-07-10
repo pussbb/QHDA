@@ -60,9 +60,14 @@ private slots:
 
     void on_tabedContent_currentChanged(int index);
 
+    void on_actionRemove_Article_triggered();
+
+    void on_actionEdit_Article_triggered();
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;
+
 };
 
 #endif // QHDA_H

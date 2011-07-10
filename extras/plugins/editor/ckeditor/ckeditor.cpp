@@ -37,8 +37,16 @@ QVariantMap Ckeditor::getData(QWidget *edit)
        article.insert("title",title->text());
    TreeBox *category = edit->findChild<TreeBox *>("categories");
 
-   if(category != NULL)
-       article.insert("catid",category->itemData(0,Qt::UserRole));
+   if(category != NULL) {
+       int catId = category->getData(Qt::UserRole).toInt();
+       if(catId == NULL)
+            article.insert("catid",category->itemData(
+                               category->currentIndex(),
+                               Qt::UserRole
+                               ));
+       else
+           article.insert("catid",catId);
+   }
 
    QWebView *page = edit->findChild<QWebView *>("webView");
    if(page != NULL) {

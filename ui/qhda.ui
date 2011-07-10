@@ -366,6 +366,15 @@
     <string>Save</string>
    </property>
   </action>
+  <action name="actionEdit_Article">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/edit.png</normaloff>:/actions/edit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Article</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

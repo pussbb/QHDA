@@ -44,9 +44,30 @@ public:
         QComboBox::showPopup();
         static_cast<QTreeView*>(view())->expandAll();
     }
+
     virtual QVariant getData(int userRole)
     {
-        return view()->currentIndex().data(userRole);
+        QVariant data  = view()->currentIndex().data(userRole);
+        if(data.isNull())
+            data = itemData(currentIndex(),userRole);
+        return data;
+    }
+
+    virtual void setCurrentIndexByData(QVariant data,int userRole)
+    {
+        int index = findData(data,userRole);
+        if(index == -1) {
+          QModelIndexList Items = model()->match(model()->index(0, 0),
+                           userRole,
+                           data,
+                           1,
+                           Qt::MatchRecursive);
+           setRootModelIndex(Items.at(0).parent());
+           setCurrentIndex(Items.at(0).row());
+        }
+        else {
+            setCurrentIndex(index);
+        }
     }
 
     virtual void hidePopup()

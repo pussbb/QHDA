@@ -73,4 +73,5 @@ void Editor::buildCategoriesList(QVariantList categories)
     combo->setModel(tree->model());
     combo->setObjectName("categories");
     ui->gridLayout_2->addWidget(combo, 0, 1, 1, 1);
+
 }

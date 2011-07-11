@@ -23,8 +23,12 @@ QWidget* Ckeditor::getEditor(QVariantList categories,QVariantMap article)
     editor->content = article.value("content","").toString();
     if(article.value("catid",-1).toInt() > 0) {
            TreeBox *category = editor->findChild<TreeBox *>("categories");
-           int index = category->findData(article.value("catid",-1));
-           category->setCurrentIndex(index);
+           /*int index = category->findData(article.value("catid",-1));
+           qDebug()<<index;
+           category->setCurrentIndex(index);*/
+           category->setCurrentIndexByData(
+                       article.value("catid",-1),
+                       Qt::UserRole);
     }
     editor->setProperty("article",article);
     return editor;
@@ -38,14 +42,7 @@ QVariantMap Ckeditor::getData(QWidget *edit)
    TreeBox *category = edit->findChild<TreeBox *>("categories");
 
    if(category != NULL) {
-       int catId = category->getData(Qt::UserRole).toInt();
-       if(catId == NULL)
-            article.insert("catid",category->itemData(
-                               category->currentIndex(),
-                               Qt::UserRole
-                               ));
-       else
-           article.insert("catid",catId);
+           article.insert("catid",category->getData(Qt::UserRole));
    }
 
    QWebView *page = edit->findChild<QWebView *>("webView");

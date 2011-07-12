@@ -6,6 +6,7 @@ QHDA::QHDA(QWidget *parent) :
     QCoreWindow(parent),
     ui(new Ui::QHDA)
 {
+    templateEngine = new TemplateEngine();
     dbman = new DataBaseManager();
     ui->setupUi(this);
     buildLangMenu("qhda");
@@ -22,7 +23,9 @@ foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
         editor = qobject_cast<EditorInterface *>(plugin);
         ui->tabedContent->addTab(editor->getEditor(),"Editor");
     }
+
 }
+    qDebug()<<templateEngine->getTemplateName();
 }
 
 QHDA::~QHDA()

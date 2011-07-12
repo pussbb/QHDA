@@ -8,7 +8,7 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <extras/editorinterface.h>
-
+#include "headers/templateengine.h"
 namespace Ui {
     class QHDA;
 }
@@ -24,6 +24,7 @@ public:
     QMap<QString , QSettings*> books;
     QMessageBox msgBox;
     EditorInterface* editor;
+    TemplateEngine* templateEngine;
 public slots:
     void changeEvent(QEvent *e);
 private slots:

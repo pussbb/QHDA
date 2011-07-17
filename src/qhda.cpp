@@ -6,7 +6,7 @@ QHDA::QHDA(QWidget *parent) :
     QCoreWindow(parent),
     ui(new Ui::QHDA)
 {
-    templateEngine = new TemplateEngine();
+    articleTemplate = new TemplateEngine();
     dbman = new DataBaseManager();
     ui->setupUi(this);
     buildLangMenu("qhda");
@@ -25,7 +25,7 @@ foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
     }
 
 }
-    qDebug()<<templateEngine->getTemplateName();
+
 }
 
 QHDA::~QHDA()
@@ -411,4 +411,21 @@ void QHDA::on_actionEdit_Article_triggered()
     ui->tabedContent->addTab(editor->getEditor(dbman->interface->categoriesList(),
                                            article    ),
                              tr("Edit")+"   "+article.value("title").toString());
+}
+
+
+
+void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column)
+{
+    if(item == NULL)
+        return;
+
+    QString type = item->data(column,Qt::UserRole+1).toString();
+    if( type == "folder")
+        return;
+    int articleId = item->data(column,Qt::UserRole).toInt();
+    QVariantMap article = dbman->interface->article(articleId);
+    QString articleTheme = articleTemplate->renderAricle(article);
+    ui->tabedContent->newTab = false;
+    ui->tabedContent->addTab(articleTheme,article.value("title").toString());
 }

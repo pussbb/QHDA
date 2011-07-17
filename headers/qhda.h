@@ -24,7 +24,7 @@ public:
     QMap<QString , QSettings*> books;
     QMessageBox msgBox;
     EditorInterface* editor;
-    TemplateEngine* templateEngine;
+    TemplateEngine* articleTemplate;
 public slots:
     void changeEvent(QEvent *e);
 private slots:
@@ -64,6 +64,10 @@ private slots:
     void on_actionRemove_Article_triggered();
 
     void on_actionEdit_Article_triggered();
+
+
+
+    void on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column);
 
 private:
     Ui::QHDA *ui;

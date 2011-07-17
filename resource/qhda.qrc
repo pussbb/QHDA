@@ -87,4 +87,13 @@
         <file>syntaxhighlighter/scripts/shLegacy.js</file>
         <file>jquery.js</file>
     </qresource>
+    <qresource prefix="/html">
+        <file>templates/silverblog/images/bodybg.jpg</file>
+        <file>templates/silverblog/images/footerbg.jpg</file>
+        <file>templates/silverblog/about.html</file>
+        <file>templates/silverblog/index.html</file>
+        <file>templates/silverblog/style.css</file>
+        <file>templates/silverblog/images/activemenu.png</file>
+        <file>templates/silverblog/images/pagenaviactivebg.png</file>
+    </qresource>
 </RCC>

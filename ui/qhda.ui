@@ -94,6 +94,7 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
@@ -373,6 +374,15 @@
    </property>
    <property name="text">
     <string>Edit Article</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/Settings-32.png</normaloff>:/actions/Settings-32.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

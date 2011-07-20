@@ -429,3 +429,9 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
     ui->tabedContent->newTab = false;
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
 }
+#include "headers/settings.h"
+void QHDA::on_actionSettings_triggered()
+{
+    Settings *settingsDialog = new Settings(this);
+    settingsDialog->show();
+}

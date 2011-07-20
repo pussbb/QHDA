@@ -69,6 +69,8 @@ private slots:
 
     void on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column);
 
+    void on_actionSettings_triggered();
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;

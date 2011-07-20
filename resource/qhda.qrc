@@ -86,6 +86,9 @@
         <file>syntaxhighlighter/scripts/shCore.js</file>
         <file>syntaxhighlighter/scripts/shLegacy.js</file>
         <file>jquery.js</file>
+        <file>actions/Sygate.png</file>
+        <file>actions/Settings-32.png</file>
+        <file>actions/emblem-web.png</file>
     </qresource>
     <qresource prefix="/html">
         <file>templates/silverblog/images/bodybg.jpg</file>

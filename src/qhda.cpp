@@ -163,10 +163,6 @@ void QHDA::initBooks()
     settings.endGroup();
 }
 
-#include "headers/bookwizard.h"
-
-
-
 void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
 {
     Q_UNUSED(item);

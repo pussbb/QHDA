@@ -9,6 +9,7 @@
 #include <QMessageBox>
 #include <extras/editorinterface.h>
 #include "headers/templateengine.h"
+#include "headers/bookwizard.h"
 namespace Ui {
     class QHDA;
 }

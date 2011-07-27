@@ -5,6 +5,11 @@ QString Ckeditor::version()
   return "0.0.1";
 }
 
+QString Ckeditor::name()
+{
+    return "CKEditor";
+}
+
 QString Ckeditor::editorType()
 {
   return "webkit";

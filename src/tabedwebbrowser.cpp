@@ -75,6 +75,7 @@ void TabedWebBrowser::addTab(QString html,const QString &label)
         QWidget *widget = this->widget(ind);
     if(QWebView *tabPage = qobject_cast<QWebView*>(widget))
         tabPage->setHtml(html);
+
     setCurrentIndex(ind);
 }
 

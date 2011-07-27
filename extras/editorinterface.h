@@ -7,6 +7,7 @@ class EditorInterface
 public:
     virtual ~EditorInterface() {}
     virtual QString version() = 0;
+    virtual QString name() = 0;
     virtual QString editorType() = 0;
     virtual QWidget* getEditor() = 0;
     virtual QWidget* getEditor(QVariantList categories,QVariantMap article) = 0;

@@ -95,6 +95,7 @@
      <string>Options</string>
     </property>
     <addaction name="actionSettings"/>
+    <addaction name="actionPlugins"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
@@ -383,6 +384,11 @@
    </property>
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionPlugins">
+   <property name="text">
+    <string>Plugins</string>
    </property>
   </action>
  </widget>

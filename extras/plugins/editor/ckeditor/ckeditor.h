@@ -14,6 +14,7 @@ class Ckeditor : public QObject, EditorInterface
 public:
     QString version();
     QString editorType();
+    QString name();
     QString errorStr;
     QWidget* getEditor();
     Editor *editor;

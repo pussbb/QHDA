@@ -429,3 +429,15 @@ void QHDA::on_actionSettings_triggered()
     settingsDialog->exec();
     settingsDialog->deleteLater();
 }
+
+void QHDA::on_actionAbout_QT_triggered()
+{
+    QApplication::aboutQt();
+}
+
+void QHDA::on_actionPlugins_triggered()
+{
+    PluginInfo *pluginInfo = new PluginInfo(this);
+    pluginInfo->exec();
+    pluginInfo->deleteLater();
+}

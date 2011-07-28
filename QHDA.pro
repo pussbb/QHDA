@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     src/tabelofcontent.cpp \
     src/tabedwebbrowser.cpp \
     src/templateengine.cpp \
-    src/settings.cpp
+    src/settings.cpp \
+    src/plugininfo.cpp
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
@@ -38,11 +39,13 @@ HEADERS  += headers/qhda.h \
     extras/editorinterface.h \
     extras/widgets/treebox.h \
     headers/templateengine.h \
-    headers/settings.h
+    headers/settings.h \
+    headers/plugininfo.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui \
-    ui/settings.ui
+    ui/settings.ui \
+    ui/plugininfo.ui
 
 RESOURCES += \
     resource/qhda.qrc

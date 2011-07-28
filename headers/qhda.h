@@ -2,8 +2,8 @@
 #define QHDA_H
 
 #include "headers/qcorewindow.h"
-
 #include "headers/databasemanager.h"
+
 #include <QListWidgetItem>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -11,6 +11,7 @@
 #include "headers/templateengine.h"
 #include "headers/bookwizard.h"
 #include "headers/settings.h"
+#include "headers/plugininfo.h"
 
 namespace Ui {
     class QHDA;
@@ -74,6 +75,10 @@ private slots:
 
     void on_actionSettings_triggered();
     void loadSettings();
+
+    void on_actionAbout_QT_triggered();
+
+    void on_actionPlugins_triggered();
 
 private:
     Ui::QHDA *ui;

@@ -42,6 +42,7 @@ private:
     QMap<QString , EditorInterface*> editors;
     EditorInterface* editor;
     void saveSettings();
+    void loadSettings();
 };
 
 #endif // SETTINGS_H

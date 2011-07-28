@@ -10,6 +10,8 @@
 #include <extras/editorinterface.h>
 #include "headers/templateengine.h"
 #include "headers/bookwizard.h"
+#include "headers/settings.h"
+
 namespace Ui {
     class QHDA;
 }
@@ -71,6 +73,7 @@ private slots:
     void on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column);
 
     void on_actionSettings_triggered();
+    void loadSettings();
 
 private:
     Ui::QHDA *ui;

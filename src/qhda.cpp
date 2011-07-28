@@ -13,24 +13,23 @@ QHDA::QHDA(QWidget *parent) :
     langMenuToMenuBar("menuOptions");
     initDockWidgets();
     initBooks();
-    //temprory
-    QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/editor/");
-QDir pluginsDir(path);
-foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
-    QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
-    QObject *plugin = pluginLoader.instance();
-    if (plugin) {
-        editor = qobject_cast<EditorInterface *>(plugin);
-        ui->tabedContent->addTab(editor->getEditor(),"Editor");
-    }
-
-}
-
+    loadSettings();
 }
 
 QHDA::~QHDA()
 {
     delete ui;
+}
+
+void QHDA::loadSettings()
+{
+    QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/editor/");
+    QString editorPlugin = settings.value("Editors/file").toString();
+    QPluginLoader pluginLoader(path+editorPlugin);
+    QObject *plugin = pluginLoader.instance();
+    if (plugin) {
+        editor = qobject_cast<EditorInterface *>(plugin);
+    }
 }
 
 void QHDA::changeEvent(QEvent *e)
@@ -409,8 +408,6 @@ void QHDA::on_actionEdit_Article_triggered()
                              tr("Edit")+"   "+article.value("title").toString());
 }
 
-
-
 void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column)
 {
     if(item == NULL)
@@ -425,7 +422,7 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
     ui->tabedContent->newTab = false;
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
 }
-#include "headers/settings.h"
+
 void QHDA::on_actionSettings_triggered()
 {
     Settings *settingsDialog = new Settings(this);

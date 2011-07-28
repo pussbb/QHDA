@@ -7,10 +7,10 @@ Settings::Settings(QWidget *parent) :
 {
    path = qApp->applicationDirPath()+QDir::toNativeSeparators("/templates/");
     ui->setupUi(this);
-    if(ui->userName->text().isEmpty())
-        ui->userName->setText(getenv("USER"));
+
     initTemplates();
     initEditors();
+    loadSettings();
 }
 
 Settings::~Settings()
@@ -89,7 +89,7 @@ void Settings::on_editorsList_currentIndexChanged(int index)
 }
 
 void Settings::on_buttonBox_clicked(QAbstractButton* button)
-{qDebug()<<ui->buttonBox->buttonRole(button);
+{
     if( ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole) {
         saveSettings();
     }
@@ -97,7 +97,6 @@ void Settings::on_buttonBox_clicked(QAbstractButton* button)
         saveSettings();
         accept();
     }
-
 }
 
 void Settings::saveSettings()
@@ -121,7 +120,7 @@ void Settings::saveSettings()
                           Qt::UserRole
                           ));
 
-    settings.setValue("Core/proxyConnection",ui->enableProxy->isCheckable());
+    settings.setValue("Core/proxyConnection",ui->enableProxy->isChecked());
     if(ui->enableProxy->isCheckable()) {
         if(ui->systemProxy->isChecked())
             settings.setValue("Proxy/system",true);
@@ -134,4 +133,28 @@ void Settings::saveSettings()
         settings.setValue("Proxy/Username",ui->proxyUserName->text());
         settings.setValue("Proxy/Password",ui->proxyPassword->text());
     }
+}
+void Settings::loadSettings()
+{
+    QSettings settings;
+    ui->saveLang->setChecked(settings.value("Core/save_locale",false).toBool());
+    ui->saveWindowState->setChecked(settings.value("Core/saveWindowLayout",false).toBool());
+    ui->userName->setText(settings.value("Core/username",getenv("USER")).toString());
+    ui->checkSync->setChecked(settings.value("Core/checkSync",true).toBool());
+    ui->checkUpdates->setChecked(settings.value("Core/checkUpdates",true).toBool());
+    int index = ui->templatesList->findData(settings.value("Templates/file"));
+    ui->templatesList->setCurrentIndex(index);
+    index = ui->editorsList->findData(settings.value("Editors/file"));
+    ui->editorsList->setCurrentIndex(index);
+    ui->enableProxy->setChecked(settings.value("Core/proxyConnection",false).toBool());
+    if(settings.value("Proxy/system",false).toBool())
+        ui->systemProxy->setChecked(true);
+    else
+        ui->customProxy->setChecked(true);
+    ui->proxyType->setCurrentIndex(settings.value("Proxy/Type",0).toInt());
+    ui->proxyUrl->setText(settings.value("Proxy/Url","").toString());
+    ui->proxyPort->setValue(settings.value("Proxy/Port",2000).toInt());
+    ui->proxyUserName->setText(settings.value("Proxy/Username").toString());
+    ui->proxyPassword->setText(settings.value("Proxy/Password").toString());
+   // ui->checkUpdates->setChecked();
 }

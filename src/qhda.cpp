@@ -429,5 +429,6 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
 void QHDA::on_actionSettings_triggered()
 {
     Settings *settingsDialog = new Settings(this);
-    settingsDialog->show();
+    settingsDialog->exec();
+    settingsDialog->deleteLater();
 }

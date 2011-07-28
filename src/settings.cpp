@@ -87,3 +87,51 @@ void Settings::on_editorsList_currentIndexChanged(int index)
     description.append("\n" + tr("Verision: ") + editors.value(editorFile)->version());
     ui->editorsDescription->setText(description);
 }
+
+void Settings::on_buttonBox_clicked(QAbstractButton* button)
+{qDebug()<<ui->buttonBox->buttonRole(button);
+    if( ui->buttonBox->buttonRole(button) == QDialogButtonBox::ApplyRole) {
+        saveSettings();
+    }
+    else if (ui->buttonBox->buttonRole(button) == QDialogButtonBox::AcceptRole) {
+        saveSettings();
+        accept();
+    }
+
+}
+
+void Settings::saveSettings()
+{
+    QSettings settings;
+    settings.setValue("Core/save_locale",ui->saveLang->isChecked());
+    settings.setValue("Core/saveWindowLayout",ui->saveWindowState->isChecked());
+    settings.setValue("Core/username",ui->userName->text());
+    settings.setValue("Core/checkUpdates",ui->checkUpdates->isChecked());
+    settings.setValue("Core/checkSync",ui->checkSync->isChecked());
+
+    settings.setValue("Templates/name",ui->templatesList->currentText());
+    settings.setValue("Templates/file",ui->templatesList->itemData(
+                            ui->templatesList->currentIndex(),
+                            Qt::UserRole
+                          ));
+
+    settings.setValue("Editors/name",ui->editorsList->currentText());
+    settings.setValue("Editors/file",ui->editorsList->itemData(
+                          ui->editorsList->currentIndex(),
+                          Qt::UserRole
+                          ));
+
+    settings.setValue("Core/proxyConnection",ui->enableProxy->isCheckable());
+    if(ui->enableProxy->isCheckable()) {
+        if(ui->systemProxy->isChecked())
+            settings.setValue("Proxy/system",true);
+        else
+            settings.setValue("Proxy/system",false);
+
+        settings.setValue("Proxy/Type",ui->proxyType->currentIndex());
+        settings.setValue("Proxy/Url",ui->proxyUrl->text());
+        settings.setValue("Proxy/Port",ui->proxyPort->text());
+        settings.setValue("Proxy/Username",ui->proxyUserName->text());
+        settings.setValue("Proxy/Password",ui->proxyPassword->text());
+    }
+}

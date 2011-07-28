@@ -34,11 +34,14 @@ private slots:
 
     void on_editorsList_currentIndexChanged(int index);
 
+    void on_buttonBox_clicked(QAbstractButton* button);
+
 private:
     Ui::Settings *ui;
     QMap<QString , QSettings*> templates;
     QMap<QString , EditorInterface*> editors;
     EditorInterface* editor;
+    void saveSettings();
 };
 
 #endif // SETTINGS_H

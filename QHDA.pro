@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 
-QT       += core gui webkit
+QT       += core gui webkit help
 
 TARGET = QHDA
 TEMPLATE = app
@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     src/tabedwebbrowser.cpp \
     src/templateengine.cpp \
     src/settings.cpp \
-    src/plugininfo.cpp
+    src/plugininfo.cpp \
+    src/about.cpp
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
@@ -40,12 +41,14 @@ HEADERS  += headers/qhda.h \
     extras/widgets/treebox.h \
     headers/templateengine.h \
     headers/settings.h \
-    headers/plugininfo.h
+    headers/plugininfo.h \
+    headers/about.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui \
     ui/settings.ui \
-    ui/plugininfo.ui
+    ui/plugininfo.ui \
+    ui/about.ui
 
 RESOURCES += \
     resource/qhda.qrc

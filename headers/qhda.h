@@ -12,6 +12,7 @@
 #include "headers/bookwizard.h"
 #include "headers/settings.h"
 #include "headers/plugininfo.h"
+#include "headers/about.h"
 
 namespace Ui {
     class QHDA;
@@ -79,6 +80,8 @@ private slots:
     void on_actionAbout_QT_triggered();
 
     void on_actionPlugins_triggered();
+
+    void on_actionAbout_triggered();
 
 private:
     Ui::QHDA *ui;

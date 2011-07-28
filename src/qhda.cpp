@@ -441,3 +441,10 @@ void QHDA::on_actionPlugins_triggered()
     pluginInfo->exec();
     pluginInfo->deleteLater();
 }
+
+void QHDA::on_actionAbout_triggered()
+{
+    About *about = new About(this);
+    about->exec();
+    about->deleteLater();
+}

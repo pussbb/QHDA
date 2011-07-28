@@ -36,6 +36,7 @@ void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
         QAction *action = new QAction(tr("&%2").arg(language), this);
         action->setCheckable(true);
         action->setData(file_locale);
+        action->setIcon(QIcon(":/core/flags/"+file_locale+".png"));
         languageMenu->addAction(action);
         languageActionGroup->addAction(action);
         if(file_locale == locale)

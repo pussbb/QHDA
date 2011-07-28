@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>About</class>
  <widget class="QDialog" name="About">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,6 +16,9 @@
   <property name="windowTitle">
    <string>About QHDA</string>
   </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>2</number>
@@ -20,7 +26,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -134,7 +140,39 @@ p, li { white-space: pre-wrap; }
         <number>1</number>
        </property>
        <item row="0" column="0">
-        <widget class="QListWidget" name="listWidget"/>
+        <widget class="QListWidget" name="translationList">
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="viewMode">
+          <enum>QListView::ListMode</enum>
+         </property>
+         <item>
+          <property name="text">
+           <string>English
+Author: _pussbb
+E-mail: pussbb@gmail.com</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resource/qhda.qrc">
+            <normaloff>:/core/flags/en.png</normaloff>:/core/flags/en.png</iconset>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Russian
+Author: _pussbb
+E-mail: pussbb@gmail.com</string>
+          </property>
+          <property name="icon">
+           <iconset resource="../resource/qhda.qrc">
+            <normaloff>:/core/flags/ru.png</normaloff>:/core/flags/ru.png</iconset>
+          </property>
+         </item>
+        </widget>
        </item>
       </layout>
      </widget>

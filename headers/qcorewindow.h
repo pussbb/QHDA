@@ -25,6 +25,7 @@ public:
     QString inline app_dir() { return AppDir;};
     void buildLangMenu(QString appname = "*",QDir *dir = new QDir(LangDir),QString icon = "");
     void langMenuToMenuBar(QString objectName);
+    void restoreWindowState();
     QMenu *languageMenu;
     QString locale;
     QSettings settings;

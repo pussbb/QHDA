@@ -7,9 +7,15 @@ QCoreWindow::QCoreWindow(QWidget *parent) :
     setLocale();
     if(settings.value("Core/saveWindowLayout",false).toBool()) {
        restoreGeometry(settings.value("Core/window_geometry").toByteArray());
+    }
+}
+void QCoreWindow::restoreWindowState()
+{
+    if(settings.value("Core/saveWindowLayout",false).toBool()) {
        restoreState(settings.value("Core/windowState").toByteArray());
     }
 }
+
 void QCoreWindow::buildLangMenu(QString appname,QDir *dir,QString icon)
 {
     lang_files_path = dir->absolutePath()+QDir::toNativeSeparators("/");

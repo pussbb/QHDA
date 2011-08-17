@@ -14,6 +14,7 @@ QHDA::QHDA(QWidget *parent) :
     initDockWidgets();
     initBooks();
     loadSettings();
+    restoreWindowState();
 }
 
 QHDA::~QHDA()

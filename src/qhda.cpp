@@ -422,6 +422,7 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
     QString articleTheme = articleTemplate->renderAricle(article);
     ui->tabedContent->newTab = false;
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
+    ui->tabedContent->currentWidget()->setProperty("articleId",articleId);
 }
 
 void QHDA::on_actionSettings_triggered()
@@ -448,4 +449,21 @@ void QHDA::on_actionAbout_triggered()
     About *about = new About(this);
     about->exec();
     about->deleteLater();
+}
+#include "headers/renderpdf.h"
+void QHDA::on_actionPDF_triggered()
+{
+    int articleId = ui->tabedContent->currentWidget()->property("articleId").toInt();
+
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export PDF"),
+                                                    QString(), "*.pdf");
+
+    if (!fileName.isEmpty() && articleId != 0) {
+        if (QFileInfo(fileName).suffix().isEmpty())
+            fileName.append(".pdf");
+        QVariantMap article = dbman->interface->article(articleId);
+        QString articleTheme = articleTemplate->printable(article);
+        RenderPdf pdf;
+        pdf.render(articleTheme,fileName);
+    }
 }

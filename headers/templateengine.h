@@ -14,6 +14,7 @@ public:
     inline QString getTemplateName() {return templateName;};
     void setTemplateName(QString name);
     QString renderAricle(QVariantMap article);
+    QString printable(QVariantMap article);
 signals:
 
 public slots:

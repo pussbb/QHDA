@@ -30,6 +30,7 @@ public:
     QMessageBox msgBox;
     EditorInterface* editor;
     TemplateEngine* articleTemplate;
+
 public slots:
     void changeEvent(QEvent *e);
 private slots:
@@ -82,6 +83,8 @@ private slots:
     void on_actionPlugins_triggered();
 
     void on_actionAbout_triggered();
+
+    void on_actionPDF_triggered();
 
 private:
     Ui::QHDA *ui;

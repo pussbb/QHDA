@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     src/templateengine.cpp \
     src/settings.cpp \
     src/plugininfo.cpp \
-    src/about.cpp
+    src/about.cpp \
+    src/renderpdf.cpp
 
 HEADERS  += headers/qhda.h \
     headers/qcorewindow.h \
@@ -42,7 +43,8 @@ HEADERS  += headers/qhda.h \
     headers/templateengine.h \
     headers/settings.h \
     headers/plugininfo.h \
-    headers/about.h
+    headers/about.h \
+    headers/renderpdf.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui \

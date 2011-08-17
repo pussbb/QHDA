@@ -98,6 +98,7 @@
         <file>templates/silverblog/style.css</file>
         <file>templates/silverblog/images/activemenu.png</file>
         <file>templates/silverblog/images/pagenaviactivebg.png</file>
+        <file>templates/printable.html</file>
     </qresource>
     <qresource prefix="/core">
         <file>flags/ad.png</file>

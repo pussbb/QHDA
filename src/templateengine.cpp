@@ -27,10 +27,13 @@ void TemplateEngine::setTemplateName(QString name)
 void TemplateEngine::loadTemplate()
 {
     QString themeFile;
-    if(templateName == "system")
+    if(templateName == "system") {
         themeFile = ":/html/templates/silverblog/index.html";
+    }
+    else if (templateName == "printable") {
+        themeFile = ":/html/templates/printable.html";
+    }
     QFile file(themeFile);
-
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
     return;
@@ -55,5 +58,17 @@ QString TemplateEngine::renderAricle(QVariantMap article)
     QString info = tr("Published:")+ article.value("published").toString()
              +"   "+tr("Author:")+article.value("author").toString();
     result.replace("{info}",info);
+    return result;
+}
+
+QString TemplateEngine::printable(QVariantMap article)
+{
+    QString mainTheme = theme;
+    QString mainTemplateName = templateName;
+    templateName = "printable";
+    loadTemplate();
+    QString result = renderAricle(article);
+    theme  = mainTheme;
+    templateName = mainTemplateName;
     return result;
 }

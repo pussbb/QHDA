@@ -86,6 +86,8 @@ private slots:
 
     void on_actionPDF_triggered();
 
+    void on_actionQuick_Print_triggered();
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;

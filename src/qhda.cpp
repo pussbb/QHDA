@@ -246,19 +246,57 @@ void QHDA::on_actionHelp_Doc_triggered()
 #include <QPrinter>
 void QHDA::on_actionPrint_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, "Export PDF",
-                                                    QString(), "*.pdf");
-    QPrinter printer(QPrinter::HighResolution);
 
-    printer.setOutputFormat(QPrinter::PdfFormat);
-    printer.setOutputFileName(fileName);
+    QPrinter printer(QPrinter::HighResolution);
     printer.setPaperSize(QPrinter::A4);
-    if (!fileName.isEmpty()) {
-        if (QFileInfo(fileName).suffix().isEmpty())
-            fileName.append(".pdf");
-        QWebView *tabPage = qobject_cast<QWebView*>(ui->tabedContent->currentWidget());
-        tabPage->print(&printer);
+    int articleId = ui->tabedContent->currentWidget()->property("articleId").toInt();
+    if(articleId == 0) {
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Sorry, but could not get article."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+        return;
     }
+    QString articleTheme = articleTemplate->printable(
+                                            dbman->interface->article(articleId)
+                                                );
+    QPrintDialog *printDialog = new QPrintDialog(&printer,this);
+    printDialog->setWindowTitle(tr("Print Document"));
+    QTextDocument doc;
+    doc.setHtml(articleTheme);
+    if(printDialog->exec() ==QDialog::Accepted)
+        doc.print(&printer);
+
+}
+
+void QHDA::on_actionQuick_Print_triggered()
+{
+#ifndef QT_NO_PRINTER
+    msgBox.setWindowTitle(tr("Printing error!"));
+    msgBox.setText(tr("There is no default printer set in the system."));
+    msgBox.setStandardButtons(QMessageBox::Ok);
+    msgBox.setIcon(QMessageBox::Critical);
+    msgBox.exec();
+#else
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setPaperSize(QPrinter::A4);
+    int articleId = ui->tabedContent->currentWidget()->property("articleId").toInt();
+    if(articleId == 0) {
+        msgBox.setWindowTitle(tr("Error"));
+        msgBox.setText(tr("Sorry, but could not get article."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+        return;
+    }
+    QString articleTheme = articleTemplate->printable(
+                                            dbman->interface->article(articleId)
+                                                );
+    QTextDocument doc;
+    doc.setHtml(articleTheme);
+    doc.print(&printer);
+#endif
 }
 
 void QHDA::on_actionFolder_triggered()
@@ -467,3 +505,4 @@ void QHDA::on_actionPDF_triggered()
         pdf.render(articleTheme,fileName);
     }
 }
+

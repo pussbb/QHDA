@@ -30,7 +30,8 @@ public:
     QMessageBox msgBox;
     EditorInterface* editor;
     TemplateEngine* articleTemplate;
-
+    QString currentBookName;
+    void openBook(QListWidgetItem* item);
 public slots:
     void changeEvent(QEvent *e);
 private slots:

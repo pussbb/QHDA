@@ -19,6 +19,10 @@ QHDA::QHDA(QWidget *parent) :
 
 QHDA::~QHDA()
 {
+    bool restoreBook = settings.value("Core/lastBook",false).toBool();
+    if(restoreBook) {
+        settings.setValue("Core/lastBookName",currentBookName);
+    }
     delete ui;
 }
 
@@ -142,6 +146,11 @@ void QHDA::initBooks()
 {
     ui->bookList->clear();
     QString bookPath ;
+    QString bookName;
+
+    if(settings.value("Core/lastBook",false).toBool())
+        bookName = settings.value("Core/lastBookName","").toString();
+
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
         bookPath = settings.value(item,"").toString()
@@ -159,14 +168,17 @@ void QHDA::initBooks()
                                     .toString()));
         else
             itemList->setIcon(QIcon(":/app/qhda.png"));
+        if(!bookName.isEmpty() && item == bookName)
+            openBook(itemList);
+
     }
     settings.endGroup();
 }
-
-void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
+void QHDA::openBook(QListWidgetItem* item)
 {
-    Q_UNUSED(item);
-    QSettings *currentBook = books.value(item->data(Qt::UserRole).toString());
+    currentBookName = item->data(Qt::UserRole).toString();
+    QSettings *currentBook = books.value(currentBookName);
+
     dbman->setCurrentInterface(currentBook->value("Database/Engine").toString());
     if(currentBook->value("Database/version").toString() != dbman->interface->version()) {
         QMessageBox::warning(0,  QObject::tr("Database engine error"),
@@ -187,6 +199,11 @@ void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
         buildTableOfContent();
     QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
     tabBarWidget->raise();
+}
+
+void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)
+{
+    openBook(item);
 }
 void QHDA::buildTableOfContent()
 {

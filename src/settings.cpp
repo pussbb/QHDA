@@ -107,6 +107,7 @@ void Settings::saveSettings()
     settings.setValue("Core/username",ui->userName->text());
     settings.setValue("Core/checkUpdates",ui->checkUpdates->isChecked());
     settings.setValue("Core/checkSync",ui->checkSync->isChecked());
+    settings.setValue("Core/lastBook",ui->lastBook->isChecked());
 
     settings.setValue("Templates/name",ui->templatesList->currentText());
     settings.setValue("Templates/file",ui->templatesList->itemData(
@@ -142,10 +143,14 @@ void Settings::loadSettings()
     ui->userName->setText(settings.value("Core/username",getenv("USER")).toString());
     ui->checkSync->setChecked(settings.value("Core/checkSync",true).toBool());
     ui->checkUpdates->setChecked(settings.value("Core/checkUpdates",true).toBool());
+    ui->lastBook->setChecked(settings.value("Core/lastBook",false).toBool());
+
     int index = ui->templatesList->findData(settings.value("Templates/file"));
     ui->templatesList->setCurrentIndex(index);
+
     index = ui->editorsList->findData(settings.value("Editors/file"));
     ui->editorsList->setCurrentIndex(index);
+
     ui->enableProxy->setChecked(settings.value("Core/proxyConnection",false).toBool());
     if(settings.value("Proxy/system",false).toBool())
         ui->systemProxy->setChecked(true);

@@ -26,6 +26,7 @@ public:
     virtual bool createArticle(QVariantMap article) = 0;
     virtual bool updateArticle(QVariantMap article) = 0;
     virtual QVariantMap getTableColumnNames(QString tableName) = 0;
+    virtual QVariantList search(QString search) = 0;
     QString errorStr;
 };
 

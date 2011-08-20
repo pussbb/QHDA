@@ -89,6 +89,11 @@ private slots:
 
     void on_actionQuick_Print_triggered();
 
+    void on_searchButton_clicked(bool checked);
+
+
+    void on_searchResults_itemDoubleClicked(QListWidgetItem* item);
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;

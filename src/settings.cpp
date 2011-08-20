@@ -108,6 +108,7 @@ void Settings::saveSettings()
     settings.setValue("Core/checkUpdates",ui->checkUpdates->isChecked());
     settings.setValue("Core/checkSync",ui->checkSync->isChecked());
     settings.setValue("Core/lastBook",ui->lastBook->isChecked());
+    settings.setValue("Core/newTab",ui->newTab->isChecked());
 
     settings.setValue("Templates/name",ui->templatesList->currentText());
     settings.setValue("Templates/file",ui->templatesList->itemData(
@@ -144,6 +145,7 @@ void Settings::loadSettings()
     ui->checkSync->setChecked(settings.value("Core/checkSync",true).toBool());
     ui->checkUpdates->setChecked(settings.value("Core/checkUpdates",true).toBool());
     ui->lastBook->setChecked(settings.value("Core/lastBook",false).toBool());
+    ui->newTab->setChecked(settings.value("Core/newTab",false).toBool());
 
     int index = ui->templatesList->findData(settings.value("Templates/file"));
     ui->templatesList->setCurrentIndex(index);

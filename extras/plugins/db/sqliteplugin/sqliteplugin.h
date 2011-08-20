@@ -31,7 +31,7 @@ public:
     QVariantMap articlesColumns;
     QVariantMap getTableColumnNames(QString tableName);
     bool updateArticle(QVariantMap article);
-
+    QVariantList search(QString search);
 private:
     QSqlDatabase db;
     void createTableColumnsNames();

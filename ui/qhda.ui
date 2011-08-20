@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>410</height>
+    <width>641</width>
+    <height>494</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,7 +61,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
+     <width>641</width>
      <height>25</height>
     </rect>
    </property>
@@ -234,7 +234,40 @@
    <attribute name="dockWidgetArea">
     <number>1</number>
    </attribute>
-   <widget class="QWidget" name="dSearchContent"/>
+   <widget class="QWidget" name="dSearchContent">
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="0" colspan="2">
+      <widget class="QComboBox" name="searchString">
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="maxVisibleItems">
+        <number>15</number>
+       </property>
+       <property name="maxCount">
+        <number>15</number>
+       </property>
+       <property name="duplicatesEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="QListWidget" name="searchResults"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="searchButton">
+       <property name="text">
+        <string>Search</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resource/qhda.qrc">
+         <normaloff>:/actions/findf.png</normaloff>:/actions/findf.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <action name="actionExit">
    <property name="text">

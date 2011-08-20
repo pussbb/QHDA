@@ -21,8 +21,14 @@ QHDA::~QHDA()
 {
     bool restoreBook = settings.value("Core/lastBook",false).toBool();
     if(restoreBook) {
-        settings.setValue("Core/lastBookName",currentBookName);
+        settings.setValue("History/lastBookName",currentBookName);
     }
+    QStringList searchList;
+    for(int i = 0 ; i < ui->searchString->count(); i++) {
+        ui->searchString->setCurrentIndex(i);
+        searchList.append(ui->searchString->currentText());
+    }
+    settings.setValue("History/latestSearch",searchList);
     delete ui;
 }
 
@@ -35,6 +41,9 @@ void QHDA::loadSettings()
     if (plugin) {
         editor = qobject_cast<EditorInterface *>(plugin);
     }
+    ui->searchString->insertItems(0,settings.value("History/latestSearch",QStringList()).toStringList());
+    ui->searchString->setCurrentIndex(-1);
+    ui->tabedContent->newTab = settings.value("Core/newTab",false).toBool();
 }
 
 void QHDA::changeEvent(QEvent *e)
@@ -62,7 +71,7 @@ void QHDA::initDockWidgets()
     QTabBar *tabBar = findChild<QTabBar *>();
     tabBar->setCurrentIndex(0);
     setTabPosition(Qt::LeftDockWidgetArea,QTabWidget::West);
-    ui->tabedContent->addTab(QUrl("http://google.com"));
+    ////ui->tabedContent->addTab(QUrl("http://google.com"));
 
 }
 
@@ -149,7 +158,7 @@ void QHDA::initBooks()
     QString bookName;
 
     if(settings.value("Core/lastBook",false).toBool())
-        bookName = settings.value("Core/lastBookName","").toString();
+        bookName = settings.value("History/lastBookName","").toString();
 
     settings.beginGroup("Books");
     foreach (QString item, settings.childKeys()) {
@@ -475,7 +484,6 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
     int articleId = item->data(column,Qt::UserRole).toInt();
     QVariantMap article = dbman->interface->article(articleId);
     QString articleTheme = articleTemplate->renderAricle(article);
-    ui->tabedContent->newTab = false;
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
     ui->tabedContent->currentWidget()->setProperty("articleId",articleId);
 }
@@ -523,3 +531,30 @@ void QHDA::on_actionPDF_triggered()
     }
 }
 
+void QHDA::on_searchButton_clicked(bool checked)
+{
+    Q_UNUSED(checked);
+
+    if(ui->searchString->currentText().isEmpty())
+        return;
+
+    ui->searchString->insertItem(0,ui->searchString->currentText());
+    QVariantList results = dbman->interface->search(ui->searchString->currentText());
+    ui->searchResults->clear();
+    foreach(QVariant item, results){
+        QVariantMap data = item.toMap();
+        QListWidgetItem *listItem = new QListWidgetItem(ui->searchResults);
+        listItem->setText(data.value("title","").toString());
+        listItem->setData(Qt::UserRole,data.value("id",""));
+        ui->searchResults->addItem(listItem);
+    }
+}
+
+void QHDA::on_searchResults_itemDoubleClicked(QListWidgetItem* item)
+{
+    int articleId = item->data(Qt::UserRole).toInt();
+    QVariantMap article = dbman->interface->article(articleId);
+    QString articleTheme = articleTemplate->renderAricle(article);
+    ui->tabedContent->addTab(articleTheme,article.value("title").toString());
+    ui->tabedContent->currentWidget()->setProperty("articleId",articleId);
+}

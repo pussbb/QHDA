@@ -191,6 +191,7 @@ QVariantMap SqlitePlugin::getTableColumnNames(QString tableName)
 {
     if(tableName == "articles")
         return articlesColumns;
+    return QVariantMap();
 }
 
 bool SqlitePlugin::deleteCategory(int id)
@@ -271,6 +272,30 @@ bool SqlitePlugin::updateArticle(QVariantMap article)
         return false;
     }
     return true;
+}
+
+QVariantList SqlitePlugin::search(QString search)
+{
+    QVariantList results;
+    QSqlQuery sql("SELECT * FROM `articles` WHERE `content` like '%"+search+"%'");
+
+    sql.exec();
+
+    if(sql.lastError().isValid()) {
+        errorStr = sql.lastError().text();
+        return results;
+    }
+    QVariantMap columns = articlesColumns;
+    int fieldId = 0;
+    while(sql.next()) {
+        foreach(QString column, columns.keys() ) {
+           fieldId = sql.record().indexOf(column);
+            columns.insert(column,sql.value(fieldId));
+        }
+        results.append(columns);
+    }
+
+    return results;
 }
 
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);

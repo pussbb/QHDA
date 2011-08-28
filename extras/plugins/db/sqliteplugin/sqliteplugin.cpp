@@ -298,4 +298,47 @@ QVariantList SqlitePlugin::search(QString search)
     return results;
 }
 
+int SqlitePlugin::getCount(QString tableIndetifer)
+{
+    if(tableIndetifer == "articles") {
+        QSqlQuery sql("SELECT COUNT(*) FROM `articles`");
+        sql.exec();
+        if(!sql.next() || sql.lastError().isValid())
+            errorStr = sql.lastError().text();
+        else
+            return sql.value(0).toInt();
+    }
+    if(tableIndetifer == "bookcat") {
+        QSqlQuery sql("SELECT COUNT(*) FROM `bookcat`");
+        sql.exec();
+        if(!sql.next() || sql.lastError().isValid())
+            errorStr = sql.lastError().text();
+        else
+            return sql.value(0).toInt();
+    }
+    return 0;
+}
+
+QVariantMap SqlitePlugin::getCountAllTables()
+{
+    QVariantMap result;
+    result.insert("articles",getCount("articles"));
+    result.insert("bookcat",getCount("bookcat"));
+    return result;
+}
+
+bool SqlitePlugin::setSynchState(QString tableIndetifer, int fieldId, synchType type, bool state)
+{
+    return true;
+}
+
+bool SqlitePlugin::resetSyncState()
+{
+    QSqlQuery sql;
+    if(sql.exec("UPDATE `articles` SET  `synch_state` = 0") &&
+            sql.exec("UPDATE `bookcat` SET  `synch_state` = 0"))
+        return true;
+    return false;
+}
+
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);

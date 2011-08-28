@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>641</width>
-    <height>494</height>
+    <height>531</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -94,7 +94,15 @@
     <property name="title">
      <string>Options</string>
     </property>
+    <widget class="QMenu" name="menuSyncronization">
+     <property name="title">
+      <string>Syncronization</string>
+     </property>
+     <addaction name="actionFrom_Site"/>
+     <addaction name="actionTo_Remote_Server"/>
+    </widget>
     <addaction name="actionSettings"/>
+    <addaction name="menuSyncronization"/>
    </widget>
    <widget class="QMenu" name="menuWindow">
     <property name="title">
@@ -456,6 +464,24 @@
    </property>
    <property name="text">
     <string>Content</string>
+   </property>
+  </action>
+  <action name="actionFrom_Site">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db_update.png</normaloff>:/actions/db_update.png</iconset>
+   </property>
+   <property name="text">
+    <string>From Remote Server</string>
+   </property>
+  </action>
+  <action name="actionTo_Remote_Server">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db_comit.png</normaloff>:/actions/db_comit.png</iconset>
+   </property>
+   <property name="text">
+    <string>To Remote Server</string>
    </property>
   </action>
  </widget>

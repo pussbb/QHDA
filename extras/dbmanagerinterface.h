@@ -7,7 +7,7 @@
 class DbManagerInterface
 {
 public:
-    virtual ~DbManagerInterface() {}
+    virtual ~DbManagerInterface() {};
     virtual QString version() = 0;
     virtual QString dbDriverName() = 0;
     virtual bool create(QString databaseName = "") = 0;
@@ -27,6 +27,13 @@ public:
     virtual bool updateArticle(QVariantMap article) = 0;
     virtual QVariantMap getTableColumnNames(QString tableName) = 0;
     virtual QVariantList search(QString search) = 0;
+    // functions for Synchronization
+    enum synchType {Import,Export};
+    virtual int getCount(QString tableIndetifer) = 0;
+    virtual QVariantMap getCountAllTables() = 0;
+    virtual bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state) = 0;
+    virtual bool resetSyncState() = 0;
+    // end of functions for Synchronization
     QString errorStr;
 };
 

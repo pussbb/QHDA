@@ -32,6 +32,13 @@ public:
     QVariantMap getTableColumnNames(QString tableName);
     bool updateArticle(QVariantMap article);
     QVariantList search(QString search);
+    // functions for Synchronization
+    ///enum synchType {Import,Export};
+    int getCount(QString tableIndetifer);
+    QVariantMap getCountAllTables();
+    bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state);
+    bool resetSyncState();
+    // end of functions for Synchronization
 private:
     QSqlDatabase db;
     void createTableColumnsNames();

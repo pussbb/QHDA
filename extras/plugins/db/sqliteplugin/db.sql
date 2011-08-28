@@ -14,13 +14,15 @@ CREATE TABLE articles (
     "published" DATETIME,
     "md5" TEXT,
     "guid" TEXT,
-    "catid" NUMERIC NOT NULL CONSTRAINT fk_bookcat_id REFERENCES bookcat(id) ON DELETE CASCADE
+    "catid" NUMERIC NOT NULL CONSTRAINT fk_bookcat_id REFERENCES bookcat(id) ON DELETE CASCADE,
+    "synch_state" INTEGER  NOT NULL  DEFAULT (0)
 );;
 
 CREATE TABLE bookcat (
-  id INTEGER PRIMARY KEY AUTOINCREMENT, 
-  name VARCHAR(120), 
-  parent int default 0
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+  "name" VARCHAR(120), 
+  "parent" INTEGER default 0,
+  "synch_state" INTEGER  NOT NULL  DEFAULT (0)
 );;
 
 CREATE TRIGGER fkd_articles_bookcat_id

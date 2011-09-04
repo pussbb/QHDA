@@ -208,7 +208,6 @@ void QHDA::openBook(QListWidgetItem* item)
         buildTableOfContent();
     QDockWidget *tabBarWidget = findChild<QDockWidget *>("dBookTableContents");
     tabBarWidget->raise();
-    qDebug()<<dbman->interface->resetSyncState();
 }
 
 void QHDA::on_bookList_itemDoubleClicked(QListWidgetItem* item)

@@ -5,7 +5,7 @@ Settings::Settings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Settings)
 {
-   path = qApp->applicationDirPath()+QDir::toNativeSeparators("/templates/");
+    path = qApp->applicationDirPath()+QDir::toNativeSeparators("/templates/");
     ui->setupUi(this);
 
     initTemplates();
@@ -50,18 +50,22 @@ void Settings::on_buttonBox_rejected()
 
 void Settings::on_templatesList_currentIndexChanged(int index)
 {
-   QString templateFile =  ui->templatesList->itemData(index,Qt::UserRole).toString();
+    if(index == -1)
+            return;
+    QString templateFile =  ui->templatesList->itemData(index,Qt::UserRole).toString();
+    QSettings* templateInfo = templates.value(templateFile);
+    if(templateInfo == NULL)
+        return;
+    QString screenshot = templateInfo->value("Template/Screenshot").toString();
 
-  QString screenshot = templates.value(templateFile)->value("Template/Screenshot").toString();
-  qDebug()<< path + screenshot;
-  ui->templateScreenshot->setPixmap(
-              QPixmap(path + screenshot)
-              );
-  QString description;
-  description.append( tr("Author: ")+templates.value(templateFile)->value("Template/Author").toString());
-  description.append( "\n" + tr("Description: ")+templates.value(templateFile)->value("Template/Description").toString());
-  ///ui->templateDescription->setTextFormat(Qt::RichText);
-  ui->templateDescription->setText(description);
+      ui->templateScreenshot->setPixmap(
+                  QPixmap(path + screenshot)
+                  );
+
+    QString description;
+    description.append( tr("Author: ")+templateInfo->value("Template/Author").toString());
+    description.append( "\n" + tr("Description: ")+templateInfo->value("Template/Description").toString());
+    ui->templateDescription->setText(description);
 }
 
 void Settings::initEditors()
@@ -81,6 +85,8 @@ void Settings::initEditors()
 
 void Settings::on_editorsList_currentIndexChanged(int index)
 {
+    if(index == -1)
+        return;
     QString editorFile =  ui->editorsList->itemData(index,Qt::UserRole).toString();
     QString description;
     description.append(tr("Editor type: ")+ editors.value(editorFile)->editorType());
@@ -148,10 +154,12 @@ void Settings::loadSettings()
     ui->newTab->setChecked(settings.value("Core/newTab",false).toBool());
 
     int index = ui->templatesList->findData(settings.value("Templates/file"));
-    ui->templatesList->setCurrentIndex(index);
+    if(index >= 0)
+        ui->templatesList->setCurrentIndex(index);
 
     index = ui->editorsList->findData(settings.value("Editors/file"));
-    ui->editorsList->setCurrentIndex(index);
+    if(index >= 0)
+        ui->editorsList->setCurrentIndex(index);
 
     ui->enableProxy->setChecked(settings.value("Core/proxyConnection",false).toBool());
     if(settings.value("Proxy/system",false).toBool())

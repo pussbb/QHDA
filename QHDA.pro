@@ -44,7 +44,8 @@ HEADERS  += headers/qhda.h \
     headers/settings.h \
     headers/plugininfo.h \
     headers/about.h \
-    headers/renderpdf.h
+    headers/renderpdf.h \
+    extras/synchronizing.h
 
 FORMS    += ui/qhda.ui \
     ui/bookwizard.ui \

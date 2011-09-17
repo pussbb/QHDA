@@ -31,6 +31,7 @@ public:
     enum synchType {Import,Export};
     virtual int getCount(QString tableIndetifer) = 0;
     virtual QVariantMap getCountAllTables() = 0;
+    virtual int getCountAll() = 0;
     virtual bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state) = 0;
     virtual bool resetSyncState() = 0;
 

@@ -36,6 +36,7 @@ public:
     ///enum synchType {Import,Export};
     int getCount(QString tableIndetifer);
     QVariantMap getCountAllTables();
+    int getCountAll();
     bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state);
     bool resetSyncState();
     // end of functions for Synchronization

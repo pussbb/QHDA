@@ -1,18 +1,29 @@
 QT       += core gui network xml
+
 TEMPLATE        = lib
+
 CONFIG         += plugin
+
 INCLUDEPATH    += ./
+
 HEADERS         = xmlrpcplugin.h \
     xmlrpcdialog.h
+
 SOURCES         = xmlrpcplugin.cpp \
     xmlrpcdialog.cpp
+
 TARGET          = xmlrpcplugin
+
 unix {
     OBJECTS_DIR = ./obj/
     MOC_DIR = ./obj/
     DESTDIR = ../../../../bin/plugins/sync
     UI_DIR = ./obj/
 }
+
+TRANSLATIONS = ./lang/libxmlrpcplugin_qhda_ru.ts \
+                ./lang/libxmlrpcplugin_qhda_def.ts \
+                ./lang/libxmlrpcplugin_qhda_en.ts \
 
 FORMS += \
     xmlrpcdialog.ui

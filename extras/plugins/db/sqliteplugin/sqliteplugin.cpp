@@ -327,6 +327,11 @@ QVariantMap SqlitePlugin::getCountAllTables()
     return result;
 }
 
+int SqlitePlugin::getCountAll()
+{
+    return getCount("articles") + getCount("bookcat");
+}
+
 bool SqlitePlugin::setSynchState(QString tableIndetifer, int fieldId, synchType type, bool state)
 {
     return true;

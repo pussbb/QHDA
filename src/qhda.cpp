@@ -571,9 +571,9 @@ void QHDA::on_actionTo_Remote_Server_triggered()
     SyncInterface *syncFace;
     foreach (QString file, d.entryList(QDir::Files)) {
         QPluginLoader pluginLoader(d.absoluteFilePath(file));
-        qDebug()<<pluginLoader.errorString();
         QObject *plugin = pluginLoader.instance();
         if (plugin) {
+            attachTranslation(file.replace(".so","_"));
             syncFace = qobject_cast<SyncInterface *>(plugin);
         }
     }

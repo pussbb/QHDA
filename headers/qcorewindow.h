@@ -26,6 +26,7 @@ public:
     void buildLangMenu(QString appname = "*",QDir *dir = new QDir(LangDir),QString icon = "");
     void langMenuToMenuBar(QString objectName);
     void restoreWindowState();
+    void attachTranslation(QString fileName);
     QMenu *languageMenu;
     QString locale;
     QSettings settings;
@@ -40,6 +41,7 @@ private:
     QTranslator qtTranslator;
     QString syslocale;
     QCoreWindow *d;
+    QMap<QString , QTranslator*> translationList;
 private slots:
     void setLocale();
 protected:

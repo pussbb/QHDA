@@ -5,6 +5,7 @@
 #include "../../../synchronizing.h"
 #include "../../../dbmanagerinterface.h"
 #include "xmlrpcdialog.h"
+#include "xmlrpc/client.h"
 class XmlRpcPlugin : public QObject, SyncInterface
 {
     Q_OBJECT
@@ -26,8 +27,13 @@ public:
     QString hostPort;
     QString userName;
     QString userPassword;
+private slots:
+    void processReturnValue( int requestId, QVariant value );
+    void processFault( int requestId, int errorCode, QString errorString );
 private:
     DbManagerInterface *__db;
     QSettings *__bookSettings;
+    xmlrpc::Client *client;
+    int requestIdSum;
 };
 #endif

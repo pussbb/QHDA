@@ -29,11 +29,11 @@ namespace  xmlrpc {
           this, SLOT(processReturnValue( int, QVariant )) );
  connect( client, SIGNAL(failed( int, int, QString )),
           this, SLOT(processFault( int, int, QString )) );
- 
+
  client->setHost( "localhost", 7777 );
- 
+
  int requestId = client->request( "sum", x, y )
- 
+
 \endcode
 
  After the request is finished, done() or failed() signal
@@ -43,18 +43,18 @@ namespace  xmlrpc {
 class Client : public QObject {
 Q_OBJECT
 public:
-	Client(QObject * parent = 0);
-	Client(const QString & hostname, quint16 port = 80, QObject * parent = 0L);
+        Client(QObject * parent = 0);
+        Client(const QString & hostname, quint16 port = 80, QObject * parent = 0L);
 
     void setHost ( const QString & hostname, quint16 port = 80, QString path="/" );
-    void setProxy ( const QString & host, int port, 
+    void setProxy ( const QString & host, int port,
                     const QString & username = QString(), const QString & password = QString() );
     void setSocket ( QTcpSocket * socket );
     void setUser ( const QString & userName, const QString & password = QString() );
 
     void setUserAgent( const QString & userAgent );
 
-	virtual ~Client();
+        virtual ~Client();
 
     int request( QList<Variant> params, QString methodName );
 
@@ -81,9 +81,9 @@ protected slots:
     void requestFinished(int id, bool error);
 
 private:
-	class Private;
-	Private *d;
-}; 
+        class Private;
+        Private *d;
+};
 
 } // namespace
 

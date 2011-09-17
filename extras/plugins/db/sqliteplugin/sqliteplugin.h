@@ -42,7 +42,6 @@ public:
 private:
     QSqlDatabase db;
     void createTableColumnsNames();
-
 };
 
 

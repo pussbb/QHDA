@@ -1,7 +1,7 @@
 #include "headers/qhda.h"
 #include "ui_qhda.h"
 #include "QDebug"
-
+#include <extras/synchronizing.h>
 QHDA::QHDA(QWidget *parent) :
     QCoreWindow(parent),
     ui(new Ui::QHDA)
@@ -15,7 +15,10 @@ QHDA::QHDA(QWidget *parent) :
     initBooks();
     loadSettings();
     restoreWindowState();
+
+
 }
+
 
 QHDA::~QHDA()
 {
@@ -189,6 +192,7 @@ void QHDA::openBook(QListWidgetItem* item)
     QSettings *currentBook = books.value(currentBookName);
 
     dbman->setCurrentInterface(currentBook->value("Database/Engine").toString());
+
     if(currentBook->value("Database/version").toString() != dbman->interface->version()) {
         QMessageBox::warning(0,  QObject::tr("Database engine error"),
                                      QObject::tr("The version of database engine plugin do not match with declared for this book.\nPlease try to reinstall application"));
@@ -557,4 +561,25 @@ void QHDA::on_searchResults_itemDoubleClicked(QListWidgetItem* item)
     QString articleTheme = articleTemplate->renderAricle(article);
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
     ui->tabedContent->currentWidget()->setProperty("articleId",articleId);
+}
+
+void QHDA::on_actionTo_Remote_Server_triggered()
+{
+    ///
+    QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/sync/");
+    QDir d(path);
+    SyncInterface *syncFace;
+    foreach (QString file, d.entryList(QDir::Files)) {
+        QPluginLoader pluginLoader(d.absoluteFilePath(file));
+        qDebug()<<pluginLoader.errorString();
+        QObject *plugin = pluginLoader.instance();
+        if (plugin) {
+            syncFace = qobject_cast<SyncInterface *>(plugin);
+        }
+    }
+    syncFace->init(books.value(currentBookName),dbman->interface);
+    syncFace->start();
+
+
+    //
 }

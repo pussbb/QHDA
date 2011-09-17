@@ -18,8 +18,9 @@ RenderPdf::RenderPdf(QObject *parent) :
 
 void RenderPdf::loadFinished(bool ok)
 {
-    if(ok)
+    if(ok) {
         webView.print(&printer);
+    }
 }
 
 void RenderPdf::render(QString html, QString file)

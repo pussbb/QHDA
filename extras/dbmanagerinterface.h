@@ -33,6 +33,7 @@ public:
     virtual QVariantMap getCountAllTables() = 0;
     virtual bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state) = 0;
     virtual bool resetSyncState() = 0;
+
     // end of functions for Synchronization
     QString errorStr;
 };

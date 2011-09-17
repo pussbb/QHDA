@@ -55,3 +55,13 @@ FORMS    += ui/qhda.ui \
 
 RESOURCES += \
     resource/qhda.qrc
+
+
+
+
+
+
+
+
+
+

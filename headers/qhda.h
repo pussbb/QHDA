@@ -34,6 +34,7 @@ public:
     void openBook(QListWidgetItem* item);
 public slots:
     void changeEvent(QEvent *e);
+
 private slots:
     void on_actionExit_triggered();
     void initDockWidgets();
@@ -93,6 +94,8 @@ private slots:
 
 
     void on_searchResults_itemDoubleClicked(QListWidgetItem* item);
+
+    void on_actionTo_Remote_Server_triggered();
 
 private:
     Ui::QHDA *ui;

@@ -1,8 +1,10 @@
 /obj
 /extras/plugins/db/sqliteplugin/obj
 /extras/plugins/editor/ckeditor/obj
+/extras/plugins/sync/xmlrpcplugin/obj
 qrc*.cpp
 *~
 /bin/QHDA
 /bin/plugins
 *Makefile
+*.svn

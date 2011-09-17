@@ -18,3 +18,6 @@ FORMS += \
 
 RESOURCES += \
     res.qrc
+TRANSLATIONS = ./lang/libckeditor_qhda_ru.ts \
+                ./lang/libckeditor_qhda_def.ts \
+                ./lang/libckeditor_qhda_en.ts \

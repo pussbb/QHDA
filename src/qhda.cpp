@@ -40,6 +40,7 @@ void QHDA::loadSettings()
     QPluginLoader pluginLoader(path+editorPlugin);
     QObject *plugin = pluginLoader.instance();
     if (plugin) {
+        attachTranslation(editorPlugin.replace(".so","_"));
         editor = qobject_cast<EditorInterface *>(plugin);
     }
     ui->searchString->insertItems(0,settings.value("History/latestSearch",QStringList()).toStringList());

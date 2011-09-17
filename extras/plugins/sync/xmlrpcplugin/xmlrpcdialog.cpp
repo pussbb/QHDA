@@ -19,8 +19,8 @@ void XmlRpcDialog::on_logButton_clicked()
 {
     bool state = ui->log->isVisible();
     int logHeight = ui->log->height();
-//    if(logHeight < ui->log->minimumHeight())
-//        logHeight = ui->log->minimumHeight();
+    if(logHeight < ui->log->minimumHeight())
+        logHeight = ui->log->minimumHeight();
     QSize size = window()->size();
 
     if(state) {

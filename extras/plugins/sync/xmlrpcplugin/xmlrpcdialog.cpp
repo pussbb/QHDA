@@ -8,7 +8,6 @@ XmlRpcDialog::XmlRpcDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->log->setVisible(false);
     adjustSize();
-
 }
 
 XmlRpcDialog::~XmlRpcDialog()
@@ -20,8 +19,8 @@ void XmlRpcDialog::on_logButton_clicked()
 {
     bool state = ui->log->isVisible();
     int logHeight = ui->log->height();
-    if(logHeight < ui->log->minimumHeight())
-        logHeight = ui->log->minimumHeight();
+//    if(logHeight < ui->log->minimumHeight())
+//        logHeight = ui->log->minimumHeight();
     QSize size = window()->size();
 
     if(state) {
@@ -36,6 +35,30 @@ void XmlRpcDialog::on_logButton_clicked()
     }
     resize(size);
 }
+void XmlRpcDialog::toLog(QString text, IconTypes iconType)
+{
+    QString icon = ":/plugin/xmlrpc/status/";
+    switch(iconType) {
+        default:
+        case Info :
+                icon += "info.png";
+                break;
+        case Warning :
+                icon += "warning.png";
+                break;
+        case Error :
+                icon += "error.png";
+                break;
+    }
+    QListWidgetItem *item = new QListWidgetItem(ui->log);
+    item->setText(text);
+    item->setIcon(QIcon(icon));
+    ui->log->addItem(item);
+}
+void XmlRpcDialog::progressPlus(int value)
+{
+    ui->progressBar->setValue(ui->progressBar->value() + value);
+}
 
 void XmlRpcDialog::setProgressValues(int min, int max)
 {
@@ -46,9 +69,6 @@ void XmlRpcDialog::setProgressValues(int min, int max)
 void XmlRpcDialog::setOperationTitle(QString title, bool addToLog = false)
 {
     ui->itemName->setText(title);
-    if(addToLog) {
-        QListWidgetItem *item = new QListWidgetItem(ui->log);
-        item->setText(title);
-        ui->log->addItem(item);
-    }
+    if(addToLog)
+        toLog(title,Info);
 }

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/plugin/xmlrpc/status">
+        <file>warning.png</file>
+        <file>info.png</file>
+        <file>error.png</file>
+    </qresource>
+</RCC>

@@ -1,5 +1,5 @@
 #include <xmlrpcplugin.h>
-
+#include "QDebug"
 QString XmlRpcPlugin::name()
 {
     return "Xml-Rpc";
@@ -23,13 +23,14 @@ void XmlRpcPlugin::start() {
     requestIdSum = client->request( "sum", x, y );
     dialog->show();
 }
-#include "QDebug"
+
 void XmlRpcPlugin::init(QSettings *bookSettings,DbManagerInterface *interface)
 {
     __db = interface;
     dialog = new XmlRpcDialog();
     client = new xmlrpc::Client(this);
 
+    dialog->toLog("fdsfs",XmlRpcDialog::Warning);
     dialog->setProgressValues(0,__db->getCountAll());
     connect( client, SIGNAL(done( int, QVariant )),
                      this, SLOT(processReturnValue( int, QVariant )) );
@@ -38,6 +39,7 @@ void XmlRpcPlugin::init(QSettings *bookSettings,DbManagerInterface *interface)
 }
 void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 {
+    dialog->progressPlus(3);
     if ( requestId == requestIdSum )
         qDebug()<< value;
 }
@@ -45,7 +47,7 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 void XmlRpcPlugin::processFault( int requestId, int errorCode, QString errorString )
 {
     Q_UNUSED( requestId );
-
+    dialog->progressPlus(1);
     qDebug()<< errorCode +  errorString ;
 
 }

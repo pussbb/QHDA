@@ -38,3 +38,7 @@ DEPENDPATH += $$PWD/qxmlrpc_lib/
 win32:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/qxmlrpc_lib/qxmlrpc.lib
 else:win32:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/qxmlrpc_lib/qxmlrpcd.lib
 else:unix:!macx:!symbian: PRE_TARGETDEPS += $$PWD/qxmlrpc_lib/libqxmlrpc.a
+
+RESOURCES += \
+    ./res/res.qrc
+

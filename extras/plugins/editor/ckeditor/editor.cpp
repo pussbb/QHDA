@@ -49,7 +49,18 @@ void Editor::clean()
 {
 
 }
-
+void Editor::changeEvent(QEvent *e)
+{
+    switch (e->type()) {
+    case QEvent::LanguageChange:
+    {
+        ui->retranslateUi(this);
+        break;
+    }
+    default:
+        break;
+    }
+}
 void Editor::buildCategoriesList(QVariantList categories)
 {
     QTreeWidget *tree = new QTreeWidget;

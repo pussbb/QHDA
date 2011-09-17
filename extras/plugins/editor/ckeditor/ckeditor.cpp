@@ -20,6 +20,7 @@ QWidget* Ckeditor::getEditor()
     editor = new Editor();
     return editor;
 }
+
 QWidget* Ckeditor::getEditor(QVariantList categories,QVariantMap article)
 {
     editor = new Editor();

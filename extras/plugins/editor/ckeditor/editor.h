@@ -21,6 +21,7 @@ public:
     QString content;
     QString title;
 public slots:
+    void changeEvent(QEvent *e);
     void render(bool ok);
 private:
     Ui::Editor *ui;

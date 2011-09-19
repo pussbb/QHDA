@@ -63,6 +63,13 @@ void XmlRpcDialog::progressPlus(int value)
     ui->progressBar->setValue(ui->progressBar->value() + value);
 }
 
+void XmlRpcDialog::clear()
+{
+    ui->log->clear();
+    if(!ui->log->isVisible())
+        ui->logButton->click();
+}
+
 void XmlRpcDialog::setProgressValues(int min, int max)
 {
     ui->progressBar->setMinimum(min);

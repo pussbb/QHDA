@@ -88,10 +88,9 @@ void QCoreWindow::langMenuToMenuBar(QString objectName)
 }
 void QCoreWindow::attachTranslation(QString fileName)
 {
-    QTranslator *translation = new QTranslator();
-    translation->load(fileName+app_lang_prefix + "_" +locale,lang_files_path);
-    translationList.insert(fileName,translation);
-    QApplication::installTranslator(translation);
+    translationList.insert(fileName,new QTranslator());
+    translationList.value(fileName)->load(fileName+app_lang_prefix + "_" +locale,lang_files_path);
+    QApplication::installTranslator(translationList.value(fileName));
 }
 
 void QCoreWindow::setLocale()

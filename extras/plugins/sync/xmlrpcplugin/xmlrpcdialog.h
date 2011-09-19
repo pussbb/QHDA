@@ -19,6 +19,7 @@ public:
     void setProgressValues(int min,int max);
     void setOperationTitle(QString title,bool addToLog);
     void progressPlus(int value);
+    void clear();
     Q_DECLARE_FLAGS(IconTypes, IconType);
     void toLog(QString text,IconTypes iconType);
 private slots:

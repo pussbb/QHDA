@@ -15,7 +15,7 @@
     </message>
     <message>
         <location filename="../xmlrpcdialog.ui" line="53"/>
-        <location filename="../xmlrpcdialog.cpp" line="28"/>
+        <location filename="../xmlrpcdialog.cpp" line="27"/>
         <source>Show Log</source>
         <translation>Показать лог</translation>
     </message>
@@ -25,7 +25,7 @@
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../xmlrpcdialog.cpp" line="33"/>
+        <location filename="../xmlrpcdialog.cpp" line="32"/>
         <source>Hide Log</source>
         <translation>Скрыть Лог</translation>
     </message>
@@ -33,9 +33,24 @@
 <context>
     <name>XmlRpcPlugin</name>
     <message>
-        <location filename="../xmlrpcplugin.cpp" line="22"/>
+        <location filename="../xmlrpcplugin.cpp" line="25"/>
         <source>fdsfdsfds</source>
         <translation>авыавыаыва</translation>
+    </message>
+    <message>
+        <location filename="../xmlrpcplugin.cpp" line="50"/>
+        <source>Request id:</source>
+        <translation>Запрос №:</translation>
+    </message>
+    <message>
+        <location filename="../xmlrpcplugin.cpp" line="51"/>
+        <source>. Code:</source>
+        <translation>. Код:</translation>
+    </message>
+    <message>
+        <location filename="../xmlrpcplugin.cpp" line="52"/>
+        <source>. Message:</source>
+        <translation>. Собщение:</translation>
     </message>
 </context>
 </TS>

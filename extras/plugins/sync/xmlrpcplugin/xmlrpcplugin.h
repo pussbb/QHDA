@@ -16,8 +16,8 @@ public:
     QString name();
     QVariantMap aboutInfo();
     XmlRpcDialog *dialog;
-    void start();
-    void init(QSettings *bookSettings,DbManagerInterface *interface);
+    void start(QSettings *bookSettings,DbManagerInterface *interface);
+    void init();
     bool isSupportDownload();
     bool isSupportUpload();
     QString errorStr;

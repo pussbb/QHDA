@@ -564,7 +564,7 @@ void QHDA::on_searchResults_itemDoubleClicked(QListWidgetItem* item)
 
 void QHDA::on_actionTo_Remote_Server_triggered()
 {
-    ///
+
     QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/sync/");
     QDir d(path);
     SyncInterface *syncFace;
@@ -576,8 +576,8 @@ void QHDA::on_actionTo_Remote_Server_triggered()
             syncFace = qobject_cast<SyncInterface *>(plugin);
         }
     }
-    syncFace->init(books.value(currentBookName),dbman->interface);
-    syncFace->start();
+    syncFace->init();
+    syncFace->start(books.value(currentBookName),dbman->interface);
 
 
     //

@@ -6,12 +6,12 @@
     <message>
         <location filename="../ui/about.ui" line="17"/>
         <source>About QHDA</source>
-        <translation type="unfinished"></translation>
+        <translation>О QHDA</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="33"/>
         <source>QHDA</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="61"/>
@@ -25,7 +25,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/about.ui" line="78"/>
         <source>version: 1.0.0.2</source>
-        <translation type="unfinished"></translation>
+        <translation>версия: 1.0.0.2</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="91"/>
@@ -39,7 +39,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/about.ui" line="108"/>
         <source>Author: _pussbb</source>
-        <translation type="unfinished"></translation>
+        <translation>Автор: _pussbb</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="121"/>
@@ -58,26 +58,26 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../ui/about.ui" line="136"/>
         <source>Translations</source>
-        <translation type="unfinished"></translation>
+        <translation>Переводы</translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="155"/>
         <source>English
 Author: _pussbb
 E-mail: pussbb@gmail.com</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="166"/>
         <source>Russian
 Author: _pussbb
 E-mail: pussbb@gmail.com</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="181"/>
         <source>Change Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Журнал изменений</translation>
     </message>
 </context>
 <context>
@@ -224,49 +224,49 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../ui/plugininfo.ui" line="14"/>
         <source>Plugin Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация плагинов</translation>
     </message>
     <message>
         <location filename="../ui/plugininfo.ui" line="30"/>
         <source>Availabel Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступные плагины</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="20"/>
         <source>DataBase Engines</source>
-        <translation type="unfinished"></translation>
+        <translation>Движки БД</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="31"/>
         <location filename="../src/plugininfo.cpp" line="55"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Версия:</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="33"/>
         <location filename="../src/plugininfo.cpp" line="35"/>
         <source>Server Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>На стороне сервера:</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="33"/>
         <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="35"/>
         <source>No</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="44"/>
         <source>Editors</source>
-        <translation type="unfinished">Редакторы</translation>
+        <translation>Редакторы</translation>
     </message>
     <message>
         <location filename="../src/plugininfo.cpp" line="56"/>
         <source>Editor Type: </source>
-        <translation type="unfinished"></translation>
+        <translation>Тип редактора</translation>
     </message>
 </context>
 <context>
@@ -274,7 +274,7 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../src/qcorewindow.cpp" line="23"/>
         <location filename="../src/qcorewindow.cpp" line="57"/>
-        <location filename="../src/qcorewindow.cpp" line="72"/>
+        <location filename="../src/qcorewindow.cpp" line="73"/>
         <source>langmenu</source>
         <translation>Языки</translation>
     </message>
@@ -319,7 +319,7 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../ui/qhda.ui" line="99"/>
         <source>Syncronization</source>
-        <translation type="unfinished"></translation>
+        <translation>Синхронизация</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="109"/>
@@ -334,7 +334,7 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../ui/qhda.ui" line="124"/>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Помощь</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="155"/>
@@ -356,7 +356,7 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../ui/qhda.ui" line="269"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Поиск</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="282"/>
@@ -457,27 +457,27 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../ui/qhda.ui" line="447"/>
         <source>About QT</source>
-        <translation type="unfinished"></translation>
+        <translation>О Qt</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="452"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>O ...</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="466"/>
         <source>Content</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержание</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="475"/>
         <source>From Remote Server</source>
-        <translation type="unfinished"></translation>
+        <translation>С удаленого сервера</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="484"/>
         <source>To Remote Server</source>
-        <translation type="unfinished"></translation>
+        <translation>На удаленый сервер</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="74"/>
@@ -485,96 +485,96 @@ E-mail: pussbb@gmail.com</source>
         <translation>Новый</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="112"/>
+        <location filename="../src/qhda.cpp" line="114"/>
         <source>Article title is required.</source>
         <translation>Необходимо ввести название статьи.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="113"/>
+        <location filename="../src/qhda.cpp" line="115"/>
         <source>Return to editor or cancel saving the article
 (All unsaved results will be lost).</source>
         <translation>Вернуться к редактору или отменить сохранение стаьи
 (Все не сохраненые результаты будут потеряны).</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="131"/>
+        <location filename="../src/qhda.cpp" line="133"/>
         <source>Are you sure want close editor.</source>
         <translation>Вы уверены в том что хотите закрыть редактор.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="132"/>
+        <location filename="../src/qhda.cpp" line="134"/>
         <source>All unsaved results will be lost.</source>
         <translation>Все не сохраненые результаты будут утеряны.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="280"/>
-        <location filename="../src/qhda.cpp" line="312"/>
+        <location filename="../src/qhda.cpp" line="283"/>
+        <location filename="../src/qhda.cpp" line="315"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошыбка</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="281"/>
-        <location filename="../src/qhda.cpp" line="313"/>
+        <location filename="../src/qhda.cpp" line="284"/>
+        <location filename="../src/qhda.cpp" line="316"/>
         <source>Sorry, but could not get article.</source>
-        <translation type="unfinished"></translation>
+        <translation>Извините, невозможно определить статью.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="291"/>
+        <location filename="../src/qhda.cpp" line="294"/>
         <source>Print Document</source>
-        <translation type="unfinished"></translation>
+        <translation>Напечатать докумнет</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="302"/>
+        <location filename="../src/qhda.cpp" line="305"/>
         <source>Printing error!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошыбка при печати!</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="303"/>
+        <location filename="../src/qhda.cpp" line="306"/>
         <source>There is no default printer set in the system.</source>
-        <translation type="unfinished"></translation>
+        <translation>В Вашей системе не установлено принтера по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="331"/>
+        <location filename="../src/qhda.cpp" line="334"/>
         <source>New category name</source>
         <translation>Название новой категории</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="332"/>
+        <location filename="../src/qhda.cpp" line="335"/>
         <source>Name:</source>
         <translation>Имя:</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="372"/>
-        <location filename="../src/qhda.cpp" line="405"/>
+        <location filename="../src/qhda.cpp" line="375"/>
+        <location filename="../src/qhda.cpp" line="408"/>
         <source>Are you sure want delete item.</source>
         <translation>Вы уверены в том что хотите удалить елемент.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="406"/>
+        <location filename="../src/qhda.cpp" line="409"/>
         <source>All child categories and articles for this category will be deleted to.
  Are you sure</source>
         <translation>Все дочернии категории и стастьи для этой категории будут также удалены.
 Вы в этом уверены</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="424"/>
+        <location filename="../src/qhda.cpp" line="427"/>
         <source>New Article</source>
         <translation>Новая статья</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="453"/>
+        <location filename="../src/qhda.cpp" line="456"/>
         <source>Are you sure want delete this article.</source>
         <translation>Вы уверенны , что хотите удалить статью.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="473"/>
+        <location filename="../src/qhda.cpp" line="476"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="521"/>
+        <location filename="../src/qhda.cpp" line="524"/>
         <source>Export PDF</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспорт в PDF</translation>
     </message>
 </context>
 <context>
@@ -616,20 +616,20 @@ Error :%2</source>
     </message>
     <message>
         <location filename="../src/databasemanager.cpp" line="40"/>
-        <location filename="../src/qhda.cpp" line="193"/>
-        <location filename="../src/qhda.cpp" line="268"/>
+        <location filename="../src/qhda.cpp" line="196"/>
+        <location filename="../src/qhda.cpp" line="271"/>
         <source>Database engine error</source>
         <translation>Ошыбка движка базы данных</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="194"/>
+        <location filename="../src/qhda.cpp" line="197"/>
         <source>The version of database engine plugin do not match with declared for this book.
 Please try to reinstall application</source>
         <translation>Версия плагина для доступа к баз данным не совпадают с заявленой для этой справки.
 Попробуйте переустановить привеложение</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="269"/>
+        <location filename="../src/qhda.cpp" line="272"/>
         <source>Unfortunately we couldn&apos;t find any database engine plugin.
 Please try to reinstall application</source>
         <translation>К сожалению, мы не смогли найти никаких базы данных плагина.
@@ -698,12 +698,12 @@ Please try to reinstall application</source>
     <message>
         <location filename="../ui/settings.ui" line="168"/>
         <source>Open Last opened book at start up</source>
-        <translation type="unfinished"></translation>
+        <translation>Открывать последний открытый справочник при старте</translation>
     </message>
     <message>
         <location filename="../ui/settings.ui" line="175"/>
         <source>Open articles in same tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Открывать статьи  в одной вкладке.</translation>
     </message>
     <message>
         <location filename="../ui/settings.ui" line="252"/>
@@ -776,22 +776,22 @@ Please try to reinstall application</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="61"/>
+        <location filename="../src/settings.cpp" line="66"/>
         <source>Author: </source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="62"/>
+        <location filename="../src/settings.cpp" line="67"/>
         <source>Description: </source>
         <translation>Описание:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="86"/>
+        <location filename="../src/settings.cpp" line="92"/>
         <source>Editor type: </source>
         <translation>Тип редактора:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="87"/>
+        <location filename="../src/settings.cpp" line="93"/>
         <source>Verision: </source>
         <translation>Версия:</translation>
     </message>

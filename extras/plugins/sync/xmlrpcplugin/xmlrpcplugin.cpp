@@ -14,9 +14,12 @@ QVariantMap XmlRpcPlugin:: aboutInfo()
     QVariantMap result;
     return result;
 }
-void XmlRpcPlugin::start() {
+void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface)
+{
 
-///    client->setHost( "qhda",80,"/rpc" );
+    __db = interface;
+    dialog->clear();
+    dialog->setProgressValues(0,__db->getCountAll());
     int x = 5;
     int y =56;
     dialog->setOperationTitle(tr("fdsfdsfds"),true);
@@ -24,14 +27,11 @@ void XmlRpcPlugin::start() {
     dialog->show();
 }
 
-void XmlRpcPlugin::init(QSettings *bookSettings,DbManagerInterface *interface)
+void XmlRpcPlugin::init()
 {
-    __db = interface;
     dialog = new XmlRpcDialog();
-    client = new xmlrpc::Client(this);
+    client = new xmlrpc::Client();
 
-    dialog->toLog("fdsfs",XmlRpcDialog::Warning);
-    dialog->setProgressValues(0,__db->getCountAll());
     connect( client, SIGNAL(done( int, QVariant )),
                      this, SLOT(processReturnValue( int, QVariant )) );
     connect( client, SIGNAL(failed( int, int, QString )),
@@ -53,11 +53,13 @@ void XmlRpcPlugin::processFault( int requestId, int errorCode, QString errorStri
     dialog->toLog(errorMsg,XmlRpcDialog::Error);
 }
 
-bool XmlRpcPlugin::isSupportDownload() {
+bool XmlRpcPlugin::isSupportDownload()
+{
     return true;
 }
 
-bool XmlRpcPlugin::isSupportUpload() {
+bool XmlRpcPlugin::isSupportUpload()
+{
     return true;
 }
 

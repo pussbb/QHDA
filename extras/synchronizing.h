@@ -16,13 +16,10 @@ public:
     virtual bool isSupportDownload() = 0 ;
     virtual bool isSupportUpload() = 0 ;
     virtual void start() = 0;
+    virtual inline void setProxy(QNetworkProxy proxy) =0;
+    virtual inline void setHost(QString host,int port,QString path) =0;
+    virtual inline void authAccess(QString userName,QString userPassword) = 0 ;
     QString errorStr;
-    QNetworkProxy proxy;
-    QString host;
-    QString hostPath;
-    QString hostPort;
-    QString userName;
-    QString userPassword;
 };
 
 QT_BEGIN_NAMESPACE

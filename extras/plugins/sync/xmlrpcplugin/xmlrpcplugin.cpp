@@ -16,7 +16,7 @@ QVariantMap XmlRpcPlugin:: aboutInfo()
 }
 void XmlRpcPlugin::start() {
 
-    client->setHost( "qhda",80,"/rpc" );
+///    client->setHost( "qhda",80,"/rpc" );
     int x = 5;
     int y =56;
     dialog->setOperationTitle(tr("fdsfdsfds"),true);
@@ -46,10 +46,11 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 
 void XmlRpcPlugin::processFault( int requestId, int errorCode, QString errorString )
 {
-    Q_UNUSED( requestId );
     dialog->progressPlus(1);
-    qDebug()<< errorCode +  errorString ;
-
+    QString errorMsg = tr("Request id:") + QString::number(requestId) +
+            tr(". Code:") + QString::number(errorCode) +
+            tr(". Message:")+ errorString;
+    dialog->toLog(errorMsg,XmlRpcDialog::Error);
 }
 
 bool XmlRpcPlugin::isSupportDownload() {

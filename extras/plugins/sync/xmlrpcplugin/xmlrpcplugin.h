@@ -21,12 +21,9 @@ public:
     bool isSupportDownload();
     bool isSupportUpload();
     QString errorStr;
-    QNetworkProxy proxy;
-    QString host;
-    QString hostPath;
-    QString hostPort;
-    QString userName;
-    QString userPassword;
+    inline void setProxy(QNetworkProxy proxy){client->setProxy(proxy.hostName(),proxy.port(),proxy.user(),proxy.password());};
+    inline void setHost(QString host,int port,QString path){ client->setHost(host,port,path);};
+    inline void authAccess(QString userName,QString userPassword) { client->setUser(userName,userPassword);};
 private slots:
     void processReturnValue( int requestId, QVariant value );
     void processFault( int requestId, int errorCode, QString errorString );

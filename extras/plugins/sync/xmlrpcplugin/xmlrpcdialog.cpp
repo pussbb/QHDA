@@ -48,12 +48,15 @@ void XmlRpcDialog::toLog(QString text, IconTypes iconType)
                 break;
         case Error :
                 icon += "error.png";
+                if(!ui->log->isVisible())
+                    ui->logButton->click();
                 break;
     }
     QListWidgetItem *item = new QListWidgetItem(ui->log);
     item->setText(text);
     item->setIcon(QIcon(icon));
     ui->log->addItem(item);
+    ui->log->setCurrentItem(item);
 }
 void XmlRpcDialog::progressPlus(int value)
 {

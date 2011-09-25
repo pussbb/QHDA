@@ -485,92 +485,92 @@ E-mail: pussbb@gmail.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="114"/>
+        <location filename="../src/qhda.cpp" line="113"/>
         <source>Article title is required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="115"/>
+        <location filename="../src/qhda.cpp" line="114"/>
         <source>Return to editor or cancel saving the article
 (All unsaved results will be lost).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="133"/>
+        <location filename="../src/qhda.cpp" line="132"/>
         <source>Are you sure want close editor.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="134"/>
+        <location filename="../src/qhda.cpp" line="133"/>
         <source>All unsaved results will be lost.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qhda.cpp" line="282"/>
+        <location filename="../src/qhda.cpp" line="314"/>
+        <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qhda.cpp" line="283"/>
         <location filename="../src/qhda.cpp" line="315"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qhda.cpp" line="284"/>
-        <location filename="../src/qhda.cpp" line="316"/>
         <source>Sorry, but could not get article.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="294"/>
+        <location filename="../src/qhda.cpp" line="293"/>
         <source>Print Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="305"/>
+        <location filename="../src/qhda.cpp" line="304"/>
         <source>Printing error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="306"/>
+        <location filename="../src/qhda.cpp" line="305"/>
         <source>There is no default printer set in the system.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="334"/>
+        <location filename="../src/qhda.cpp" line="333"/>
         <source>New category name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="335"/>
+        <location filename="../src/qhda.cpp" line="334"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="375"/>
-        <location filename="../src/qhda.cpp" line="408"/>
+        <location filename="../src/qhda.cpp" line="374"/>
+        <location filename="../src/qhda.cpp" line="407"/>
         <source>Are you sure want delete item.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="409"/>
+        <location filename="../src/qhda.cpp" line="408"/>
         <source>All child categories and articles for this category will be deleted to.
  Are you sure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="427"/>
+        <location filename="../src/qhda.cpp" line="426"/>
         <source>New Article</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="456"/>
+        <location filename="../src/qhda.cpp" line="455"/>
         <source>Are you sure want delete this article.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="476"/>
+        <location filename="../src/qhda.cpp" line="475"/>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="524"/>
+        <location filename="../src/qhda.cpp" line="523"/>
         <source>Export PDF</source>
         <translation type="unfinished"></translation>
     </message>
@@ -610,19 +610,19 @@ Error :%2</source>
     </message>
     <message>
         <location filename="../src/databasemanager.cpp" line="40"/>
-        <location filename="../src/qhda.cpp" line="196"/>
-        <location filename="../src/qhda.cpp" line="271"/>
+        <location filename="../src/qhda.cpp" line="195"/>
+        <location filename="../src/qhda.cpp" line="270"/>
         <source>Database engine error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="197"/>
+        <location filename="../src/qhda.cpp" line="196"/>
         <source>The version of database engine plugin do not match with declared for this book.
 Please try to reinstall application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="272"/>
+        <location filename="../src/qhda.cpp" line="271"/>
         <source>Unfortunately we couldn&apos;t find any database engine plugin.
 Please try to reinstall application</source>
         <translation type="unfinished"></translation>
@@ -637,6 +637,7 @@ Please try to reinstall application</source>
     </message>
     <message>
         <location filename="../ui/settings.ui" line="55"/>
+        <location filename="../ui/settings.ui" line="393"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -661,128 +662,182 @@ Please try to reinstall application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="129"/>
+        <location filename="../ui/settings.ui" line="122"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="139"/>
+        <location filename="../ui/settings.ui" line="132"/>
         <source>Automatically check for updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="146"/>
+        <location filename="../ui/settings.ui" line="139"/>
         <source>Check changes for book from remote server.
  After opening it.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="154"/>
+        <location filename="../ui/settings.ui" line="147"/>
         <source>Save your choise of application language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="161"/>
+        <location filename="../ui/settings.ui" line="154"/>
         <source>Remember  window state.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="168"/>
+        <location filename="../ui/settings.ui" line="161"/>
         <source>Open Last opened book at start up</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="175"/>
+        <location filename="../ui/settings.ui" line="168"/>
         <source>Open articles in same tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="252"/>
+        <location filename="../ui/settings.ui" line="245"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="266"/>
+        <location filename="../ui/settings.ui" line="259"/>
         <source>Enable Proxy Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="276"/>
+        <location filename="../ui/settings.ui" line="269"/>
         <source>Proxy Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="285"/>
+        <location filename="../ui/settings.ui" line="278"/>
         <source>Use system settings (Curently not suported)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="292"/>
+        <location filename="../ui/settings.ui" line="285"/>
         <source>Custom Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="308"/>
+        <location filename="../ui/settings.ui" line="301"/>
         <source>Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="316"/>
+        <location filename="../ui/settings.ui" line="309"/>
         <source>Socks 5 Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="321"/>
+        <location filename="../ui/settings.ui" line="314"/>
         <source>Http Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="326"/>
+        <location filename="../ui/settings.ui" line="319"/>
         <source>Http Caching Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="331"/>
+        <location filename="../ui/settings.ui" line="324"/>
         <source>Ftp Caching Proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="339"/>
+        <location filename="../ui/settings.ui" line="332"/>
         <source>Url</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="349"/>
+        <location filename="../ui/settings.ui" line="342"/>
+        <location filename="../ui/settings.ui" line="507"/>
         <source>Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="366"/>
+        <location filename="../ui/settings.ui" line="359"/>
+        <location filename="../ui/settings.ui" line="541"/>
         <source>User Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="376"/>
+        <location filename="../ui/settings.ui" line="369"/>
+        <location filename="../ui/settings.ui" line="574"/>
         <source>Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="66"/>
+        <location filename="../ui/settings.ui" line="399"/>
+        <source>Api key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="409"/>
+        <source>User Agent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="419"/>
+        <source>Available Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="425"/>
+        <source>To site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="439"/>
+        <source>From Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="459"/>
+        <location filename="../ui/settings.ui" line="466"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="491"/>
+        <source>Remote Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="497"/>
+        <source>Host</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="524"/>
+        <source>Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="534"/>
+        <source>Authorization Required</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/settings.cpp" line="117"/>
         <source>Author: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="67"/>
+        <location filename="../src/settings.cpp" line="118"/>
         <source>Description: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="92"/>
+        <location filename="../src/settings.cpp" line="143"/>
         <source>Editor type: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="93"/>
+        <location filename="../src/settings.cpp" line="144"/>
         <source>Verision: </source>
         <translation type="unfinished"></translation>
     </message>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>547</width>
-    <height>367</height>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -103,20 +103,13 @@
      </item>
     </widget>
    </item>
-   <item row="2" column="0" colspan="3">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="1">
     <widget class="QStackedWidget" name="settingswidgets">
      <property name="layoutDirection">
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page">
       <layout class="QFormLayout" name="formLayout_3">
@@ -388,7 +381,213 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_5"/>
+     <widget class="QWidget" name="page_5">
+      <layout class="QGridLayout" name="gridLayout_7">
+       <item row="0" column="0">
+        <widget class="QTabWidget" name="tabWidget">
+         <property name="currentIndex">
+          <number>1</number>
+         </property>
+         <widget class="QWidget" name="tab">
+          <attribute name="title">
+           <string>General</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_9">
+           <item row="0" column="0">
+            <widget class="QLabel" name="apiKeyLabel">
+             <property name="text">
+              <string>Api key</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="apiKey"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>User Agent</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="agentList"/>
+           </item>
+           <item row="2" column="0" colspan="2">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Available Plugins</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>To site</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="3">
+               <widget class="QLabel" name="vSycnPluginTo">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>From Site</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="3">
+               <widget class="QComboBox" name="syncPluginFrom"/>
+              </item>
+              <item row="3" column="3">
+               <widget class="QLabel" name="vSycnPluginFrom">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" colspan="3">
+               <widget class="QComboBox" name="syncPluginTo"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Version:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>Version:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="syncPluginToVersion">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QLabel" name="syncPluginFromVersion">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_2">
+          <attribute name="title">
+           <string>Remote Server</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_7">
+             <property name="text">
+              <string>Host</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLineEdit" name="syncHost"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Port</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QSpinBox" name="synchPort">
+             <property name="maximum">
+              <number>9999999</number>
+             </property>
+             <property name="value">
+              <number>80</number>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Path</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLineEdit" name="syncPath"/>
+           </item>
+           <item row="3" column="0" colspan="3">
+            <widget class="QCheckBox" name="authRequired">
+             <property name="text">
+              <string>Authorization Required</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>User Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1" colspan="2">
+            <widget class="QLineEdit" name="authUserName">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1" colspan="2">
+            <widget class="QLineEdit" name="authPassword">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="inputMask">
+              <string notr="true"/>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="maxLength">
+              <number>32767</number>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_11">
+             <property name="text">
+              <string>Password</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
     </widget>
    </item>
   </layout>

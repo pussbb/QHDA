@@ -20,7 +20,7 @@
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;Help Doc Assistant&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../ui/about.ui" line="78"/>
@@ -266,7 +266,7 @@ E-mail: pussbb@gmail.com</source>
     <message>
         <location filename="../src/plugininfo.cpp" line="56"/>
         <source>Editor Type: </source>
-        <translation>Тип редактора</translation>
+        <translation>Тип редактора:</translation>
     </message>
 </context>
 <context>
@@ -485,94 +485,94 @@ E-mail: pussbb@gmail.com</source>
         <translation>Новый</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="114"/>
+        <location filename="../src/qhda.cpp" line="113"/>
         <source>Article title is required.</source>
         <translation>Необходимо ввести название статьи.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="115"/>
+        <location filename="../src/qhda.cpp" line="114"/>
         <source>Return to editor or cancel saving the article
 (All unsaved results will be lost).</source>
         <translation>Вернуться к редактору или отменить сохранение стаьи
 (Все не сохраненые результаты будут потеряны).</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="133"/>
+        <location filename="../src/qhda.cpp" line="132"/>
         <source>Are you sure want close editor.</source>
         <translation>Вы уверены в том что хотите закрыть редактор.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="134"/>
+        <location filename="../src/qhda.cpp" line="133"/>
         <source>All unsaved results will be lost.</source>
         <translation>Все не сохраненые результаты будут утеряны.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="283"/>
-        <location filename="../src/qhda.cpp" line="315"/>
+        <location filename="../src/qhda.cpp" line="282"/>
+        <location filename="../src/qhda.cpp" line="314"/>
         <source>Error</source>
         <translation>Ошыбка</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="284"/>
-        <location filename="../src/qhda.cpp" line="316"/>
+        <location filename="../src/qhda.cpp" line="283"/>
+        <location filename="../src/qhda.cpp" line="315"/>
         <source>Sorry, but could not get article.</source>
         <translation>Извините, невозможно определить статью.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="294"/>
+        <location filename="../src/qhda.cpp" line="293"/>
         <source>Print Document</source>
         <translation>Напечатать докумнет</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="305"/>
+        <location filename="../src/qhda.cpp" line="304"/>
         <source>Printing error!</source>
         <translation>Ошыбка при печати!</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="306"/>
+        <location filename="../src/qhda.cpp" line="305"/>
         <source>There is no default printer set in the system.</source>
         <translation>В Вашей системе не установлено принтера по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="334"/>
+        <location filename="../src/qhda.cpp" line="333"/>
         <source>New category name</source>
         <translation>Название новой категории</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="335"/>
+        <location filename="../src/qhda.cpp" line="334"/>
         <source>Name:</source>
         <translation>Имя:</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="375"/>
-        <location filename="../src/qhda.cpp" line="408"/>
+        <location filename="../src/qhda.cpp" line="374"/>
+        <location filename="../src/qhda.cpp" line="407"/>
         <source>Are you sure want delete item.</source>
         <translation>Вы уверены в том что хотите удалить елемент.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="409"/>
+        <location filename="../src/qhda.cpp" line="408"/>
         <source>All child categories and articles for this category will be deleted to.
  Are you sure</source>
         <translation>Все дочернии категории и стастьи для этой категории будут также удалены.
 Вы в этом уверены</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="427"/>
+        <location filename="../src/qhda.cpp" line="426"/>
         <source>New Article</source>
         <translation>Новая статья</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="456"/>
+        <location filename="../src/qhda.cpp" line="455"/>
         <source>Are you sure want delete this article.</source>
         <translation>Вы уверенны , что хотите удалить статью.</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="476"/>
+        <location filename="../src/qhda.cpp" line="475"/>
         <source>Edit</source>
         <translation>Редактировать</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="524"/>
+        <location filename="../src/qhda.cpp" line="523"/>
         <source>Export PDF</source>
         <translation>Экспорт в PDF</translation>
     </message>
@@ -616,20 +616,20 @@ Error :%2</source>
     </message>
     <message>
         <location filename="../src/databasemanager.cpp" line="40"/>
-        <location filename="../src/qhda.cpp" line="196"/>
-        <location filename="../src/qhda.cpp" line="271"/>
+        <location filename="../src/qhda.cpp" line="195"/>
+        <location filename="../src/qhda.cpp" line="270"/>
         <source>Database engine error</source>
         <translation>Ошыбка движка базы данных</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="197"/>
+        <location filename="../src/qhda.cpp" line="196"/>
         <source>The version of database engine plugin do not match with declared for this book.
 Please try to reinstall application</source>
         <translation>Версия плагина для доступа к баз данным не совпадают с заявленой для этой справки.
 Попробуйте переустановить привеложение</translation>
     </message>
     <message>
-        <location filename="../src/qhda.cpp" line="272"/>
+        <location filename="../src/qhda.cpp" line="271"/>
         <source>Unfortunately we couldn&apos;t find any database engine plugin.
 Please try to reinstall application</source>
         <translation>К сожалению, мы не смогли найти никаких базы данных плагина.
@@ -645,6 +645,7 @@ Please try to reinstall application</source>
     </message>
     <message>
         <location filename="../ui/settings.ui" line="55"/>
+        <location filename="../ui/settings.ui" line="393"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
@@ -669,129 +670,183 @@ Please try to reinstall application</source>
         <translation>Синхронизация</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="129"/>
+        <location filename="../ui/settings.ui" line="122"/>
         <source>User</source>
         <translation>Пользователь</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="139"/>
+        <location filename="../ui/settings.ui" line="132"/>
         <source>Automatically check for updates.</source>
         <translation>Автоматически проверять обновления программы.</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="146"/>
+        <location filename="../ui/settings.ui" line="139"/>
         <source>Check changes for book from remote server.
  After opening it.</source>
         <translation>Проверять изменения в справочника с удленного сервера.
 После его открытия.</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="154"/>
+        <location filename="../ui/settings.ui" line="147"/>
         <source>Save your choise of application language.</source>
         <translation>Сохранять Ваш  выбор языка интерфейса.</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="161"/>
+        <location filename="../ui/settings.ui" line="154"/>
         <source>Remember  window state.</source>
         <translation>Сохранять место положения окна.</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="168"/>
+        <location filename="../ui/settings.ui" line="161"/>
         <source>Open Last opened book at start up</source>
         <translation>Открывать последний открытый справочник при старте</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="175"/>
+        <location filename="../ui/settings.ui" line="168"/>
         <source>Open articles in same tab.</source>
         <translation>Открывать статьи  в одной вкладке.</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="252"/>
+        <location filename="../ui/settings.ui" line="245"/>
         <source>TextLabel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="266"/>
+        <location filename="../ui/settings.ui" line="259"/>
         <source>Enable Proxy Connection</source>
         <translation>Использовать Proxy соединение</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="276"/>
+        <location filename="../ui/settings.ui" line="269"/>
         <source>Proxy Settings</source>
         <translation>Настройки  Proxy</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="285"/>
+        <location filename="../ui/settings.ui" line="278"/>
         <source>Use system settings (Curently not suported)</source>
         <translation>Использовать системные настройки.(На данный не поддержываеться)</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="292"/>
+        <location filename="../ui/settings.ui" line="285"/>
         <source>Custom Settings</source>
         <translation>Свои настройки</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="308"/>
+        <location filename="../ui/settings.ui" line="301"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="316"/>
+        <location filename="../ui/settings.ui" line="309"/>
         <source>Socks 5 Proxy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="321"/>
+        <location filename="../ui/settings.ui" line="314"/>
         <source>Http Proxy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="326"/>
+        <location filename="../ui/settings.ui" line="319"/>
         <source>Http Caching Proxy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="331"/>
+        <location filename="../ui/settings.ui" line="324"/>
         <source>Ftp Caching Proxy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="339"/>
+        <location filename="../ui/settings.ui" line="332"/>
         <source>Url</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="349"/>
+        <location filename="../ui/settings.ui" line="342"/>
+        <location filename="../ui/settings.ui" line="507"/>
         <source>Port</source>
         <translation>Порт</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="366"/>
+        <location filename="../ui/settings.ui" line="359"/>
+        <location filename="../ui/settings.ui" line="541"/>
         <source>User Name</source>
         <translation>Имя пользователя</translation>
     </message>
     <message>
-        <location filename="../ui/settings.ui" line="376"/>
+        <location filename="../ui/settings.ui" line="369"/>
+        <location filename="../ui/settings.ui" line="574"/>
         <source>Password</source>
         <translation>Пароль</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="66"/>
+        <location filename="../ui/settings.ui" line="399"/>
+        <source>Api key</source>
+        <translation>Api ключ </translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="409"/>
+        <source>User Agent</source>
+        <translation>Агент</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="419"/>
+        <source>Available Plugins</source>
+        <translation>Дотсупные плагины</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="425"/>
+        <source>To site</source>
+        <translation>На удаленый</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="439"/>
+        <source>From Site</source>
+        <translation>С удаленного</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="459"/>
+        <location filename="../ui/settings.ui" line="466"/>
+        <source>Version:</source>
+        <translation>Версия:</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="491"/>
+        <source>Remote Server</source>
+        <translation>Удаленный сервер</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="497"/>
+        <source>Host</source>
+        <translation>Хост</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="524"/>
+        <source>Path</source>
+        <translation>Путь</translation>
+    </message>
+    <message>
+        <location filename="../ui/settings.ui" line="534"/>
+        <source>Authorization Required</source>
+        <translation>Требуется авторизация</translation>
+    </message>
+    <message>
+        <location filename="../src/settings.cpp" line="117"/>
         <source>Author: </source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="67"/>
+        <location filename="../src/settings.cpp" line="118"/>
         <source>Description: </source>
         <translation>Описание:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="92"/>
+        <location filename="../src/settings.cpp" line="143"/>
         <source>Editor type: </source>
         <translation>Тип редактора:</translation>
     </message>
     <message>
-        <location filename="../src/settings.cpp" line="93"/>
+        <location filename="../src/settings.cpp" line="144"/>
         <source>Verision: </source>
         <translation>Версия:</translation>
     </message>

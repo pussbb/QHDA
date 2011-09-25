@@ -1,7 +1,6 @@
 #include "headers/qhda.h"
 #include "ui_qhda.h"
-#include "QDebug"
-#include <extras/synchronizing.h>
+
 QHDA::QHDA(QWidget *parent) :
     QCoreWindow(parent),
     ui(new Ui::QHDA)
@@ -561,26 +560,36 @@ void QHDA::on_searchResults_itemDoubleClicked(QListWidgetItem* item)
     ui->tabedContent->addTab(articleTheme,article.value("title").toString());
     ui->tabedContent->currentWidget()->setProperty("articleId",articleId);
 }
-
-void QHDA::on_actionTo_Remote_Server_triggered()
+SyncInterface* QHDA::loadSyncPlugin(QString file)
 {
-
     QString path = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/sync/");
     QDir d(path);
     SyncInterface *syncFace;
-    foreach (QString file, d.entryList(QDir::Files)) {
-        QPluginLoader pluginLoader(d.absoluteFilePath(file));
-        QObject *plugin = pluginLoader.instance();
-        if (plugin) {
-            attachTranslation(file.replace(".so","_"));
-            syncFace = qobject_cast<SyncInterface *>(plugin);
-        }
+
+    QPluginLoader pluginLoader(d.absoluteFilePath(file));
+    QObject *plugin = pluginLoader.instance();
+    if (plugin) {
+        attachTranslation(file.replace(".so","_"));
+        syncFace = qobject_cast<SyncInterface *>(plugin);
     }
-    syncFace->init("pussbb","4e7e1d7489080");
-    syncFace->setHost("qhda",80,"/rpc");
-    ///QString path = ui->bookList->currentItem()->data(Qt::UserRole+1).toString();
-    syncFace->start(books.value(currentBookName),dbman->interface);
 
+    syncFace->init(settings.value("Core/username","").toString(),
+                   settings.value("Synchronizing/apiKey","").toString());
+    syncFace->setHost(settings.value("Synchronizing/host","").toString(),
+                        settings.value("Synchronizing/port",80).toInt(),
+                            settings.value("Synchronizing/path","").toString());
+    syncFace->setUserAgent(settings.value("Synchronizing/userAgent","QHDA").toString());
+    bool isAuth =settings.value("Synchronizing/isAuth",false).toBool();
+    if(isAuth)
+        syncFace->authAccess(settings.value("Synchronizing/authUserName","").toString(),
+                             settings.value("Synchronizing/authPassword","").toString());
 
-    //
+    return syncFace;
+}
+
+void QHDA::on_actionTo_Remote_Server_triggered()
+{
+    QString file = settings.value("Synchronizing/pluginToRemote","").toString();
+    SyncInterface *syncFace = loadSyncPlugin(file);
+    syncFace->start(books.value(currentBookName),dbman->interface,SyncInterface::Upload);
 }

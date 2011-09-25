@@ -14,7 +14,12 @@ QVariantMap XmlRpcPlugin:: aboutInfo()
     QVariantMap result;
     return result;
 }
-void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface)
+void XmlRpcPlugin::setUserAgent(QString agent)
+{
+    client->setUserAgent(agent);
+}
+
+void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,SyncTypes syncType)
 {
     __db = interface;
     dialog->clear();
@@ -39,8 +44,7 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface)
     else{
         book.insert("image",(QString)"");
     }
-    requestIdSum = client->request("qhda.bookcheck",book);
-    ///requestIdSum = client->request("bookcheck",article);
+    requestIdItem = client->request("qhda.bookcheck",book);
     dialog->show();
 }
 
@@ -73,7 +77,7 @@ void XmlRpcPlugin::init(QString userName,QString apiKey)
 void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 {
     dialog->progressPlus(3);
-    if ( requestId == requestIdSum )
+    if ( requestId == requestIdItem )
         qDebug()<< value;
 }
 

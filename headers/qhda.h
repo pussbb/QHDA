@@ -1,6 +1,8 @@
 #ifndef QHDA_H
 #define QHDA_H
 
+#include "QDebug"
+
 #include "headers/qcorewindow.h"
 #include "headers/databasemanager.h"
 
@@ -14,6 +16,7 @@
 #include "headers/plugininfo.h"
 #include "headers/about.h"
 
+#include <extras/synchronizing.h>
 namespace Ui {
     class QHDA;
 }
@@ -45,6 +48,7 @@ private slots:
     void initBooks();
     void buildTableOfContent();
     bool checkArticleData(QVariantMap article);
+    SyncInterface* loadSyncPlugin(QString file);
     void on_tabedContent_tabCloseRequested(int index);
 
     void on_bookList_itemDoubleClicked(QListWidgetItem* item);

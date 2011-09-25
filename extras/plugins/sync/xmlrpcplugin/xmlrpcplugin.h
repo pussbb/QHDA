@@ -16,7 +16,7 @@ public:
     QString name();
     QVariantMap aboutInfo();
     XmlRpcDialog *dialog;
-    void start(QSettings *bookSettings,DbManagerInterface *interface);
+    void start(QSettings *bookSettings,DbManagerInterface *interface,SyncTypes syncType);
     void init(QString userName,QString apiKey);
     bool isSupportDownload();
     bool isSupportUpload();
@@ -31,7 +31,7 @@ private:
     DbManagerInterface *__db;
     QSettings *__bookSettings;
     xmlrpc::Client *client;
-    int requestIdSum;
+    int requestIdItem;
     int canAddId;
     QString _userName;
     QString _apiKey;

@@ -12,13 +12,13 @@ public:
     virtual QString version() = 0;
     virtual QString name() = 0;
     virtual QVariantMap aboutInfo() = 0;
-    virtual void init() = 0;
+    virtual void init(QString userName,QString apiKey) = 0;
     virtual bool isSupportDownload() = 0 ;
     virtual bool isSupportUpload() = 0 ;
     virtual void start(QSettings *bookSettings,DbManagerInterface *interface) = 0;
-    virtual inline void setProxy(QNetworkProxy proxy) =0;
-    virtual inline void setHost(QString host,int port,QString path) =0;
-    virtual inline void authAccess(QString userName,QString userPassword) = 0 ;
+    virtual void setProxy(QNetworkProxy proxy) =0;
+    virtual void setHost(QString host,int port,QString path) =0;
+    virtual void authAccess(QString userName,QString userPassword) = 0 ;
     QString errorStr;
 };
 

@@ -17,13 +17,13 @@ public:
     QVariantMap aboutInfo();
     XmlRpcDialog *dialog;
     void start(QSettings *bookSettings,DbManagerInterface *interface);
-    void init();
+    void init(QString userName,QString apiKey);
     bool isSupportDownload();
     bool isSupportUpload();
     QString errorStr;
-    inline void setProxy(QNetworkProxy proxy){client->setProxy(proxy.hostName(),proxy.port(),proxy.user(),proxy.password());};
-    inline void setHost(QString host,int port,QString path){ client->setHost(host,port,path);};
-    inline void authAccess(QString userName,QString userPassword) { client->setUser(userName,userPassword);};
+    void setProxy(QNetworkProxy proxy);
+    void setHost(QString host,int port,QString path);
+    void authAccess(QString userName,QString userPassword);
 private slots:
     void processReturnValue( int requestId, QVariant value );
     void processFault( int requestId, int errorCode, QString errorString );
@@ -32,5 +32,8 @@ private:
     QSettings *__bookSettings;
     xmlrpc::Client *client;
     int requestIdSum;
+    int canAddId;
+    QString _userName;
+    QString _apiKey;
 };
 #endif

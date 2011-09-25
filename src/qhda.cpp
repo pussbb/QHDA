@@ -168,7 +168,7 @@ void QHDA::initBooks()
                 + QDir::toNativeSeparators("/");
 
         books.insert(item,new QSettings(bookPath+item+".ini",QSettings::IniFormat));
-
+        books.value(item)->setValue("Tmp/settingFilePath",bookPath);
         QListWidgetItem* itemList = new QListWidgetItem(ui->bookList);
         itemList->setText(books.value(item)->value("General/Bookname","").toString());
         itemList->setData(Qt::UserRole + 1,bookPath);
@@ -576,7 +576,9 @@ void QHDA::on_actionTo_Remote_Server_triggered()
             syncFace = qobject_cast<SyncInterface *>(plugin);
         }
     }
-    syncFace->init();
+    syncFace->init("pussbb","4e7e1d7489080");
+    syncFace->setHost("qhda",80,"/rpc");
+    ///QString path = ui->bookList->currentItem()->data(Qt::UserRole+1).toString();
     syncFace->start(books.value(currentBookName),dbman->interface);
 
 

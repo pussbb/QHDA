@@ -16,22 +16,55 @@ QVariantMap XmlRpcPlugin:: aboutInfo()
 }
 void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface)
 {
-
     __db = interface;
     dialog->clear();
     dialog->setProgressValues(0,__db->getCountAll());
-    int x = 5;
-    int y =56;
-    dialog->setOperationTitle(tr("fdsfdsfds"),true);
-    requestIdSum = client->request( "sum", x, y );
+    dialog->setOperationTitle(tr("Check for user permission"),true);
+    QMap<QString,xmlrpc::Variant> book;
+    book.insert("bookName",bookSettings->value("General/Bookname","").toString());
+    book.insert("bookDescription",bookSettings->value("General/BookDescr","").toString());
+    book.insert("bookImage",bookSettings->value("General/BookIcon","").toString());
+    book.insert("userName",_userName);
+    book.insert("apiKey",_apiKey);
+
+    if(!bookSettings->value("Tmp/settingFilePath","").isNull()) {
+        QString image_file = bookSettings->value("Tmp/settingFilePath","").toString() +
+                                    bookSettings->value("General/BookIcon","").toString();
+        QImage image(QIcon(image_file).pixmap(36,36).toImage());
+        QByteArray byteArray;
+        QBuffer buffer(&byteArray);
+        image.save(&buffer, "PNG"); // writes the image in PNG format inside the buffer
+        book.insert("image",byteArray.toBase64());
+    }
+    else{
+        book.insert("image",(QString)"");
+    }
+    requestIdSum = client->request("qhda.bookcheck",book);
+    ///requestIdSum = client->request("bookcheck",article);
     dialog->show();
 }
 
-void XmlRpcPlugin::init()
+void XmlRpcPlugin::setHost(QString host, int port, QString path)
+{
+    client->setHost(host,port,path);
+}
+
+void XmlRpcPlugin::setProxy(QNetworkProxy proxy)
+{
+    client->setProxy(proxy.hostName(),proxy.port(),proxy.user(),proxy.password());
+}
+
+void XmlRpcPlugin::authAccess(QString userName, QString userPassword)
+{
+     client->setUser(userName,userPassword);
+}
+
+void XmlRpcPlugin::init(QString userName,QString apiKey)
 {
     dialog = new XmlRpcDialog();
     client = new xmlrpc::Client();
-
+    _userName = userName;
+    _apiKey = apiKey;
     connect( client, SIGNAL(done( int, QVariant )),
                      this, SLOT(processReturnValue( int, QVariant )) );
     connect( client, SIGNAL(failed( int, int, QString )),

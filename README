@@ -8,3 +8,5 @@ cd ./bin
 ln -s ../lang ./lang
 
 For Windows user copy folder lang to folder bin
+
+for Xmlrpc synchronizing pluging php server side script https://github.com/pussbb/Kohana-RPC/tree/qhda

@@ -19,6 +19,7 @@ public:
     virtual bool isSupportUpload() = 0 ;
     virtual void start(QSettings *bookSettings,DbManagerInterface *interface,SyncTypes syncType) = 0;
     virtual void setProxy(QNetworkProxy proxy) =0;
+    virtual void setUserAgent(QString agent) = 0;
     virtual void setHost(QString host,int port,QString path) =0;
     virtual void authAccess(QString userName,QString userPassword) = 0 ;
     QString errorStr;

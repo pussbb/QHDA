@@ -20,6 +20,7 @@ public:
     void init(QString userName,QString apiKey);
     bool isSupportDownload();
     bool isSupportUpload();
+    void setUserAgent(QString agent);
     QString errorStr;
     void setProxy(QNetworkProxy proxy);
     void setHost(QString host,int port,QString path);

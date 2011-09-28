@@ -21,6 +21,7 @@ bool SqlitePlugin::isServerType()
 
 QMap<QString, QString> SqlitePlugin::defaultAuthOptions()
 {
+    ///just for test was needed
     QMap<QString, QString> map;
     map.insert("host","localhost");
     map.insert("port","3306");
@@ -148,12 +149,12 @@ QVariantList SqlitePlugin::categoriesList(int parent,int limit,bool sync)
     QString query = "";
     if(limit > 0)
         limitStr = " LIMIT "+QString::number(limit);
-    if(parent < 0)
+    if(parent < 0 && sync == false)
         query = "SELECT * FROM bookcat ORDER BY id ASC" + limitStr +";";
     else if(!sync)
             query = "SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+" ORDER BY id ASC" + limitStr +";";
          else
-            query = "SELECT * FROM bookcat WHERE sync_state = 0 ORDER BY id ASC" + limitStr +";";
+            query = "SELECT * FROM bookcat WHERE synch_state = 0 ORDER BY id ASC" + limitStr +";";
 
     sql.exec(query);
     if(sql.lastError().isValid()) {
@@ -180,12 +181,12 @@ QVariantList SqlitePlugin::articlesList(int parent,int limit,bool sync)
     if(limit > 0)
         limitStr = " LIMIT "+QString::number(limit);
 
-    if(parent < 0)
+    if(parent < 0 && sync == false)
         query = "SELECT * FROM articles " + limitStr +";";
     else if(!sync)
             query = "SELECT * FROM articles WHERE catid ="+QString::number(parent)+" ORDER BY id ASC" + limitStr +";";
          else
-            query = "SELECT * FROM articles WHERE sync_state = 0 ORDER BY id ASC" + limitStr +";";
+            query = "SELECT * FROM articles WHERE synch_state = 0 ORDER BY id ASC" + limitStr +";";
 
     sql.exec(query);
     if(sql.lastError().isValid()) {
@@ -315,23 +316,30 @@ QVariantList SqlitePlugin::search(QString search)
     return results;
 }
 
-int SqlitePlugin::getCount(QString tableIndetifer)
+int SqlitePlugin::getCount(Tables table)
 {
-    if(tableIndetifer == "articles") {
-        QSqlQuery sql("SELECT COUNT(*) FROM `articles`");
-        sql.exec();
-        if(!sql.next() || sql.lastError().isValid())
-            errorStr = sql.lastError().text();
-        else
-            return sql.value(0).toInt();
-    }
-    if(tableIndetifer == "bookcat") {
-        QSqlQuery sql("SELECT COUNT(*) FROM `bookcat`");
-        sql.exec();
-        if(!sql.next() || sql.lastError().isValid())
-            errorStr = sql.lastError().text();
-        else
-            return sql.value(0).toInt();
+    switch(table){
+        case Articles:{
+            QSqlQuery sql("SELECT COUNT(*) FROM `articles`");
+            sql.exec();
+            if(!sql.next() || sql.lastError().isValid())
+                errorStr = sql.lastError().text();
+            else
+                return sql.value(0).toInt();
+            break;
+        }
+        case Category:{
+                QSqlQuery sql("SELECT COUNT(*) FROM `bookcat`");
+                sql.exec();
+                if(!sql.next() || sql.lastError().isValid())
+                    errorStr = sql.lastError().text();
+                else
+                    return sql.value(0).toInt();
+                break;
+        }
+        default:
+            return 0;
+            break;
     }
     return 0;
 }
@@ -339,20 +347,27 @@ int SqlitePlugin::getCount(QString tableIndetifer)
 QVariantMap SqlitePlugin::getCountAllTables()
 {
     QVariantMap result;
-    result.insert("articles",getCount("articles"));
-    result.insert("bookcat",getCount("bookcat"));
+    result.insert("articles",getCount(Articles));
+    result.insert("bookcat",getCount(Category));
     return result;
 }
 
 int SqlitePlugin::getCountAll()
 {
-    return getCount("articles") + getCount("bookcat");
+    return getCount(Articles) + getCount(Category);
 }
 
 void SqlitePlugin::setSynchState(Tables table,int id,bool state)
 {
-    ////QString tableName =
-
+    QSqlQuery sql;
+    switch(table){
+    case Articles:
+        sql.exec("UPDATE `articles` SET  `synch_state` = "+QString::number((int)state)+" WHERE id="+QString::number(id)+";") ;
+        break;
+    case Category:
+        sql.exec("UPDATE `bookcat` SET  `synch_state` = "+QString::number((int)state)+" WHERE id="+QString::number(id)+";") ;
+        break;
+    }
 }
 
 void SqlitePlugin::resetSyncState()

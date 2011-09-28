@@ -58,6 +58,7 @@ void XmlRpcPlugin::uploadBook(QSettings *bookSettings)
     else{
         book.insert("image",(QString)"");
     }
+    __db->resetSyncState();
     bookId = client->request("qhda.bookcheck",book);
     dialog->show();
 }
@@ -79,6 +80,27 @@ void XmlRpcPlugin::proccedUploadElements()
         }
         catId = client->request("qhda.catagories",params);
     }
+    else{
+        QVariantList articles = __db->articlesList(-1,1,true);
+        if(articles.empty()){
+            dialog->setOperationTitle(tr("Synchronizing finish"),true);
+            return;
+        }
+        QVariantMap current = articles[0].toMap();
+        QMap<QString,xmlrpc::Variant> article;
+        dialog->setOperationTitle(tr("Start upload article")+"  "+current.value("title").toString(),true);
+        article.insert("id",current.value("id").toInt());
+        article.insert("title",current.value("title").toString());
+        article.insert("content",current.value("content").toString());
+        article.insert("author",current.value("author").toString());
+        article.insert("published",current.value("published").toString());
+        article.insert("md5",current.value("md5").toString());
+        article.insert("guid",current.value("guid").toString());
+        article.insert("catid",current.value("catid").toString());
+        articleId = client->request("qhda.article",article);
+    }
+
+
 }
 
 void XmlRpcPlugin::setHost(QString host, int port, QString path)
@@ -116,7 +138,14 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
         proccedUploadElements();
     }
     if( requestId == catId){
+        int count = __db->getCount(DbManagerInterface::Category);
+        dialog->progressPlus(count);
         catStatus = value.toInt();
+        proccedUploadElements();
+    }
+    if(requestId == articleId){
+        dialog->progressPlus(1);
+        __db->setSynchState(DbManagerInterface::Articles,value.toInt(),true);
         proccedUploadElements();
     }
 }

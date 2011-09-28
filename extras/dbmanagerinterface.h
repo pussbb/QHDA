@@ -31,7 +31,7 @@ public:
     virtual QVariantList search(QString search) = 0;
     // functions for Synchronization
 
-    virtual int getCount(QString tableIndetifer) = 0;
+    virtual int getCount(Tables table) = 0;
     virtual QVariantMap getCountAllTables() = 0;
     virtual int getCountAll() = 0;
     virtual void setSynchState(Tables table,int id,bool state) = 0;

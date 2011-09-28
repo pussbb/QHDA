@@ -35,7 +35,7 @@ private:
     xmlrpc::Client *client;
     int bookId;
     int catId;
-    int raticleId;
+    int articleId;
     int serverBookId;
     int catStatus;
     QString _userName;

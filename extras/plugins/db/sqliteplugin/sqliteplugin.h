@@ -34,7 +34,7 @@ public:
     QVariantList search(QString search);
     // functions for Synchronization
 
-    int getCount(QString tableIndetifer);
+    int getCount(Tables table);
     QVariantMap getCountAllTables();
     int getCountAll();
     void setSynchState(Tables table,int id,bool state);

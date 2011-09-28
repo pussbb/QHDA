@@ -23,10 +23,24 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,S
 {
     __db = interface;
     dialog->clear();
+    switch(syncType){
+        case Upload:
+            uploadBook(bookSettings);
+            break;
+        case Download:
+            break;
+        default:
+            break;
+    }
+}
+void XmlRpcPlugin::uploadBook(QSettings *bookSettings)
+{
+    catStatus = 0;
     dialog->setProgressValues(0,__db->getCountAll());
-    dialog->setOperationTitle(tr("Check for user permission"),true);
+    QString bookName = bookSettings->value("General/Bookname","").toString();
+    dialog->setOperationTitle(tr("Start uploading book") + bookName,true);
     QMap<QString,xmlrpc::Variant> book;
-    book.insert("bookName",bookSettings->value("General/Bookname","").toString());
+    book.insert("bookName",bookName);
     book.insert("bookDescription",bookSettings->value("General/BookDescr","").toString());
     book.insert("bookImage",bookSettings->value("General/BookIcon","").toString());
     book.insert("userName",_userName);
@@ -44,8 +58,27 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,S
     else{
         book.insert("image",(QString)"");
     }
-    requestIdItem = client->request("qhda.bookcheck",book);
+    bookId = client->request("qhda.bookcheck",book);
     dialog->show();
+}
+void XmlRpcPlugin::proccedUploadElements()
+{
+    if(catStatus != 1 ){
+        dialog->setOperationTitle(tr("Start uploading book catecories"),true);
+        QVariantList categories = __db->categoriesList();
+        QList<xmlrpc::Variant> params;
+        QListIterator<QVariant> i(categories);
+        while (i.hasNext()) {
+            QVariantMap attr =i.next().toMap();
+            QMap<QString,xmlrpc::Variant> cat;
+            cat.insert("catname",attr.value("name").toString());
+            cat.insert("parent",attr.value("parent").toInt());
+            cat.insert("id",attr.value("id").toInt());
+            cat.insert("bookid",serverBookId);
+            params.append(cat);
+        }
+        catId = client->request("qhda.catagories",params);
+    }
 }
 
 void XmlRpcPlugin::setHost(QString host, int port, QString path)
@@ -76,9 +109,16 @@ void XmlRpcPlugin::init(QString userName,QString apiKey)
 }
 void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 {
-    dialog->progressPlus(3);
-    if ( requestId == requestIdItem )
-        qDebug()<< value;
+
+    if ( requestId == bookId ){
+        dialog->progressPlus(1);
+        serverBookId = value.toInt();
+        proccedUploadElements();
+    }
+    if( requestId == catId){
+        catStatus = value.toInt();
+        proccedUploadElements();
+    }
 }
 
 void XmlRpcPlugin::processFault( int requestId, int errorCode, QString errorString )

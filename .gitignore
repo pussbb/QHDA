@@ -4,6 +4,7 @@
 /extras/plugins/sync/xmlrpcplugin/obj
 qrc*.cpp
 *~
+*.pro.user
 /bin/QHDA
 /bin/plugins
 *Makefile

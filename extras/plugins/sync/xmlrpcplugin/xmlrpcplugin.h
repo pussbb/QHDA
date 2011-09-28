@@ -28,13 +28,20 @@ public:
 private slots:
     void processReturnValue( int requestId, QVariant value );
     void processFault( int requestId, int errorCode, QString errorString );
+    void uploadBook(QSettings *bookSettings);
+    void proccedUploadElements();
 private:
     DbManagerInterface *__db;
-    QSettings *__bookSettings;
     xmlrpc::Client *client;
-    int requestIdItem;
-    int canAddId;
+    int bookId;
+    int catId;
+    int raticleId;
+    int serverBookId;
+    int catStatus;
     QString _userName;
     QString _apiKey;
+    int category_id;
+    QHash<QString, int> categories;
+
 };
 #endif

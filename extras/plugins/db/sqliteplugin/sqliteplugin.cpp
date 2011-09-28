@@ -140,14 +140,22 @@ bool SqlitePlugin::createCategory(QString categoryName,int parent)
 
 }
 
-QVariantList SqlitePlugin::categoriesList(int parent)
+QVariantList SqlitePlugin::categoriesList(int parent,int limit,bool sync)
 {
     QSqlQuery sql;
     QVariantList results;
+    QString limitStr = "";
+    QString query = "";
+    if(limit > 0)
+        limitStr = " LIMIT "+QString::number(limit);
     if(parent < 0)
-        sql.exec("SELECT * FROM bookcat ORDER BY id ASC;");
-    else
-        sql.exec("SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+" ORDER BY id ASC;");
+        query = "SELECT * FROM bookcat ORDER BY id ASC" + limitStr +";";
+    else if(!sync)
+            query = "SELECT * FROM bookcat WHERE parent ="+QString::number(parent)+" ORDER BY id ASC" + limitStr +";";
+         else
+            query = "SELECT * FROM bookcat WHERE sync_state = 0 ORDER BY id ASC" + limitStr +";";
+
+    sql.exec(query);
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
         return results;
@@ -162,15 +170,24 @@ QVariantList SqlitePlugin::categoriesList(int parent)
     return results;
 }
 
-QVariantList SqlitePlugin::articlesList(int parent)
+QVariantList SqlitePlugin::articlesList(int parent,int limit,bool sync)
 {
     QSqlQuery sql;
     QVariantList results;
     QVariantMap columns = articlesColumns;
+    QString limitStr = "";
+    QString query = "";
+    if(limit > 0)
+        limitStr = " LIMIT "+QString::number(limit);
+
     if(parent < 0)
-        sql.exec("SELECT * FROM articles;");
-    else
-        sql.exec("SELECT * FROM articles WHERE catid ="+QString::number(parent)+";");
+        query = "SELECT * FROM articles " + limitStr +";";
+    else if(!sync)
+            query = "SELECT * FROM articles WHERE catid ="+QString::number(parent)+" ORDER BY id ASC" + limitStr +";";
+         else
+            query = "SELECT * FROM articles WHERE sync_state = 0 ORDER BY id ASC" + limitStr +";";
+
+    sql.exec(query);
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
         return results;
@@ -332,18 +349,18 @@ int SqlitePlugin::getCountAll()
     return getCount("articles") + getCount("bookcat");
 }
 
-bool SqlitePlugin::setSynchState(QString tableIndetifer, int fieldId, synchType type, bool state)
+void SqlitePlugin::setSynchState(Tables table,int id,bool state)
 {
-    return true;
+    ////QString tableName =
+
 }
 
-bool SqlitePlugin::resetSyncState()
+void SqlitePlugin::resetSyncState()
 {
     QSqlQuery sql;
-    if(sql.exec("UPDATE `articles` SET  `synch_state` = 0") &&
-            sql.exec("UPDATE `bookcat` SET  `synch_state` = 0"))
-        return true;
-    return false;
+    sql.exec("UPDATE `articles` SET  `synch_state` = 0") ;
+    sql.exec("UPDATE `bookcat` SET  `synch_state` = 0");
+
 }
 
-Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin);
+Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin)

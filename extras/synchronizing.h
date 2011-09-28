@@ -8,9 +8,9 @@
 class SyncInterface
 {
 public:
+    virtual ~SyncInterface() {}
     enum SyncType {Upload,Download};
-    virtual ~SyncInterface() {};
-    Q_DECLARE_FLAGS(SyncTypes, SyncType);
+    Q_DECLARE_FLAGS(SyncTypes, SyncType)
     virtual QString version() = 0;
     virtual QString name() = 0;
     virtual QVariantMap aboutInfo() = 0;
@@ -24,7 +24,7 @@ public:
     virtual void authAccess(QString userName,QString userPassword) = 0 ;
     QString errorStr;
 };
-Q_DECLARE_OPERATORS_FOR_FLAGS(SyncInterface::SyncTypes);
+Q_DECLARE_OPERATORS_FOR_FLAGS(SyncInterface::SyncTypes)
 QT_BEGIN_NAMESPACE
 Q_DECLARE_INTERFACE(SyncInterface,
                     "com.pussbb.QHDA.Plugin.SyncInterface/0.1");

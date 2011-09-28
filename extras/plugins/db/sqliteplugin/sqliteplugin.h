@@ -22,8 +22,8 @@ public:
     QMap<QString, QString> defaultAuthOptions();
     QString defaultConnectionOptions();
     bool createCategory(QString categoryName, int parent = 0 );
-    QVariantList categoriesList(int parent = -1);
-    QVariantList articlesList(int parent = -1);
+    QVariantList categoriesList(int parent = -1,int limit = 0,bool sync = false);
+    QVariantList articlesList(int parent = -1,int limit = 0,bool sync = false);
     bool deleteCategory(int id);
     bool deleteArticle(int id);
     bool createArticle(QVariantMap article);
@@ -33,12 +33,12 @@ public:
     bool updateArticle(QVariantMap article);
     QVariantList search(QString search);
     // functions for Synchronization
-    ///enum synchType {Import,Export};
+
     int getCount(QString tableIndetifer);
     QVariantMap getCountAllTables();
     int getCountAll();
-    bool setSynchState(QString tableIndetifer,int fieldId,synchType type,bool state);
-    bool resetSyncState();
+    void setSynchState(Tables table,int id,bool state);
+    void resetSyncState();
     // end of functions for Synchronization
 private:
     QSqlDatabase db;

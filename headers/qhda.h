@@ -101,6 +101,8 @@ private slots:
 
     void on_actionTo_Remote_Server_triggered();
 
+    void on_actionFrom_Site_triggered();
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;

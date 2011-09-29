@@ -30,6 +30,8 @@ private slots:
     void processFault( int requestId, int errorCode, QString errorString );
     void uploadBook(QSettings *bookSettings);
     void proccedUploadElements();
+    void proccedDownloadElements();
+    void downloadBook(QSettings *bookSettings);
 private:
     DbManagerInterface *__db;
     xmlrpc::Client *client;
@@ -38,6 +40,7 @@ private:
     int articleId;
     int serverBookId;
     int catStatus;
+    int _currentType;
     QString _userName;
     QString _apiKey;
     int category_id;

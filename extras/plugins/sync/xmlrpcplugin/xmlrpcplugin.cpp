@@ -23,16 +23,37 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,S
 {
     __db = interface;
     dialog->clear();
+    _currentType = syncType;
     switch(syncType){
         case Upload:
             uploadBook(bookSettings);
             break;
         case Download:
+            downloadBook(bookSettings);
             break;
         default:
             break;
     }
 }
+
+void XmlRpcPlugin::downloadBook(QSettings *bookSettings)
+{
+    catStatus = 0;
+    dialog->setProgressValues(0,__db->getCountAll());
+    QString bookName = bookSettings->value("General/Bookname","").toString();
+    dialog->setOperationTitle(tr("Start downloading book") + bookName,true);
+    bookId = client->request("qhda.bookdown",bookName);
+    dialog->show();
+}
+void XmlRpcPlugin::proccedDownloadElements()
+{
+    if(catStatus != 1 ){
+         dialog->setOperationTitle(tr("Start downloading book catecories"),true);
+         catId = client->request("qhda.downloadcatagories",serverBookId);
+    }
+}
+
+
 void XmlRpcPlugin::uploadBook(QSettings *bookSettings)
 {
     catStatus = 0;
@@ -99,8 +120,6 @@ void XmlRpcPlugin::proccedUploadElements()
         article.insert("catid",current.value("catid").toString());
         articleId = client->request("qhda.article",article);
     }
-
-
 }
 
 void XmlRpcPlugin::setHost(QString host, int port, QString path)
@@ -131,17 +150,41 @@ void XmlRpcPlugin::init(QString userName,QString apiKey)
 }
 void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
 {
-
     if ( requestId == bookId ){
-        dialog->progressPlus(1);
-        serverBookId = value.toInt();
-        proccedUploadElements();
+        switch(_currentType){
+            case Upload:{
+                dialog->progressPlus(1);
+                serverBookId = value.toInt();
+                proccedUploadElements();
+                break;
+                }
+            case Download:{
+                QVariantMap result = value.toMap();
+                serverBookId = result.value("id").toInt();
+                dialog->setProgressValues(0,result.value("total_items").toInt());
+                proccedDownloadElements();
+                break;
+                }
+        }
     }
     if( requestId == catId){
-        int count = __db->getCount(DbManagerInterface::Category);
-        dialog->progressPlus(count);
-        catStatus = value.toInt();
-        proccedUploadElements();
+        switch(_currentType){
+            case Upload:{
+                    int count = __db->getCount(DbManagerInterface::Category);
+                    dialog->progressPlus(count);
+                    catStatus = value.toInt();
+                    proccedUploadElements();
+                    break;
+                }
+            case Download:{
+                    qDebug()<<value;///to list that to map
+                    //QVariantMap result = value.toMap();
+                    //serverBookId = result.value("id").toInt();
+                    //dialog->setProgressValues(0,result.value("total_items").toInt());
+                   // proccedDownloadElements();
+                    break;
+            }
+        }
     }
     if(requestId == articleId){
         dialog->progressPlus(1);

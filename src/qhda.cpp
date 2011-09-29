@@ -593,3 +593,10 @@ void QHDA::on_actionTo_Remote_Server_triggered()
     SyncInterface *syncFace = loadSyncPlugin(file);
     syncFace->start(books.value(currentBookName),dbman->interface,SyncInterface::Upload);
 }
+
+void QHDA::on_actionFrom_Site_triggered()
+{
+    QString file = settings.value("Synchronizing/pluginFromRemote","").toString();
+    SyncInterface *syncFace = loadSyncPlugin(file);
+    syncFace->start(books.value(currentBookName),dbman->interface,SyncInterface::Download);
+}

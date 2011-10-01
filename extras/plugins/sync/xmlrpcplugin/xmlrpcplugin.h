@@ -41,6 +41,7 @@ private:
     int serverBookId;
     int catStatus;
     int _currentType;
+    QVariantList articlesRemoteIds;
     QString _userName;
     QString _apiKey;
     int category_id;

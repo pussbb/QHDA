@@ -34,7 +34,9 @@ public:
     QVariantList search(QString search);
     // functions for Synchronization
     int getCount(Tables table);
-    void backup_tables();
+    void restoreFromBackup(Tables table);
+    bool syncArticle(QVariantMap article);
+    void backupTables();
     bool syncCategories(QVariantList categories);
     QVariantMap getCountAllTables();
     int getCountAll();

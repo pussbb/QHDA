@@ -238,8 +238,8 @@ bool SqlitePlugin::deleteArticle(int id)
 bool SqlitePlugin::createArticle(QVariantMap article)
 {
     QSqlQuery sql;
-    sql.prepare("INSERT INTO articles (title,content, author, published,md5,catid,guid)"
-                  " VALUES (?, ?, ?, ?, ?, ?, ?)");
+    sql.prepare("INSERT INTO articles (title,content, author, published,md5,catid,guid,synch_state)"
+                  " VALUES (?,?,?,?,?,?,?,?)");
     sql.bindValue(0,article.value("title"));
     sql.bindValue(1,article.value("content"));
     sql.bindValue(2,article.value("author"));
@@ -247,6 +247,8 @@ bool SqlitePlugin::createArticle(QVariantMap article)
     sql.bindValue(4,article.value("md5"));
     sql.bindValue(5,article.value("catid"));
     sql.bindValue(6,article.value("guid"));
+    sql.bindValue(7,article.value("synch_state",0));
+   // qDebug()<<sql.boundValues();
     sql.exec();
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
@@ -276,14 +278,15 @@ QVariantMap SqlitePlugin::article(int id)
 bool SqlitePlugin::updateArticle(QVariantMap article)
 {
     QSqlQuery sql;
-    sql.prepare("UPDATE articles SET title=? ,content=? , author=?, md5=?, catid=?"
+    sql.prepare("UPDATE articles SET title=? ,content=? , author=?, md5=?, catid=?, synch_state=?"
                   " WHERE id=?");
     sql.bindValue(0,article.value("title"));
     sql.bindValue(1,article.value("content"));
     sql.bindValue(2,article.value("author"));
     sql.bindValue(3,article.value("md5"));
     sql.bindValue(4,article.value("catid"));
-    sql.bindValue(5,article.value("id"));
+    sql.bindValue(5,article.value("synch_state",0));
+    sql.bindValue(6,article.value("id"));
     sql.exec();
     if(sql.lastError().isValid()) {
         errorStr = sql.lastError().text();
@@ -377,7 +380,7 @@ void SqlitePlugin::resetSyncState()
     sql.exec("UPDATE `bookcat` SET  `synch_state` = 0");
 
 }
-void SqlitePlugin::backup_tables()
+void SqlitePlugin::backupTables()
 {
     QSqlQuery sql;
     sql.exec("DELETE FROM articles_backup;");
@@ -388,12 +391,15 @@ void SqlitePlugin::backup_tables()
 bool SqlitePlugin::syncCategories(QVariantList categories)
 {
     QSqlQuery q;
+    QSqlQuery sql;
+    sql.exec("BEGIN TRANSACTION");
+    sql.exec("DELETE FROM bookcat;");
     q.prepare("INSERT INTO bookcat (id,name,parent) VALUES (?,?,?)");
     QVariantList ids;
     QVariantList names;
     QVariantList parents;
     for (int i = 0; i < categories.size(); ++i) {
-        QVariantMap category = categories.at(i).toMap();qDebug()<<category;
+        QVariantMap category = categories.at(i).toMap();
         ids << category.value("id");
         names << category.value("name");
         parents << category.value("parent");
@@ -406,7 +412,40 @@ bool SqlitePlugin::syncCategories(QVariantList categories)
           errorStr = q.lastError().text();
           return false;
     }
+    sql.exec("COMMIT TRANSACTION");
     return true;
+}
+void SqlitePlugin::restoreFromBackup(Tables table)
+{
+    QSqlQuery sql;
+    switch(table){
+    case Articles:{
+        break;
+    }
+    case Category:{
+        sql.exec("DELETE FROM bookcat;");
+        sql.exec("INSERT INTO bookcat SELECT * FROM bookcat_backup;");
+        sql.exec("INSERT INTO articles SELECT * FROM articles_backup;");
+    }
+    }
+}
+bool SqlitePlugin::syncArticle(QVariantMap article)
+{
+    QSqlQuery sql("SELECT * FROM `articles` WHERE `guid` = '"+article.value("guid","").toString()+"'");
+    sql.exec();
+    if(sql.lastError().isValid()){
+        errorStr = sql.lastError().text();
+        return false;
+    }
+    article.insert("synch_state",1);
+    article.insert("catid",article.value("cat_id"));
+    if(sql.next()){
+        return updateArticle(article);
+    }
+    else{
+       return createArticle(article);
+    }
+    return false;
 }
 
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin)

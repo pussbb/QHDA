@@ -69,6 +69,12 @@ void XmlRpcDialog::clear()
     if(!ui->log->isVisible())
         ui->logButton->click();
 }
+int XmlRpcDialog::leftCount()
+{
+    int max = ui->progressBar->maximum() ;
+    int current = ui->progressBar->value();
+    return  max - current  ;
+}
 
 void XmlRpcDialog::setProgressValues(int min, int max)
 {

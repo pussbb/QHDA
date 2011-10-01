@@ -29,7 +29,7 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,S
             uploadBook(bookSettings);
             break;
         case Download:
-            __db->backup_tables();
+            __db->backupTables();
             downloadBook(bookSettings);
             break;
         default:
@@ -48,9 +48,20 @@ void XmlRpcPlugin::downloadBook(QSettings *bookSettings)
 }
 void XmlRpcPlugin::proccedDownloadElements()
 {
-    if(catStatus != 1 ){qDebug()<<serverBookId;
-         dialog->setOperationTitle(tr("Start downloading book catecories"),true);
+    if(catStatus != 1 ){
+         dialog->setOperationTitle(tr("Start downloading book categories"),true);
          catId = client->request("qhda.downloadcatagories",(int)serverBookId);
+    }
+    else{
+        if(dialog->leftCount() >= 0 && articlesRemoteIds.empty()){
+            dialog->setOperationTitle(tr("Geting book articles identifiers"),true);
+            articleId = client->request("qhda.getarticlesids",(int)serverBookId);
+        }
+        else if(dialog->leftCount() >= 0){
+            QVariantMap article = articlesRemoteIds.first().toMap();
+            dialog->setOperationTitle(tr("Start downloading article ")+ article.value("title").toString(),true);
+            articleId = client->request("qhda.getarticle",article.value("id").toInt());
+        }
     }
 }
 
@@ -163,6 +174,7 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
                 QVariantMap result = value.toMap();
                 serverBookId = result.value("id").toInt();
                 dialog->setProgressValues(0,result.value("total_items").toInt());
+                dialog->progressPlus(1);
                 proccedDownloadElements();
                 break;
                 }
@@ -178,21 +190,52 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
                     break;
                 }
             case Download:{
-                    qDebug()<<value;///to list that to map
-                    qDebug()<<"in db:";
-                    qDebug()<<__db->syncCategories(value.toList());
-                    //QVariantMap result = value.toMap();
-                    //serverBookId = result.value("id").toInt();
-                    //dialog->setProgressValues(0,result.value("total_items").toInt());
-                   // proccedDownloadElements();
+                    bool ok = __db->syncCategories(value.toList());
+                    if(ok){
+                        catStatus = 1;
+                        dialog->progressPlus(value.toList().count());
+                        proccedDownloadElements();
+                    }
+                    else{
+                        dialog->toLog(__db->errorStr,XmlRpcDialog::Error);
+                        dialog->toLog(tr("Rolling back changes in categotires"),XmlRpcDialog::Warning);
+                        __db->restoreFromBackup(DbManagerInterface::Category);
+                        dialog->toLog(tr("Restored last state."),XmlRpcDialog::Info);
+                    }
                     break;
             }
         }
     }
     if(requestId == articleId){
-        dialog->progressPlus(1);
-        __db->setSynchState(DbManagerInterface::Articles,value.toInt(),true);
-        proccedUploadElements();
+        switch(_currentType){
+            case Upload:{
+                dialog->progressPlus(1);
+                __db->setSynchState(DbManagerInterface::Articles,value.toInt(),true);
+                proccedUploadElements();
+                break;
+                }
+            case Download:{
+                if(articlesRemoteIds.empty()){
+                    articlesRemoteIds = value.toList();
+                    proccedDownloadElements();
+                }
+                else{
+                    dialog->progressPlus(1);
+                    bool ok = __db->syncArticle(value.toMap());
+                    if(!ok){
+                        dialog->toLog(__db->errorStr,XmlRpcDialog::Error);
+                    }
+                    articlesRemoteIds.pop_front();
+                    if(articlesRemoteIds.empty()){
+                        dialog->toLog(tr("Synchronizing complete."),XmlRpcDialog::Info);
+                    }
+                    else{
+                        proccedDownloadElements();
+                    }
+                }
+                    break;
+            }
+        }
     }
 }
 

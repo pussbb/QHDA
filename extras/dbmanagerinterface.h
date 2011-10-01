@@ -31,8 +31,11 @@ public:
     virtual QVariantList search(QString search) = 0;
     // functions for Synchronization
     virtual bool syncCategories(QVariantList categories) = 0;
-    virtual void backup_tables() = 0;
+    virtual bool syncArticle(QVariantMap article) = 0;
+    virtual void backupTables() = 0;
+    ///virtual void clean
     virtual int getCount(Tables table) = 0;
+    virtual void restoreFromBackup(Tables table) = 0;
     virtual QVariantMap getCountAllTables() = 0;
     virtual int getCountAll() = 0;
     virtual void setSynchState(Tables table,int id,bool state) = 0;

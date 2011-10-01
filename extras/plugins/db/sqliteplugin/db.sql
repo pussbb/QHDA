@@ -28,5 +28,23 @@ CREATE TABLE bookcat (
 CREATE TRIGGER fkd_articles_bookcat_id
  BEFORE DELETE ON bookcat
  FOR EACH ROW BEGIN
-      DELETE from articles WHERE articles.cat_id = OLD.id;
+      DELETE from articles WHERE articles.catid = OLD.id;
  END;;
+CREATE TABLE articles_backup (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT,
+    "content" TEXT,
+    "author" VARCHAR(150),
+    "published" DATETIME,
+    "md5" TEXT,
+    "guid" TEXT,
+    "catid" NUMERIC,
+    "synch_state" INTEGER  NOT NULL  DEFAULT (0)
+);;
+
+CREATE TABLE bookcat_backup (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+  "name" VARCHAR(120), 
+  "parent" INTEGER default 0,
+  "synch_state" INTEGER  NOT NULL  DEFAULT (0)
+);;

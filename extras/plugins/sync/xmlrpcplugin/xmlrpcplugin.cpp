@@ -29,6 +29,7 @@ void XmlRpcPlugin::start(QSettings *bookSettings,DbManagerInterface *interface,S
             uploadBook(bookSettings);
             break;
         case Download:
+            __db->backup_tables();
             downloadBook(bookSettings);
             break;
         default:
@@ -47,9 +48,9 @@ void XmlRpcPlugin::downloadBook(QSettings *bookSettings)
 }
 void XmlRpcPlugin::proccedDownloadElements()
 {
-    if(catStatus != 1 ){
+    if(catStatus != 1 ){qDebug()<<serverBookId;
          dialog->setOperationTitle(tr("Start downloading book catecories"),true);
-         catId = client->request("qhda.downloadcatagories",serverBookId);
+         catId = client->request("qhda.downloadcatagories",(int)serverBookId);
     }
 }
 
@@ -178,6 +179,8 @@ void XmlRpcPlugin::processReturnValue( int requestId, QVariant value )
                 }
             case Download:{
                     qDebug()<<value;///to list that to map
+                    qDebug()<<"in db:";
+                    qDebug()<<__db->syncCategories(value.toList());
                     //QVariantMap result = value.toMap();
                     //serverBookId = result.value("id").toInt();
                     //dialog->setProgressValues(0,result.value("total_items").toInt());

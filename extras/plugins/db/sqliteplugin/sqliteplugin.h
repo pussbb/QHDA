@@ -33,8 +33,9 @@ public:
     bool updateArticle(QVariantMap article);
     QVariantList search(QString search);
     // functions for Synchronization
-
     int getCount(Tables table);
+    void backup_tables();
+    bool syncCategories(QVariantList categories);
     QVariantMap getCountAllTables();
     int getCountAll();
     void setSynchState(Tables table,int id,bool state);

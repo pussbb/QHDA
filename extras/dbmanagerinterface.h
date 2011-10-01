@@ -30,7 +30,8 @@ public:
     virtual QVariantMap getTableColumnNames(QString tableName) = 0;
     virtual QVariantList search(QString search) = 0;
     // functions for Synchronization
-
+    virtual bool syncCategories(QVariantList categories) = 0;
+    virtual void backup_tables() = 0;
     virtual int getCount(Tables table) = 0;
     virtual QVariantMap getCountAllTables() = 0;
     virtual int getCountAll() = 0;

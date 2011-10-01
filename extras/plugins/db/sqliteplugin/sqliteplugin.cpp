@@ -377,5 +377,36 @@ void SqlitePlugin::resetSyncState()
     sql.exec("UPDATE `bookcat` SET  `synch_state` = 0");
 
 }
+void SqlitePlugin::backup_tables()
+{
+    QSqlQuery sql;
+    sql.exec("DELETE FROM articles_backup;");
+    sql.exec("DELETE FROM bookcat_backup;");
+    sql.exec("INSERT INTO articles_backup SELECT * FROM articles; ");
+    sql.exec("INSERT INTO bookcat_backup SELECT * FROM bookcat;");
+}
+bool SqlitePlugin::syncCategories(QVariantList categories)
+{
+    QSqlQuery q;
+    q.prepare("INSERT INTO bookcat (id,name,parent) VALUES (?,?,?)");
+    QVariantList ids;
+    QVariantList names;
+    QVariantList parents;
+    for (int i = 0; i < categories.size(); ++i) {
+        QVariantMap category = categories.at(i).toMap();qDebug()<<category;
+        ids << category.value("id");
+        names << category.value("name");
+        parents << category.value("parent");
+     }
+    q.addBindValue(ids);
+    q.addBindValue(names);
+    q.addBindValue(parents);
+
+    if (!q.execBatch()){
+          errorStr = q.lastError().text();
+          return false;
+    }
+    return true;
+}
 
 Q_EXPORT_PLUGIN2(sqliteplugin, SqlitePlugin)

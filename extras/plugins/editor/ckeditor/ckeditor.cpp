@@ -24,9 +24,10 @@ QWidget* Ckeditor::getEditor()
 QWidget* Ckeditor::getEditor(QVariantList categories,QVariantMap article)
 {
     editor = new Editor();
-    editor->buildCategoriesList(categories);
     editor->title = article.value("title","").toString();
     editor->content = article.value("content","").toString();
+    editor->buildCategoriesList(categories);
+    editor->loadCkeditor();
     if(article.value("catid",-1).toInt() > 0) {
            TreeBox *category = editor->findChild<TreeBox *>("categories");
            /*int index = category->findData(article.value("catid",-1));
@@ -62,4 +63,4 @@ QVariantMap Ckeditor::getData(QWidget *edit)
    return article;
 }
 
-Q_EXPORT_PLUGIN2(ckeditor,Ckeditor);
+Q_EXPORT_PLUGIN2(ckeditor,Ckeditor)

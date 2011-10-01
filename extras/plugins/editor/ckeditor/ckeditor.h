@@ -21,5 +21,6 @@ public:
     QWidget* getEditor(QVariantList categories,QVariantMap article);
     QVariantMap getData(QWidget* edit);
 
+
 };
 #endif

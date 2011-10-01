@@ -20,6 +20,7 @@ public:
     void buildCategoriesList(QVariantList categories);
     QString content;
     QString title;
+    void loadCkeditor();
 public slots:
     void changeEvent(QEvent *e);
     void render(bool ok);

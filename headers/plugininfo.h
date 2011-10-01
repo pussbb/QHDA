@@ -23,6 +23,7 @@ private:
     Ui::PluginInfo *ui;
     void initDbPlugins();
     void initEditors();
+  ///  void initSynchPlugins();
 };
 
 #endif // PLUGININFO_H

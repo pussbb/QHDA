@@ -1,7 +1,7 @@
 #include "editor.h"
 #include "ui_editor.h"
 #include "QWebInspector"
-
+#include <QWebElement>
 Editor::Editor(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Editor)
@@ -20,13 +20,14 @@ Editor::Editor(QWidget *parent) :
 //       inspector->setPage(ui->webView->page());
 //inspector->show();
 alreadyInserted = false;
+
 }
 
 Editor::~Editor()
 {
     delete ui;
 }
-#include <QWebElement>
+
 void Editor::render(bool ok)
 {
     if(!ok)
@@ -36,11 +37,11 @@ void Editor::render(bool ok)
            || alreadyInserted)
        return;
 
-   QWebElement document = ui->webView->page()->mainFrame()->documentElement();
+  /* QWebElement document = ui->webView->page()->mainFrame()->documentElement();
    QWebElement elem = document.findFirst("textarea#editor1");
    elem.appendInside(content);
    ui->webView->page()->mainFrame()->evaluateJavaScript("insertHTML();");
-
+*/
    ui->title->setText(title);
    alreadyInserted = true;
 }
@@ -61,6 +62,19 @@ void Editor::changeEvent(QEvent *e)
         break;
     }
 }
+void Editor::loadCkeditor()
+{
+    QFile file(":/ckeditor/editor.html");
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+    return;
+    }
+    QTextStream in(&file);
+    QString content_ = in.readAll();
+    content_.replace("{content}",content);
+    ui->webView->setHtml(content_);
+}
+
 void Editor::buildCategoriesList(QVariantList categories)
 {
     QTreeWidget *tree = new QTreeWidget;

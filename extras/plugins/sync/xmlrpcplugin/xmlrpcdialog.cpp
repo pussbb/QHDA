@@ -8,6 +8,7 @@ XmlRpcDialog::XmlRpcDialog(QWidget *parent) :
     ui->setupUi(this);
     ui->log->setVisible(false);
     adjustSize();
+    ui->cancelButton->setVisible(false);
 }
 
 XmlRpcDialog::~XmlRpcDialog()

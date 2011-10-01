@@ -363,12 +363,15 @@ int SqlitePlugin::getCountAll()
 void SqlitePlugin::setSynchState(Tables table,int id,bool state)
 {
     QSqlQuery sql;
+    int synch_state = 0;
+    if(state)
+        synch_state = 1;
     switch(table){
     case Articles:
-        sql.exec("UPDATE `articles` SET  `synch_state` = "+QString::number((int)state)+" WHERE id="+QString::number(id)+";") ;
+        sql.exec("UPDATE `articles` SET  `synch_state` = "+QString::number(synch_state)+" WHERE id="+QString::number(id)+";") ;
         break;
     case Category:
-        sql.exec("UPDATE `bookcat` SET  `synch_state` = "+QString::number((int)state)+" WHERE id="+QString::number(id)+";") ;
+        sql.exec("UPDATE `bookcat` SET  `synch_state` = "+QString::number(synch_state)+" WHERE id="+QString::number(id)+";") ;
         break;
     }
 }

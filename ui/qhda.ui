@@ -85,6 +85,8 @@
      <addaction name="actionHtml"/>
     </widget>
     <addaction name="menuNew_Book"/>
+    <addaction name="actionImport_Book"/>
+    <addaction name="separator"/>
     <addaction name="actionPrint"/>
     <addaction name="actionQuick_Print"/>
     <addaction name="menuExport"/>
@@ -360,6 +362,9 @@
    </property>
   </action>
   <action name="actionHtml">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="../resource/qhda.qrc">
      <normaloff>:/actions/webexport.png</normaloff>:/actions/webexport.png</iconset>
@@ -482,6 +487,15 @@
    </property>
    <property name="text">
     <string>To Remote Server</string>
+   </property>
+  </action>
+  <action name="actionImport_Book">
+   <property name="icon">
+    <iconset resource="../resource/qhda.qrc">
+     <normaloff>:/actions/db.png</normaloff>:/actions/db.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import Book</string>
    </property>
   </action>
  </widget>

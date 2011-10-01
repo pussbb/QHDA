@@ -8,6 +8,8 @@ PluginInfo::PluginInfo(QWidget *parent) :
     ui->setupUi(this);
     initDbPlugins();
     initEditors();
+    initSynchPlugins();
+    ui->treePlugins->expandAll();
 }
 
 PluginInfo::~PluginInfo()
@@ -54,6 +56,26 @@ void PluginInfo::initEditors()
             text.append(editor->name());
             text.append(" " + tr("Version:") + editor->version());
             text.append(" " + tr("Editor Type: ") + editor->editorType());
+            item->setText(0,text);
+        }
+    }
+}
+void PluginInfo::initSynchPlugins()
+{
+    ///SyncInterface
+    QTreeWidgetItem *parent = new QTreeWidgetItem(ui->treePlugins);
+    parent->setText(0,tr("Synchronizing"));
+    QString editorsPath = qApp->applicationDirPath()+QDir::toNativeSeparators("/plugins/sync/");
+    QDir pluginsDir(editorsPath);
+    QString text;
+    foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+        QPluginLoader pluginLoader(pluginsDir.absoluteFilePath(fileName));
+        QObject *plugin = pluginLoader.instance();
+        if (plugin) {
+            SyncInterface * synch = qobject_cast<SyncInterface *>(plugin);
+            QTreeWidgetItem *item = new QTreeWidgetItem(parent);
+            text.append(synch->name());
+            text.append(" " + tr("Version:") + synch->version());
             item->setText(0,text);
         }
     }

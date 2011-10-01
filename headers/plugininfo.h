@@ -6,6 +6,7 @@
 
 #include <extras/editorinterface.h>
 #include <extras/dbmanagerinterface.h>
+#include <extras/synchronizing.h>
 
 namespace Ui {
     class PluginInfo;
@@ -23,7 +24,7 @@ private:
     Ui::PluginInfo *ui;
     void initDbPlugins();
     void initEditors();
-  ///  void initSynchPlugins();
+    void initSynchPlugins();
 };
 
 #endif // PLUGININFO_H

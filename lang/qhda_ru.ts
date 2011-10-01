@@ -232,41 +232,47 @@ E-mail: pussbb@gmail.com</source>
         <translation>Доступные плагины</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="20"/>
+        <location filename="../src/plugininfo.cpp" line="22"/>
         <source>DataBase Engines</source>
         <translation>Движки БД</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="31"/>
-        <location filename="../src/plugininfo.cpp" line="55"/>
+        <location filename="../src/plugininfo.cpp" line="33"/>
+        <location filename="../src/plugininfo.cpp" line="57"/>
+        <location filename="../src/plugininfo.cpp" line="78"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="33"/>
         <location filename="../src/plugininfo.cpp" line="35"/>
+        <location filename="../src/plugininfo.cpp" line="37"/>
         <source>Server Type: </source>
         <translation>На стороне сервера:</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="33"/>
+        <location filename="../src/plugininfo.cpp" line="35"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="35"/>
+        <location filename="../src/plugininfo.cpp" line="37"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="44"/>
+        <location filename="../src/plugininfo.cpp" line="46"/>
         <source>Editors</source>
         <translation>Редакторы</translation>
     </message>
     <message>
-        <location filename="../src/plugininfo.cpp" line="56"/>
+        <location filename="../src/plugininfo.cpp" line="58"/>
         <source>Editor Type: </source>
         <translation>Тип редактора:</translation>
+    </message>
+    <message>
+        <location filename="../src/plugininfo.cpp" line="67"/>
+        <source>Synchronizing</source>
+        <translation>Синхронизация</translation>
     </message>
 </context>
 <context>
@@ -312,172 +318,177 @@ E-mail: pussbb@gmail.com</source>
         <translation>Експорт</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="95"/>
+        <location filename="../ui/qhda.ui" line="97"/>
         <source>Options</source>
         <translation>Опции</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="99"/>
+        <location filename="../ui/qhda.ui" line="101"/>
         <source>Syncronization</source>
         <translation>Синхронизация</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="109"/>
+        <location filename="../ui/qhda.ui" line="111"/>
         <source>Window</source>
         <translation>Окно</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="113"/>
+        <location filename="../ui/qhda.ui" line="115"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="124"/>
+        <location filename="../ui/qhda.ui" line="126"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="155"/>
-        <location filename="../ui/qhda.ui" line="295"/>
+        <location filename="../ui/qhda.ui" line="157"/>
+        <location filename="../ui/qhda.ui" line="297"/>
         <source>Book List</source>
         <translation>Список справочников</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="183"/>
+        <location filename="../ui/qhda.ui" line="185"/>
         <source>Book Table of Contents</source>
         <translation>Содержание справочника</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="240"/>
-        <location filename="../ui/qhda.ui" line="305"/>
+        <location filename="../ui/qhda.ui" line="242"/>
+        <location filename="../ui/qhda.ui" line="307"/>
         <source>Search In Book</source>
         <translation>Поиск в справочнике</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="269"/>
+        <location filename="../ui/qhda.ui" line="271"/>
         <source>Search</source>
         <translation>Поиск</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="282"/>
+        <location filename="../ui/qhda.ui" line="284"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="287"/>
+        <location filename="../ui/qhda.ui" line="289"/>
         <source>Full Screen</source>
         <translation>Полноэкранный режим</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="290"/>
+        <location filename="../ui/qhda.ui" line="292"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="300"/>
+        <location filename="../ui/qhda.ui" line="302"/>
         <source>Book Table of Content</source>
         <translation>Содержание справочника</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="314"/>
+        <location filename="../ui/qhda.ui" line="316"/>
         <source>Help Doc</source>
         <translation>Справка</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="323"/>
+        <location filename="../ui/qhda.ui" line="325"/>
         <source>Article</source>
         <translation>Статья</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="332"/>
+        <location filename="../ui/qhda.ui" line="334"/>
         <source>New Catecory</source>
         <translation>Категория</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="341"/>
+        <location filename="../ui/qhda.ui" line="343"/>
         <source>Print</source>
         <translation>Печать</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="350"/>
+        <location filename="../ui/qhda.ui" line="352"/>
         <source>Quick Print</source>
         <translation>Быстрая печать</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="359"/>
+        <location filename="../ui/qhda.ui" line="361"/>
         <source>PDF</source>
         <translation>PDF</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="368"/>
+        <location filename="../ui/qhda.ui" line="373"/>
         <source>Html</source>
         <translation>HTML</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="377"/>
+        <location filename="../ui/qhda.ui" line="382"/>
         <source>Remove book</source>
         <translation>Удалить справочник</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="386"/>
+        <location filename="../ui/qhda.ui" line="391"/>
         <source>Edit Book Properties</source>
         <translation>Редактировать настройки справочника</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="395"/>
+        <location filename="../ui/qhda.ui" line="400"/>
         <source>Remove Category</source>
         <translation>Удалить категорию</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="404"/>
+        <location filename="../ui/qhda.ui" line="409"/>
         <source>Remove Article</source>
         <translation>Удалить Статью</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="419"/>
+        <location filename="../ui/qhda.ui" line="424"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="428"/>
+        <location filename="../ui/qhda.ui" line="433"/>
         <source>Edit Article</source>
         <translation>Редактировать статью</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="437"/>
+        <location filename="../ui/qhda.ui" line="442"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="442"/>
-        <location filename="../ui/qhda.ui" line="457"/>
+        <location filename="../ui/qhda.ui" line="447"/>
+        <location filename="../ui/qhda.ui" line="462"/>
         <source>Plugins</source>
         <translation>Плагины</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="447"/>
+        <location filename="../ui/qhda.ui" line="452"/>
         <source>About QT</source>
         <translation>О Qt</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="452"/>
+        <location filename="../ui/qhda.ui" line="457"/>
         <source>About</source>
         <translation>O ...</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="466"/>
+        <location filename="../ui/qhda.ui" line="471"/>
         <source>Content</source>
         <translation>Содержание</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="475"/>
+        <location filename="../ui/qhda.ui" line="480"/>
         <source>From Remote Server</source>
         <translation>С удаленого сервера</translation>
     </message>
     <message>
-        <location filename="../ui/qhda.ui" line="484"/>
+        <location filename="../ui/qhda.ui" line="489"/>
         <source>To Remote Server</source>
         <translation>На удаленый сервер</translation>
+    </message>
+    <message>
+        <location filename="../ui/qhda.ui" line="498"/>
+        <source>Import Book</source>
+        <translation>Импорт справки</translation>
     </message>
     <message>
         <location filename="../ui/qhda.ui" line="74"/>
@@ -575,6 +586,21 @@ E-mail: pussbb@gmail.com</source>
         <location filename="../src/qhda.cpp" line="523"/>
         <source>Export PDF</source>
         <translation>Экспорт в PDF</translation>
+    </message>
+    <message>
+        <location filename="../src/qhda.cpp" line="608"/>
+        <source>Import book</source>
+        <translation>Импорт справки</translation>
+    </message>
+    <message>
+        <location filename="../src/qhda.cpp" line="608"/>
+        <source>Book settings file (*.ini)</source>
+        <translation>Файл настроек справки</translation>
+    </message>
+    <message>
+        <location filename="../src/qhda.cpp" line="621"/>
+        <source>Invalid book settings.</source>
+        <translation>Некоректные настройки справки</translation>
     </message>
 </context>
 <context>

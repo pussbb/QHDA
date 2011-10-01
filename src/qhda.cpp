@@ -601,3 +601,27 @@ void QHDA::on_actionFrom_Site_triggered()
     syncFace->start(books.value(currentBookName),dbman->interface,SyncInterface::Download);
     buildTableOfContent();
 }
+
+void QHDA::on_actionImport_Book_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Import book"), "", tr("Book settings file (*.ini)"));
+    if(fileName.isEmpty())
+        return;
+    QSettings newBook(fileName,QSettings::IniFormat);
+    if(!newBook.value("General/Bookname").isNull()){
+         QFileInfo info(fileName);
+        settings.beginGroup("Books");
+        settings.setValue(info.baseName(),info.absolutePath());
+        settings.endGroup();
+        settings.sync();
+        initBooks();
+    }
+    else{
+        msgBox.setText(tr("Invalid book settings."));
+        msgBox.setStandardButtons(QMessageBox::Ok);
+        msgBox.setIcon(QMessageBox::Warning);
+        msgBox.setDefaultButton(QMessageBox::Ok);
+        msgBox.exec();
+    }
+}

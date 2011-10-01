@@ -103,6 +103,8 @@ private slots:
 
     void on_actionFrom_Site_triggered();
 
+    void on_actionImport_Book_triggered();
+
 private:
     Ui::QHDA *ui;
     bool raiseEditor;

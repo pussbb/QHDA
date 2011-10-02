@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/html/templates/binarynews">
+        <file>index.html</file>
+        <file>images/bg.gif</file>
+        <file>images/bg.jpg</file>
+        <file>images/footer.jpg</file>
+        <file>images/header.jpg</file>
+        <file>images/menu.jpg</file>
+        <file>images/preheader.jpg</file>
+        <file>images/style.css</file>
+    </qresource>
+</RCC>

@@ -6,6 +6,7 @@ QHDA::QHDA(QWidget *parent) :
     ui(new Ui::QHDA)
 {
     articleTemplate = new TemplateEngine();
+    articleTemplate->templatesDirectory = AppDir +"templates" + QDir::toNativeSeparators("/");
     dbman = new DataBaseManager();
     ui->setupUi(this);
     buildLangMenu("qhda");
@@ -45,6 +46,7 @@ void QHDA::loadSettings()
     ui->searchString->insertItems(0,settings.value("History/latestSearch",QStringList()).toStringList());
     ui->searchString->setCurrentIndex(-1);
     ui->tabedContent->newTab = settings.value("Core/newTab",false).toBool();
+    articleTemplate->setTemplateName(settings.value("Templates/file","system").toString());
 }
 
 void QHDA::changeEvent(QEvent *e)
@@ -493,7 +495,10 @@ void QHDA::on_tableOfContent_itemDoubleClicked(QTreeWidgetItem* item, int column
 void QHDA::on_actionSettings_triggered()
 {
     Settings *settingsDialog = new Settings(this);
-    settingsDialog->exec();
+    if(settingsDialog->exec() == QDialog::Accepted){
+        settings.sync();
+        loadSettings();
+    }
     settingsDialog->deleteLater();
 }
 

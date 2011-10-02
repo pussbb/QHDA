@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/html/templates/hanging">
+        <file>index.html</file>
+        <file>default.css</file>
+        <file>images/img01.gif</file>
+        <file>images/img02.gif</file>
+        <file>images/img03.gif</file>
+        <file>images/img04.gif</file>
+        <file>images/spacer.gif</file>
+    </qresource>
+</RCC>

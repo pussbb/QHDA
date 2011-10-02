@@ -18,9 +18,10 @@ TemplateEngine::TemplateEngine(QObject *parent) :
     templateName = "system";
     loadTemplate();
 }
-void TemplateEngine::setTemplateName(QString name)
+void TemplateEngine::setTemplateName(QString fileName)
 {
-     templateName = name;
+    QSettings templateSettings(templatesDirectory+fileName,QSettings::IniFormat);
+    templateName = templateSettings.value("Template/FileName","system").toString().toLower();
      loadTemplate();
 }
 
@@ -32,6 +33,10 @@ void TemplateEngine::loadTemplate()
     }
     else if (templateName == "printable") {
         themeFile = ":/html/templates/printable.html";
+    }
+    else {
+         QResource::registerResource(templatesDirectory+templateName+".rcc");
+         themeFile =  ":/html/templates/"+templateName+"/index.html";;
     }
     QFile file(themeFile);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

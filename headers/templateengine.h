@@ -5,16 +5,18 @@
 #include <QFile>
 #include <QTextStream>
 #include <QVariant>
-
+#include <QResource>
+#include <QSettings>
 class TemplateEngine : public QObject
 {
     Q_OBJECT
 public:
     explicit TemplateEngine(QObject *parent = 0);
     inline QString getTemplateName() {return templateName;};
-    void setTemplateName(QString name);
+    void setTemplateName(QString fileName);
     QString renderAricle(QVariantMap article);
     QString printable(QVariantMap article);
+    QString templatesDirectory;
 signals:
 
 public slots:

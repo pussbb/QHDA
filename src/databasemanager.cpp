@@ -63,7 +63,7 @@ bool DataBaseManager::newArticle(QVariantMap article)
     QSettings settings;
     article.insert("md5",hash.toHex());
     article.insert("guid",QUuid::createUuid().toString());
-    article.insert("author",settings.value("user","anonymous"));
+    article.insert("author",settings.value("Core/username","anonymous"));
 
     if(interface->createArticle(article))
         return true;
@@ -79,7 +79,7 @@ bool DataBaseManager::updateArticle(QVariantMap article)
                                                .toLocal8Bit(), QCryptographicHash::Md5);
     QSettings settings;
     article.insert("md5",hash.toHex());
-    article.insert("author",settings.value("user","anonymous"));
+    article.insert("author",settings.value("Core/username","anonymous"));
 
     if(interface->updateArticle(article))
         return true;

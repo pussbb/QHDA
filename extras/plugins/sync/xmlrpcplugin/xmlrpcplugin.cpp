@@ -130,6 +130,7 @@ void XmlRpcPlugin::proccedUploadElements()
         article.insert("md5",current.value("md5").toString());
         article.insert("guid",current.value("guid").toString());
         article.insert("catid",current.value("catid").toString());
+        article.insert("bookid",serverBookId);
         articleId = client->request("qhda.article",article);
     }
 }

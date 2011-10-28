@@ -190,7 +190,6 @@ void QHDA::openBook(QListWidgetItem* item)
 {
     currentBookName = item->data(Qt::UserRole).toString();
     QSettings *currentBook = books.value(currentBookName);
-
     dbman->setCurrentInterface(currentBook->value("Database/Engine").toString());
 
     if(currentBook->value("Database/version").toString() != dbman->interface->version()) {
@@ -201,7 +200,8 @@ void QHDA::openBook(QListWidgetItem* item)
     if(!dbman->interface->isServerType())
         dbname = item->data(Qt::UserRole+1).toString() + item->data(Qt::UserRole).toString();
     bool ok;
-    if(currentBook->value("Database/version").toBool())
+    bool server = currentBook->value("Database/isservertype",false).toBool();
+    if(server)
        ok = dbman->interface->open(dbname,currentBook->value("Database/settings").toMap());
     else
        ok = dbman->interface->open(dbname);
@@ -379,7 +379,7 @@ void QHDA::on_actionRemove_book_triggered()
     msgBox.setDefaultButton(QMessageBox::Cancel);
     if(msgBox.exec()==QMessageBox::Yes) {
         QListWidgetItem* item = ui->bookList->currentItem();
-        settings.remove("Books/"+item->text());
+        settings.remove("Books/"+item->data(Qt::UserRole).toString());
         settings.sync();
         delete item;
     }

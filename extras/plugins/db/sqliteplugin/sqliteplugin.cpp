@@ -76,8 +76,7 @@ bool SqlitePlugin::open(QString databaseName)
     if(db.isOpen())
     {
         db.close();
-        db.removeDatabase(db.connectionName());
-        db.~QSqlDatabase();
+        QSqlDatabase::removeDatabase(db.connectionName());
     }
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(databaseName+".book");
@@ -101,8 +100,7 @@ bool SqlitePlugin::open(QString databaseName,QMap<QString, QVariant> options )
 {
     if(db.isOpen()) {
         db.close();
-        db.removeDatabase(db.connectionName());
-        db.~QSqlDatabase();
+        QSqlDatabase::removeDatabase(db.connectionName());
     }
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName(databaseName+".book");

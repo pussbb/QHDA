@@ -132,6 +132,7 @@ void BookWizard::accept()
         bookSettings.setValue("Database/settings",options);
         bookSettings.setValue("Database/connoptions",ui->connoptions->document()->isEmpty());
         bookSettings.setValue("Database/version",interface->version());
+        bookSettings.setValue("Database/isservertype",interface->isServerType());
         bookSettings.sync();
         if(!interface->isServerType())
         {

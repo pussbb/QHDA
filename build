@@ -1,0 +1,16 @@
+#!/bin/bash
+rm -R ./bin/plugins
+qmake ./QHDA.pro
+make 
+cd ./extras/plugins/db/sqliteplugin/
+qmake 
+make
+cd ../../editor/ckeditor/
+qmake 
+make
+cd ../../sync/xmlrpcplugin/qxmlrpc_lib/
+qmake 
+make
+cd ../
+qmake
+make
